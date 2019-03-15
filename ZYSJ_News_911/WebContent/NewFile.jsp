@@ -11,11 +11,6 @@
 小宇，你怎么穿着品如的衣服！
 瘦子，你也穿着品如的衣服？？？？
 胖子，好方~~~ftdtdht
-<<<<<<< HEAD
-mmmmmmmmmmmmmmmmmmmm
-=======
-usabcufiweuihfibwefbivhvbyhwvibhvrvhwovhwbvywhvbwijhuhvjnbduwj
->>>>>>> 6b4611b043cd8582de8e8ecee8706f1a3106d6e6
-opopopopoopop
+
 </body>
 </html>
