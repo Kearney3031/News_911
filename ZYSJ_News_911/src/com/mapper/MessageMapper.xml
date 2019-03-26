@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MessageMapper">
+	<select id="findAllMessage" resultType="Message">
+		select * from message
+	</select>
+	<insert id="addMessage" parameterType="String">
+		insert into Message values(null,#{name})
+	</insert>
+	<delete id="delMessage" parameterType="int">
+		delete from Message where id = #{id}
+	</delete>
+	<update id="updateUser" parameterType="java.util.Map">
+	 	update Message set name=#{name} where id=#{id}
+	 </update>
+</mapper>
