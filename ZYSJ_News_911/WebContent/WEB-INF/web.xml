@@ -30,6 +30,7 @@
          <!-- 此处可以可以配置成*.do -->
          <url-pattern>*.do</url-pattern>
      </servlet-mapping>
+
   <display-name>ZYSJ_News_911</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
