@@ -29,4 +29,12 @@ public String findAllUser(HttpServletRequest request) {
 		return "redirect:/message.jsp";
 	}
 
+@RequestMapping(value="/insert")
+public String addMessage(Message message) {
+	messageService.addMessage(message);
+	System.out.println("评论成功");
+	return "redirect:/user/find.do";
+	
+}
+
 }

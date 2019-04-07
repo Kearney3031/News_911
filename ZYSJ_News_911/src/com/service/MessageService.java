@@ -8,7 +8,7 @@ import com.model.Message;
 
 public interface MessageService {
 	List<Message> findAllMessage();
-	 void addMessage(String name);
+	 void addMessage(Message mesage);
 	 void delMessage(int id);
 	 void updateUser(int id,String name);
 }

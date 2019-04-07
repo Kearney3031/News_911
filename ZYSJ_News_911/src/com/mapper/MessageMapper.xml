@@ -5,8 +5,8 @@
 	<select id="findAllMessage" resultType="Message">
 		select * from message
 	</select>
-	<insert id="addMessage" parameterType="String">
-		insert into Message values(null,#{name})
+	<insert id="addMessage" parameterType="com.model.Message">
+		insert into message values(null,#{megContent},null,1,null,null,null)
 	</insert>
 	<delete id="delMessage" parameterType="int">
 		delete from Message where id = #{id}

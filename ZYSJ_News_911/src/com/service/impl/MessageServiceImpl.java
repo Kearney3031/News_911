@@ -22,8 +22,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public void addMessage(String name) {
-		messageMapper.addMessage(name);
+	public void addMessage(Message message) {
+		messageMapper.addMessage(message);
 		
 	}
 
