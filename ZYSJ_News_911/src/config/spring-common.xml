@@ -14,7 +14,7 @@
          <bean id="dataSource"
          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
          <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-         <property name="url" value="jdbc:mysql://47.94.207.143:3306/news_db" />
+         <property name="url" value="jdbc:mysql://47.94.207.143:3306/news_db?useSSL=false" />
          <property name="username" value="root" />
          <property name="password" value="uAiqwVwjJ8-i" />
          </bean>
