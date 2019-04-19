@@ -4,8 +4,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Message" type="com.model.Message"/>
+		<typeAlias alias="User" type="com.model.User"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/mapper/MessageMapper.xml"/>
+		<mapper resource="com/mapper/UserMapper.xml"/>
 	</mappers>
 </configuration>

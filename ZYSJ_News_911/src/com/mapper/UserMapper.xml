@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+	
+	<insert id="addUser" parameterType="User">
+		insert into user(userId,userName,password,userRealName,phone,email,userType,score) values(null,#{userName},#{password},#{userRealName},#{phone},#{email},#{userType},0)
+	</insert>
+	<select id="testLogin"  resultType="User" parameterType="User">
+		select * from user where userName=#{userName} and password=#{password}
+	</select>
+	<select id="testLogin1"  resultType="User" parameterType="User">
+		select * from user where email=#{email} and password=#{password}
+	</select>
+	 <insert id="addNews" parameterType="java.util.Map">
+		insert into news values(null,#{newsTitle},#{newsContent},#{newsImg},#{newsLike},#{userId},#{newsStatus},#{typeId},#{publishTime})
+	</insert>
+</mapper>
