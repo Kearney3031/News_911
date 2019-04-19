@@ -14,4 +14,10 @@
 	<update id="updateUser" parameterType="java.util.Map">
 	 	update Message set name=#{name} where id=#{id}
 	 </update>
+	 <update id="addLike" parameterType="int">
+	 	update message set megLike=megLike+1 where messageId=#{id}
+	 </update>
+	 <update id="subLike" parameterType="int">
+	 	update message set megLike=megLike-1 where messageId=#{id}
+	 </update>
 </mapper>

@@ -10,4 +10,6 @@ public interface MessageMapper {
 	void addMessage(Message message);
 	void delMessage(int id);
 	void updateMessage(Map<String,Object> map);
+	void addLike(int id);
+	void subLike(int id);
 }

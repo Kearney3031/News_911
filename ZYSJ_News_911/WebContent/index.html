@@ -300,18 +300,36 @@ $(document).ready(function() {
 <!--点赞-->
 <script type="text/javascript">
     $('.comment-show').on('click','.date-dz-z',function(){
-        var zNum = $(this).find('.z-num').html();
+    	var id= $(this).siblings('div').eq(0).text();
+    	var zNum = $(this).find('.z-num').html();
         if($(this).is('.date-dz-z-click')){
-            zNum--;
+        	zNum--;
             $(this).removeClass('date-dz-z-click red');
             $(this).find('.z-num').html(zNum);
             $(this).find('.date-dz-z-click-red').removeClass('red');
+         	 $.getJSON("message/subLike.do", {
+    		"id" : id
+    	}, function(data) {
+    		//alert("删除成功"); 
+    	}); 
         }else {
-            zNum++;
+        	zNum++;
             $(this).addClass('date-dz-z-click');
             $(this).find('.z-num').html(zNum);
             $(this).find('.date-dz-z-click-red').addClass('red');
+         	 $.getJSON("message/addLike.do", {
+    		"id" : id
+    	}, function(data) {
+    	}); 
         }
+        
+    	
+        
+        
+        
+        
+        
+        
     })
 </script>
 
