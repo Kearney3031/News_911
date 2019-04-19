@@ -60,7 +60,13 @@
         </tbody>
     </table>
 
- 
+
+<form action="message/addLike.do?id=27">
+<input type="submit"/> 
+ <input type="button" id="addLike" value="jsonLike"/>
+</form>
+
+
 </body>
 </html>
 

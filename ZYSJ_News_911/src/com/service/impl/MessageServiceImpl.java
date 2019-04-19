@@ -38,6 +38,16 @@ public class MessageServiceImpl implements MessageService {
 		
 	}
 	
+	@Override
+	public void addLike(int id) {
+		messageMapper.addLike(id);
+	}
+	
+	@Override
+	public void subLike(int id) {
+		messageMapper.subLike(id);
+	}
+	
 	@Autowired
 	public MessageMapper messageMapper;
 

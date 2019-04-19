@@ -11,4 +11,6 @@ public interface MessageService {
 	 void addMessage(Message mesage);
 	 void delMessage(int id);
 	 void updateUser(int id,String name);
+	 void addLike(int id);
+	 void subLike(int id);
 }
