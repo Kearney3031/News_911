@@ -5,11 +5,11 @@
 	<select id="findAllMessage" resultType="Message">
 		select * from message
 	</select>
-	<insert id="addMessage" parameterType="String">
-		insert into Message values(null,#{name})
+	<insert id="addMessage" parameterType="com.model.Message">
+		insert into message values(null,#{megContent},0,#{time},1,null,null,null)
 	</insert>
 	<delete id="delMessage" parameterType="int">
-		delete from Message where id = #{id}
+		delete from message where messageId = #{messageId}
 	</delete>
 	<update id="updateUser" parameterType="java.util.Map">
 	 	update Message set name=#{name} where id=#{id}
