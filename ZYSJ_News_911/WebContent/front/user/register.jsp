@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
- <script type="text/javascript" src="js/jq03.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.6.2.js"></script>
+ <script type="text/javascript" src="../../js/jq03.js"></script>
 </head>
 <body>
-<form action="user/reg.do" method="post">
+<form action="../../user/reg.do" method="post">
 用户名：<input name="username" id="username"/>
 密码：<input type="password" name="password" id="pwd"/>
 用户昵称：<input name="realname" id="rname"/>

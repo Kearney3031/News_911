@@ -9,7 +9,7 @@ import com.model.User;
 public interface UserService {
  
  void addNews(String newsTitle,String newsContent,String newsImg,int newsLike,int userId,int newsStatus,int typeId,Date publishTime);
- void addUser1(User user);
+ void addUser(User user);
  User testLogin(User user);
  User testLogin1(User user);
 }	

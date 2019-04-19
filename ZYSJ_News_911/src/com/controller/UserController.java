@@ -125,7 +125,7 @@ public List<String> send(String email) {
 	
 }
 @RequestMapping(value="/reg", method = RequestMethod.POST)
-public ModelAndView addUser(String username,String password,String realname,String phone,String email,String userType,HttpServletRequest request) throws UnsupportedEncodingException {
+public String addUser(String username,String password,String realname,String phone,String email,String userType,HttpServletRequest request) throws UnsupportedEncodingException {
 	
 	User user=new User();
 	user.setUserName(username);
@@ -133,15 +133,16 @@ public ModelAndView addUser(String username,String password,String realname,Stri
 	realname=new String(realname.getBytes("ISO-8859-1"),"utf-8");
 	user.setUserRealName(realname);
 	
-	user.setPhone(Integer.parseInt(phone));
+	user.setPhone(phone);
 	user.setUserType(Integer.parseInt(userType));
 	user.setEmail(email);
-	userService.addUser1(user);
+	userService.addUser(user);
 	request.getSession().setAttribute("user", user);
-	
+	request.getSession().setAttribute("name", user.getUserRealName());
 	ModelAndView mav=new ModelAndView("/index.jsp");
 	mav.getModel().put("name", realname);
-	return mav;
+//	return mav;
+	return "redirect:/front/user/index.jsp";
 	
 	
 }

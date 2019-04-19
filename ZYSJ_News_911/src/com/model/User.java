@@ -3,6 +3,12 @@ package com.model;
 public class User {
 
 
+public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 public String getUserRealName() {
 		return userRealName;
 	}
@@ -23,12 +29,7 @@ public String getUserName() {
 		this.password = password;
 	}
 	
-	public int getPhone() {
-		return phone;
-	}
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -56,7 +57,7 @@ public String getUserName() {
 private String userName;
  private String password;
  private String userRealName;
- private int phone;
+ private String phone;
  private String email;
  private int userType;
  private int userId;
