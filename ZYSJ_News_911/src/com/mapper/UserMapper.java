@@ -13,4 +13,9 @@ void addUser(User user);
 User testLogin(User user);//用户名登录
 User testLogin1(User user);//邮箱登录
 void addNews(Map<String,Object> map);
+
+List<User> findUserType();
+
+List<User> findUserTypeByUserId(int userId);
+
 }

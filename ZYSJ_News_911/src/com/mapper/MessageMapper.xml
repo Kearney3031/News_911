@@ -5,6 +5,10 @@
 	<select id="findAllMessage" resultType="Message">
 		select * from message
 	</select>
+	<select id="findByUesrId" resultType="Message">
+		select * from message where userId=#{userId}
+	</select>
+	
 	<insert id="addMessage" parameterType="com.model.Message">
 		insert into message values(null,#{megContent},0,#{time},1,null,null,null)
 	</insert>

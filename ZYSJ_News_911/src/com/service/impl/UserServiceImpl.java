@@ -15,38 +15,37 @@ import com.mapper.UserMapper;
 import com.model.User;
 
 import com.service.UserService;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	
+	@Autowired
+	public UserMapper userMapper;
+
 	@Override
 	public User testLogin1(User user) {
-		User u= userMapper.testLogin1(user);
+		User u = userMapper.testLogin1(user);
 		return u;
 	}
-
 
 	@Override
 	public User testLogin(User user) {
-		User u= userMapper.testLogin(user);
-		
-		
+		User u = userMapper.testLogin(user);
+
 		return u;
 	}
-
 
 	@Override
 	public void addUser(User user) {
 		userMapper.addUser(user);
-		
-	}
 
+	}
 
 	@Override
 	public void addNews(String newsTitle, String newsContent, String newsImg, int newsLike, int userId, int newsStatus,
 			int typeId, Date publishTime) {
-		Map<String, Object> map=new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("newsTitle", newsTitle);
 		map.put("newsContent", newsContent);
 		map.put("newsImg", newsImg);
@@ -56,24 +55,18 @@ public class UserServiceImpl implements UserService {
 		map.put("typeId", typeId);
 		map.put("publishTime", publishTime);
 		userMapper.addNews(map);
-		
+
 	}
 
+	@Override
+	public List<User> findUserType() {
+		List<User> users = userMapper.findUserType();
+		return users;
+	}
 
-	
-
-
-
-
-
-
-
-
-
-
-
-@Autowired
-public UserMapper userMapper;
-
+	public List<User> findUserTypeByUserId(int userId) {
+		List<User> users = userMapper.findUserTypeByUserId(userId);
+		return users;
+	}
 
 }

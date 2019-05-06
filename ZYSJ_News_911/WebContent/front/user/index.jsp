@@ -8,5 +8,11 @@
 </head>
 <body>
 欢迎你${name}
+<form action="../../index.html"> <input type="submit" value="跳转"> </form>
+
+<form action="../../user/findUserTypeByUserId.do">
+<input type="text" name="userId" value="${userId}" />
+<input type="submit"/> 
+</form>
 </body>
 </html>

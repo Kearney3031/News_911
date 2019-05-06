@@ -20,6 +20,16 @@ public class MessageServiceImpl implements MessageService {
 		List<Message> messages = messageMapper.findAllMessage();
 		return messages;
 	}
+	
+	
+
+	@Override
+	public List<Message> findByUserId(int id) {
+		List<Message> messages = messageMapper.findByUserId(id);
+		return messages;
+	}
+
+
 
 	@Override
 	public void addMessage(Message message) {

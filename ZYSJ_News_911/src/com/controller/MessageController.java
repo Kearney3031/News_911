@@ -43,6 +43,12 @@ public class MessageController {
 		return messages;
 	}
 
+	@RequestMapping(value = "/findByUserId")
+	@ResponseBody
+	public List<Message> findByUserId(int id){
+		List<Message> messages = messageService.findByUserId(id);
+		return messages;
+	}
 	@RequestMapping(value = "/insert")
 	public String addMessage(Message message) {
 		System.out.println(message.getTime());

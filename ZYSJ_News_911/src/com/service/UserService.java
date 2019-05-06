@@ -12,4 +12,9 @@ public interface UserService {
  void addUser(User user);
  User testLogin(User user);
  User testLogin1(User user);
+ 
+ 
+ List<User> findUserType();
+ 
+ List<User> findUserTypeByUserId(int userId);
 }	

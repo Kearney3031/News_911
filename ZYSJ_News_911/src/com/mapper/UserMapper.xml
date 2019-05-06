@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.UserMapper">
-	
+
 	<insert id="addUser" parameterType="User">
 		insert into user(userId,userName,password,userRealName,phone,email,userType,score) values(null,#{userName},#{password},#{userRealName},#{phone},#{email},#{userType},0)
 	</insert>
@@ -15,4 +15,47 @@
 	 <insert id="addNews" parameterType="java.util.Map">
 		insert into news values(null,#{newsTitle},#{newsContent},#{newsImg},#{newsLike},#{userId},#{newsStatus},#{typeId},#{publishTime})
 	</insert>
+	
+	
+		
+	
+	
+	<resultMap type="User" id="UserTypeMap">
+	<id property="userId" column="userId" />
+	 <result property="userName" column="userName" />
+	 <result property="password" column="password" />
+	 <result property="userRealName" column="userRealName" />
+	 <result property="phone" column="phone" />
+	 <result property="email" column="email" />
+	 <result property="userType" column="userType" />
+	 <result property="score" column="score" />
+		<collection property="types" ofType="com.model.Type">
+		<id property="typeId" column="typeId" />
+		<result property="typeName" column="typeName" />
+		<result property="typeIntroduce" column="typeIntroduce" />
+		</collection>
+	</resultMap>
+	
+	<select id="findUserType" resultMap="UserTypeMap">
+		select
+		u.*,t.*
+		from
+		user u, type t, subscribe s
+		where u.userId=s.userId
+		and t.typeId=s.typeId
+	</select>
+	
+	
+	
+	<select id="findUserTypeByUserId" resultMap="UserTypeMap" parameterType="int">
+	select
+		u.*,t.*
+		from
+		user u, type t, subscribe s
+		where s.userId=#{userId}
+		and u.userId=s.userId
+		and t.typeId=s.typeId
+	</select>
+	
+	
 </mapper>
