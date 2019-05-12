@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.Subscribe;
 import com.model.User;
 
 import com.service.UserService;
@@ -189,32 +190,48 @@ public class UserController {
 		}
 
 	}
-	
-	
+
 	@RequestMapping(value = "/findut")
 	@ResponseBody
-	public List<User> findAllUserAndType(){
-		List<User> users= userService.findUserType();
-		//System.out.println(users);
-		for(User u:users) {
+	public List<User> findAllUserAndType() {
+		List<User> users = userService.findUserType();
+		// System.out.println(users);
+		for (User u : users) {
 			System.out.println(u.getTypes());
 		}
 		return users;
-		
+
 	}
-	
-	
+
 	@RequestMapping(value = "/findUserTypeByUserId")
 	@ResponseBody
-	public List<User> findUserTypeByUserId(String userId){
-		 //int userId_int = Integer.parseInt(userId);
-		List<User> users= userService.findUserTypeByUserId(2);
-		//System.out.println(users);
-		for(User u:users) {
+	public List<User> findUserTypeByUserId(String userId) {
+		// int userId_int = Integer.parseInt(userId);
+		List<User> users = userService.findUserTypeByUserId(2);
+		// System.out.println(users);
+		for (User u : users) {
 			System.out.println(u.getTypes());
 		}
 		return users;
-		
+
+	}
+
+	// @Transactional
+	@RequestMapping(value = "/addUserType")
+	@ResponseBody
+	// @RequestParam(value = "Integer") List<Integer> typeIds
+	public void addUserType(Integer userId) {
+		userId = 2;
+		List<Integer> typeIds = new ArrayList<>();
+		typeIds.add(5);
+		typeIds.add(7);
+		for (Integer typeId : typeIds) {
+			Subscribe subscribe = new Subscribe();
+			subscribe.setUserId(userId);
+			subscribe.setTypeId(typeId);
+			userService.addUserType(subscribe);
+		}
+		System.out.println("订阅成功");
 	}
 
 }

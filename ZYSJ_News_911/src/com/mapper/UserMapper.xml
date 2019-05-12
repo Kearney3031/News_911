@@ -56,6 +56,10 @@
 		and u.userId=s.userId
 		and t.typeId=s.typeId
 	</select>
-	
+
+	<insert id="addUserType" parameterType="Subscribe">
+		insert into subscribe values(null,#{typeId},#{userId})
+	</insert>
+	 
 	
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.UserMapper;
+import com.model.Subscribe;
 import com.model.User;
 
 import com.service.UserService;
@@ -63,10 +64,17 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userMapper.findUserType();
 		return users;
 	}
-
+	
+	@Override
 	public List<User> findUserTypeByUserId(int userId) {
 		List<User> users = userMapper.findUserTypeByUserId(userId);
 		return users;
 	}
-
+	
+	@Override
+	public void addUserType(Subscribe subscribe) {
+		userMapper.addUserType(subscribe);
+	}
+	
+	
 }
