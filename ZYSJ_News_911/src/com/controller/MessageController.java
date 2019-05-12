@@ -74,7 +74,7 @@ public class MessageController {
 	@RequestMapping(value="/subLike")
 	public void subLike(String id) {
 		messageService.subLike(Integer.parseInt(id));
-		System.out.println(id+"号取消赞成功");
+		System.out.println(id+"号取消赞成功!");
 	}
 	
 }
