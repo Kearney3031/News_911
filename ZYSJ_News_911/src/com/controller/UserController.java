@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Subscribe;
+import com.model.Type;
 import com.model.User;
 
 import com.service.UserService;
@@ -223,12 +224,16 @@ public class UserController {
 	public void addUserType(Integer userId) {
 		userId = 2;
 		List<Integer> typeIds = new ArrayList<>();
-		typeIds.add(5);
+		typeIds.add(6);
 		typeIds.add(7);
+		User u1= new User();
+		u1.setUserId(userId);
+		Type t1 =new Type();
 		for (Integer typeId : typeIds) {
 			Subscribe subscribe = new Subscribe();
-			subscribe.setUserId(userId);
-			subscribe.setTypeId(typeId);
+			subscribe.setUser(u1);
+			t1.setTypeId(typeId);
+			subscribe.setType(t1);
 			userService.addUserType(subscribe);
 		}
 		System.out.println("订阅成功");

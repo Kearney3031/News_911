@@ -58,8 +58,11 @@
 	</select>
 
 	<insert id="addUserType" parameterType="Subscribe">
-		insert into subscribe values(null,#{typeId},#{userId})
+		insert into subscribe values(null,#{type.typeId},#{user.userId})
 	</insert>
-	 
+	
+	 <!-- <delete id="" parameterType="Subscribe">
+	 	delete from subscribe where userId=#{userId} and typeId=#{typeId}
+	 </delete> -->
 	
 </mapper>

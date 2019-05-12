@@ -21,5 +21,7 @@ public interface UserMapper {
 	List<User> findUserTypeByUserId(int userId);
 
 	void addUserType(Subscribe subscribe);
+	
+	
 
 }
