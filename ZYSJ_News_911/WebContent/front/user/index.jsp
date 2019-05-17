@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-欢迎你${name}
+欢迎你${user.userId}
+这里是<%=request.getSession().getAttribute("country") %><%=request.getSession().getAttribute("pro") %><%=request.getSession().getAttribute("city") %><br>
+<%=request.getSession().getAttribute("time") %><br>
+<%=request.getSession().getAttribute("today") %><br>
+<%=request.getSession().getAttribute("now") %><br>
 <form action="../../index.html"> <input type="submit" value="跳转"> </form>
 
 <form action="../../user/findUserTypeByUserId.do">
