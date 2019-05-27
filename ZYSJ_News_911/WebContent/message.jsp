@@ -19,7 +19,7 @@
 <input type="submit"/> 
 </form>
 
-<form action="message/insert.do" method="post">
+<form action="message/find.do" method="post">
 <input type="textarea" name="megContent" id="Megcontent">
 <input type="submit" value="提交">
 <input type="button" id="addMeg" value="json提交"/>
