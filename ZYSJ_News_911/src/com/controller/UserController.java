@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.Collect;
+import com.model.News;
 import com.model.Subscribe;
 import com.model.Type;
 import com.model.User;
@@ -208,7 +210,7 @@ public class UserController {
 	@ResponseBody
 	public List<User> findUserTypeByUserId(String userId) {
 		// int userId_int = Integer.parseInt(userId);
-		List<User> users = userService.findUserTypeByUserId(2);
+		List<User> users = userService.findUserTypeByUserId(3);
 		// System.out.println(users);
 		for (User u : users) {
 			System.out.println(u.getTypes());
@@ -222,13 +224,13 @@ public class UserController {
 	@ResponseBody
 	// @RequestParam(value = "Integer") List<Integer> typeIds
 	public void addUserType(Integer userId) {
-		userId = 2;
+		userId = 3;
 		List<Integer> typeIds = new ArrayList<>();
 		typeIds.add(6);
 		typeIds.add(7);
-		User u1= new User();
+		User u1 = new User();
 		u1.setUserId(userId);
-		Type t1 =new Type();
+		Type t1 = new Type();
 		for (Integer typeId : typeIds) {
 			Subscribe subscribe = new Subscribe();
 			subscribe.setUser(u1);
@@ -239,4 +241,47 @@ public class UserController {
 		System.out.println("订阅成功");
 	}
 
+	@RequestMapping(value = "/findUserNewsByUserId")
+	@ResponseBody
+	public List<User> findUserNewsByUserId(String userId) {
+
+		List<User> users = userService.findUserNewsByUserId(3);
+		for (User u : users) {
+			System.out.println(u.getNewsList());
+		}
+		return users;
+	}
+
+//	//@Transactional
+	@RequestMapping(value = "/addUserCollectNews")
+	@ResponseBody
+	public void addUserCollectNews(Integer userId) {
+		userId = 2;
+		News news = new News();
+		news.setNewsId(8);
+		User user = new User();
+		user.setUserId(userId);
+		Collect collect = new Collect();
+		collect.setNews(news);
+		collect.setUser(user);
+		userService.addUserCollectNews(collect);
+		System.out.println("收藏成功！");
+	}
+
+//	//@Transactional
+	@RequestMapping(value = "/deleteUserCollectNews")
+	@ResponseBody
+	public void deleteUserCollectNews(String newsId, String userId) {
+//		newsId = 8;
+//		userId = 2;
+		News news = new News();
+		news.setNewsId(8);
+		User user = new User();
+		user.setUserId(2);
+		Collect collect = new Collect();
+		collect.setNews(news);
+		collect.setUser(user);
+		userService.deleteUserCollectNews(collect);
+		System.out.println("取消收藏成功");
+	}
 }

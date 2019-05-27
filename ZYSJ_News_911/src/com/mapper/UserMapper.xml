@@ -4,65 +4,105 @@
 <mapper namespace="com.mapper.UserMapper">
 
 	<insert id="addUser" parameterType="User">
-		insert into user(userId,userName,password,userRealName,phone,email,userType,score) values(null,#{userName},#{password},#{userRealName},#{phone},#{email},#{userType},0)
+		insert into
+		user(userId,userName,password,userRealName,phone,email,userType,score)
+		values(null,#{userName},#{password},#{userRealName},#{phone},#{email},#{userType},0)
 	</insert>
-	<select id="testLogin"  resultType="User" parameterType="User">
-		select * from user where userName=#{userName} and password=#{password}
+	<select id="testLogin" resultType="User" parameterType="User">
+		select *
+		from user where userName=#{userName} and password=#{password}
 	</select>
-	<select id="testLogin1"  resultType="User" parameterType="User">
-		select * from user where email=#{email} and password=#{password}
+	<select id="testLogin1" resultType="User" parameterType="User">
+		select *
+		from user where email=#{email} and password=#{password}
 	</select>
-	 <insert id="addNews" parameterType="java.util.Map">
-		insert into news values(null,#{newsTitle},#{newsContent},#{newsImg},#{newsLike},#{userId},#{newsStatus},#{typeId},#{publishTime})
+	<insert id="addNews" parameterType="java.util.Map">
+		insert into news
+		values(null,#{newsTitle},#{newsContent},#{newsImg},#{newsLike},#{userId},#{newsStatus},#{typeId},#{publishTime})
 	</insert>
-	
-	
-		
-	
-	
+
+
+
+
+
 	<resultMap type="User" id="UserTypeMap">
-	<id property="userId" column="userId" />
-	 <result property="userName" column="userName" />
-	 <result property="password" column="password" />
-	 <result property="userRealName" column="userRealName" />
-	 <result property="phone" column="phone" />
-	 <result property="email" column="email" />
-	 <result property="userType" column="userType" />
-	 <result property="score" column="score" />
+		<id property="userId" column="userId" />
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
+		<result property="userRealName" column="userRealName" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+		<result property="userType" column="userType" />
+		<result property="score" column="score" />
 		<collection property="types" ofType="com.model.Type">
-		<id property="typeId" column="typeId" />
-		<result property="typeName" column="typeName" />
-		<result property="typeIntroduce" column="typeIntroduce" />
+			<id property="typeId" column="typeId" />
+			<result property="typeName" column="typeName" />
+			<result property="typeIntroduce" column="typeIntroduce" />
+		</collection>
+		<collection property="newsList" ofType="com.model.News">
+			<id property="newsId" column="newsId" />
+			<result property="newsTitle" column="newsTitle" />
+			<result property="newsContent" column="newsContent" />
+			<result property="newsImg" column="newsImg" />
 		</collection>
 	</resultMap>
-	
+
 	<select id="findUserType" resultMap="UserTypeMap">
 		select
 		u.*,t.*
 		from
-		user u, type t, subscribe s
+		user u,
+		type t, subscribe s
 		where u.userId=s.userId
 		and t.typeId=s.typeId
 	</select>
-	
-	
-	
-	<select id="findUserTypeByUserId" resultMap="UserTypeMap" parameterType="int">
-	select
+
+
+
+	<select id="findUserTypeByUserId" resultMap="UserTypeMap"
+		parameterType="int">
+		select
 		u.*,t.*
 		from
 		user u, type t, subscribe s
-		where s.userId=#{userId}
-		and u.userId=s.userId
+		where
+		s.userId=#{userId}
+		and
+		u.userId=s.userId
 		and t.typeId=s.typeId
 	</select>
 
 	<insert id="addUserType" parameterType="Subscribe">
-		insert into subscribe values(null,#{type.typeId},#{user.userId})
+		insert into subscribe
+		values(null,#{type.typeId},#{user.userId})
 	</insert>
+
+	<!-- <delete id="" parameterType="Subscribe"> delete from subscribe where 
+		userId=#{userId} and typeId=#{typeId} </delete> -->
+
+
+	<select id="findUserNewsByUserId" resultMap="UserTypeMap"
+		parameterType="int">
+		select
+		u.*,n.*
+		from
+		user u, news n, collect c
+		where
+		c.userId=#{userId}
+		and
+		u.userId=c.userId
+		and n.newsId=c.newsId
+	</select>
+
 	
-	 <!-- <delete id="" parameterType="Subscribe">
-	 	delete from subscribe where userId=#{userId} and typeId=#{typeId}
-	 </delete> -->
+	<insert id="addUserCollectNews" >
+		insert into collect
+		values(null,#{news.newsId},#{user.userId})
+	</insert>
+
+	 <delete id="deleteUserCollectNews" > 
+	 	delete from collect where 
+		userId=#{user.userId} and newsId=#{news.newsId}
+		 </delete> 
 	
 </mapper>

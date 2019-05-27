@@ -3,6 +3,8 @@ package com.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.model.Collect;
+import com.model.News;
 import com.model.Subscribe;
 import com.model.User;
 
@@ -22,6 +24,9 @@ public interface UserMapper {
 
 	void addUserType(Subscribe subscribe);
 	
+	List<User> findUserNewsByUserId(int userId);
 	
+	void addUserCollectNews(Collect collect);
 
+	void deleteUserCollectNews(Collect collect);
 }
