@@ -46,6 +46,10 @@
 			<result property="newsImg" column="newsImg" />
 		</collection>
 	</resultMap>
+	
+	<select id="findUserById" resultType="User" parameterType="int">
+		select * from user where userId=#{userId}
+	</select>
 
 	<select id="findUserType" resultMap="UserTypeMap">
 		select

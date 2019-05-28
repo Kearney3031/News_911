@@ -60,7 +60,13 @@ public class UserServiceImpl implements UserService {
 		userMapper.addNews(map);
 
 	}
-
+	
+	@Override
+	public User findUserById(int userId) {
+		User user = userMapper.findUserById(userId);
+		return user;
+	}
+	
 	@Override
 	public List<User> findUserType() {
 		List<User> users = userMapper.findUserType();

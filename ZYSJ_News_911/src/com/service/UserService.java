@@ -18,6 +18,8 @@ public interface UserService {
 	User testLogin(User user);
 
 	User testLogin1(User user);
+	
+	User findUserById(int userId);
 
 	List<User> findUserType();
 

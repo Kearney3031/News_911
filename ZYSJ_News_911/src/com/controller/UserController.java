@@ -194,6 +194,16 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "/findUserById")
+	@ResponseBody
+	public User findUserById(String userId) {
+		User u1= new User();
+		u1.setUserId(3);
+		User user = userService.findUserById(u1.getUserId());
+		System.out.println(user);
+		return user;
+	}
+
 	@RequestMapping(value = "/findut")
 	@ResponseBody
 	public List<User> findAllUserAndType() {
