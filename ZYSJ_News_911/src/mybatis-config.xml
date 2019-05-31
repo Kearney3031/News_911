@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="Message" type="com.model.Message"/>
 		<typeAlias alias="User" type="com.model.User"/>
+		<typeAlias alias="News" type="com.model.News"/>
 		<typeAlias alias="Type" type="com.model.Type"/>
 		<typeAlias alias="Subscribe" type="com.model.Subscribe"/>
 	</typeAliases>
@@ -12,5 +13,6 @@
 		<mapper resource="com/mapper/MessageMapper.xml"/>
 		<mapper resource="com/mapper/UserMapper.xml"/>
 		<mapper resource="com/mapper/TypeMapper.xml"/>
+		<mapper resource="com/mapper/NewsMapper.xml"/>
 	</mappers>
 </configuration>
