@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -26,13 +27,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.model.Collect;
 import com.model.News;
+
+import com.util.getIPAddr;
+import com.util.webMes;
+
 import com.model.Subscribe;
 import com.model.Type;
 import com.model.User;
 
 import com.service.UserService;
+import com.util.CustomSystemUtil;
 import com.util.RandomNum;
 import com.util.sendemail;
 
@@ -155,7 +162,7 @@ public class UserController {
 	@ResponseBody
 	public List<String> testLogin(@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "username", required = false) String username,
-			@RequestParam(value = "password") String psw, HttpServletRequest request) {
+			@RequestParam(value = "password") String psw, HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("1111");
 		List<String> status = new ArrayList<>();
 		if (email == null) {
@@ -168,7 +175,21 @@ public class UserController {
 				return status;
 
 			}
-
+			webMes webmes=new webMes();
+			List list=null;
+			try {
+				 list=webmes.getAdd(request,response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			request.getSession().setAttribute("country",String.valueOf(list.get(0)));
+			request.getSession().setAttribute("pro", String.valueOf(list.get(1)));
+			request.getSession().setAttribute("city", String.valueOf(list.get(2)));
+			request.getSession().setAttribute("time", String.valueOf(list.get(3)));
+			request.getSession().setAttribute("today", String.valueOf(list.get(4)));
+			request.getSession().setAttribute("now", String.valueOf(list.get(5)));
 			request.getSession().setAttribute("user", u1);
 			request.getSession().setAttribute("name", u1.getUserRealName());
 			status.add("success");
