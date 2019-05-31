@@ -226,7 +226,6 @@ public class UserController {
 			System.out.println(u.getTypes());
 		}
 		return users;
-
 	}
 
 	// @Transactional
