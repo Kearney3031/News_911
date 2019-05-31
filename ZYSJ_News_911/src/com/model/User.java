@@ -14,6 +14,9 @@ public class User {
 
 	// 用于存放用户所订阅的type(与User多对多）
 	private List<Type> types;
+	
+	//用于存放用户收藏的News（与User多对多）
+	private List<News> newsList;
 
 	public String getPhone() {
 		return phone;
@@ -87,13 +90,23 @@ public class User {
 	public void setTypes(List<Type> types) {
 		this.types = types;
 	}
+	
+	
+	public List<News> getNewsList() {
+		return newsList;
+	}
+
+	public void setNewsList(List<News> newsList) {
+		this.newsList = newsList;
+	}
 
 	@Override
 	public String toString() {
-		System.out.println("UserToString");
 		return "User [userName=" + userName + ", password=" + password + ", userRealName=" + userRealName + ", phone="
 				+ phone + ", email=" + email + ", userType=" + userType + ", userId=" + userId + ", score=" + score
-				+ ", types=" + types + "]";
+				+ ", types=" + types + ", newsList=" + newsList + "]";
 	}
+
+	
 
 }

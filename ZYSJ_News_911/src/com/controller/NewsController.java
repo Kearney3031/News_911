@@ -56,7 +56,16 @@ public class NewsController {
 		}
 	User user= (User)request.getSession().getAttribute("user");
 	int newstype1=Integer.valueOf(newstype);
-		News new1=new News(newstitle1, newscontent1, path + "/" + uploadFileName1 + ".png", 0, user.getUserId(), 0, newstype1,  new Date(System.currentTimeMillis()));
+		News new1=new News();
+	new1.setNewsImg( path + "/" + uploadFileName1 + ".png");
+	new1.setNewsContent(newscontent1);
+	new1.setNewsLike(0);
+	new1.setNewsTitle(newstitle1);
+	new1.setNewsTitle(newstitle1);
+	new1.setNewStatus(0);
+	new1.setPublishTime(new Date(System.currentTimeMillis()));
+	new1.setUserId(user.getUserId());
+	
 	newsService.addNews(new1);
 
 		return "redirect:/file/show.html";

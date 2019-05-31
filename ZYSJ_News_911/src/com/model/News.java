@@ -1,21 +1,68 @@
 package com.model;
 
+
 import java.sql.Date;
+import java.util.List;
+
 
 public class News {
-	
-public News( String newsTitle, String newsContent, String newsImg, int newsLike, int userId,
-			int newsStatus, int typeId, Date publishTime) {
-		this.newsTitle = newsTitle;
-		this.newsContent = newsContent;
-		this.newsImg = newsImg;
+	public int getNewsLike() {
+		return newsLike;
+	}
+
+	public void setNewsLike(int newsLike) {
 		this.newsLike = newsLike;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
 		this.userId = userId;
-		this.newsStatus = newsStatus;
+	}
+
+	public int getNewStatus() {
+		return newStatus;
+	}
+
+	public void setNewStatus(int newStatus) {
+		this.newStatus = newStatus;
+	}
+
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
 		this.typeId = typeId;
+	}
+
+	public Date getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(Date publishTime) {
 		this.publishTime = publishTime;
 	}
-public int getNewsId() {
+
+	private int newsId;
+	private String newsTitle;
+	private String newsContent;
+	private String newsImg;
+	
+	//用于存放订阅了的用户（与User多对多）
+	private List<User> users;
+	private int newsLike;
+	private int userId;
+	private int newStatus;
+	private int typeId;
+	private Date publishTime;
+	
+	
+	public News() {}
+	
+	public int getNewsId() {
 		return newsId;
 	}
 	public void setNewsId(int newsId) {
@@ -39,44 +86,25 @@ public int getNewsId() {
 	public void setNewsImg(String newsImg) {
 		this.newsImg = newsImg;
 	}
-	public int getNewsLike() {
-		return newsLike;
+	
+	
+	public List<User> getUsers() {
+		return users;
 	}
-	public void setNewsLike(int newsLike) {
-		this.newsLike = newsLike;
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
-	public int getUserId() {
-		return userId;
+	
+	@Override
+	public String toString() {
+		return "News [newsId=" + newsId + ", newsTitle=" + newsTitle + ", newsContent=" + newsContent + ", newsImg="
+				+ newsImg + ", users=" + users + "]";
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public int getNewsStatus() {
-		return newsStatus;
-	}
-	public void setNewsStatus(int newsStatus) {
-		this.newsStatus = newsStatus;
-	}
-	public int getTypeId() {
-		return typeId;
-	}
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
-	}
-	public Date getPublishTime() {
-		return publishTime;
-	}
-	public void setPublishTime(Date publishTime) {
-		this.publishTime = publishTime;
-	}
-private int newsId;
-private String newsTitle;
-private String newsContent;
-private String newsImg;
-private int newsLike;
-private int userId;
-private int newsStatus;
-private int typeId;
-private Date publishTime;
+
+	
+
+	
+	
 
 }

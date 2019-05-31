@@ -8,11 +8,15 @@
 </head>
 <body>
 欢迎你${user.userId}
+<<<<<<< HEAD
+<form action="../../messageUnder.jsp"> <input type="submit" value="跳转"> </form>
+=======
 这里是<%=request.getSession().getAttribute("country") %><%=request.getSession().getAttribute("pro") %><%=request.getSession().getAttribute("city") %><br>
 <%=request.getSession().getAttribute("time") %><br>
 <%=request.getSession().getAttribute("today") %><br>
 <%=request.getSession().getAttribute("now") %><br>
 <form action="../../index.html"> <input type="submit" value="跳转"> </form>
+>>>>>>> branch 'master' of https://github.com/Kearney3031/News_911.git
 
 <form action="../../user/findUserTypeByUserId.do">
 <input type="text" name="userId" value="${userId}" />

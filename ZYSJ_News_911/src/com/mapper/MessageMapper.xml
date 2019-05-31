@@ -2,15 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.MessageMapper">
-	<select id="findAllMessage" resultType="Message">
-		select * from message
+	<select id="findAllMessage" resultType="Message" resultMap="MessageUserMap">
+		select
+		m.*,u.*
+		from
+		user u,message m
+		where m.userId=u.userId
 	</select>
-	<select id="findByUesrId" resultType="Message">
+	
+	
+	<resultMap type="Message" id="MessageUserMap">
+		<id property="messageId" column="messageId" />
+		<result property="megContent" column="megContent" />
+		<result property="megLike" column="megLike" />
+		<result property="time" column="time" />
+		<result property="userId" column="userId" />
+		<result property="newsId" column="newsId" />
+		<result property="videoId" column="videoId" />
+		<result property="topicId" column="topicId" />
+	<association property="user" javaType="com.model.User">
+			<!-- 映射user的属性和列 -->
+			<id column="userId" property="userId"/>
+			<result column="userName" property="userName"/>
+			<result column="password" property="password"/>
+			<result column="userRealName" property="userRealName"/>
+			<result column="phone" property="phone"/>
+			<result column="email" property="email"/>
+			<result column="userType" property="userType"/>
+			<result column="score" property="score"/>
+		</association>
+	</resultMap>
+	
+	
+	
+	
+	<select id="findByUserId" parameterType="int" resultType="Message">
 		select * from message where userId=#{userId}
 	</select>
 	
 	<insert id="addMessage" parameterType="com.model.Message">
-		insert into message values(null,#{megContent},0,#{time},1,null,null,null)
+		insert into message values(null,#{megContent},0,#{time},#{userId},null,null,null)
 	</insert>
 	<delete id="delMessage" parameterType="int">
 		delete from message where messageId = #{messageId}

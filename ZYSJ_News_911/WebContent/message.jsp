@@ -15,11 +15,11 @@
 <script type="text/javascript" src="js/jsMessage.js" ></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<form action="user/addUserType.do">
+<form action="user/addUserCollectNews.do">
 <input type="submit"/> 
 </form>
 
-<form action="message/insert.do" method="post">
+<form action="message/find.do" method="post">
 <input type="textarea" name="megContent" id="Megcontent">
 <input type="submit" value="提交">
 <input type="button" id="addMeg" value="json提交"/>

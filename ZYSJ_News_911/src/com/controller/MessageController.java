@@ -40,18 +40,22 @@ public class MessageController {
 	public List<Message> findAllUser2() {
 		List<Message> messages = messageService.findAllMessage();
 		// System.out.println(messages);
+		//System.out.println(messages);
 		return messages;
 	}
 
 	@RequestMapping(value = "/findByUserId")
 	@ResponseBody
-	public List<Message> findByUserId(int id){
-		List<Message> messages = messageService.findByUserId(id);
+	public List<Message> findByUserId(String id) {
+		int id1 = 2;
+		List<Message> messages = messageService.findByUserId(id1);
 		return messages;
 	}
+
 	@RequestMapping(value = "/insert")
 	public String addMessage(Message message) {
 		System.out.println(message.getTime());
+		System.out.println(message.getUserId());
 		messageService.addMessage(message);
 		System.out.println("评论成功");
 		return "redirect:/user/find.do";
@@ -64,17 +68,18 @@ public class MessageController {
 		messageService.delMessage(Integer.parseInt(id));
 		System.out.println(id + "号评论删除成功");
 	}
+
 	@Transactional
-	@RequestMapping(value="/addLike")
+	@RequestMapping(value = "/addLike")
 	public void addLike(String id) {
 		messageService.addLike(Integer.parseInt(id));
-		System.out.println(id+"号点赞成功");
+		System.out.println(id + "号点赞成功");
 	}
-	
-	@RequestMapping(value="/subLike")
+
+	@RequestMapping(value = "/subLike")
 	public void subLike(String id) {
 		messageService.subLike(Integer.parseInt(id));
-		System.out.println(id+"号取消赞成功!");
+		System.out.println(id + "号取消赞成功!");
 	}
-	
+
 }
