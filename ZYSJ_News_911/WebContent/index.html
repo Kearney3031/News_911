@@ -10,7 +10,7 @@
 <script type="text/javascript" src="js/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="js/jsMessage.js" ></script>
 
-
+欢迎你${user.userId}
 <!--
     此评论textarea文本框部分使用的https://github.com/alexdunphy/flexText此插件
 -->
@@ -91,7 +91,8 @@ $(document).ready(function() {
 	        	//var aa="111";
 	        	//alert(item.megContent);
 	        	// oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ item.megContent +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+item.time+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">'+item.megLike+'</i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
-	        	 oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ item.megContent +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+item.time+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">'+item.megLike+'</i>)</a> <div style="display:none">'+item.messageId+'</div> </div></div><div class="hf-list-con"></div></div> </div>';
+	        	 //oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ item.megContent +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+item.time+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">'+item.megLike+'</i>)</a> <div style="display:none">'+item.messageId+'</div> </div></div><div class="hf-list-con"></div></div> </div>';
+	        	 oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">'+item.user.userRealName+': </a> <span class="my-pl-con">&nbsp;'+ item.megContent +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+item.time+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">'+item.megLike+'</i>)</a> <div style="display:none">'+item.messageId+'</div> </div></div><div class="hf-list-con"></div></div> </div>';
 	   			
 	        	  if(item.megContent.replace(/(^\s*)|(\s*$)/g, "") != ''){ 
 	        		//alert("abc");
@@ -148,7 +149,8 @@ $(document).ready(function() {
         //向后台传数据
     	$.getJSON("message/insert.do", {
 			"megContent" : oSize,
-			"time" : now 
+			"time" : now,
+			"userId":user.userId
 		}, function(data) {
 			alert("评论成功"); 
 		});

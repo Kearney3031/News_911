@@ -15,20 +15,12 @@ public class Message {
 	private int newsId;
 	private int videoId;
 	private int topicId;
+	
+	private User user;
 
 	public Message() {
 	}
 
-	public Message(int messageId, String megContent, int megLike, int userId, int newsId, int videoId, int topicId) {
-		super();
-		this.messageId = messageId;
-		this.megContent = megContent;
-		this.megLike = megLike;
-		this.userId = userId;
-		this.newsId = newsId;
-		this.videoId = videoId;
-		this.topicId = topicId;
-	}
 
 	public int getMessageId() {
 		return messageId;
@@ -103,12 +95,27 @@ public class Message {
 		this.topicId = topicId;
 	}
 
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Message [messageId=" + messageId + ", megContent=" + megContent + ", megLike=" + megLike + ", time="
 				+ time + ", userId=" + userId + ", newsId=" + newsId + ", videoId=" + videoId + ", topicId=" + topicId
-				+ "]";
+				+ ", user=" + user + "]";
 	}
+
+
+	
 
 
 

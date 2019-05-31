@@ -8,7 +8,7 @@
 </head>
 <body>
 欢迎你${user.userId}
-<form action="../../index.html"> <input type="submit" value="跳转"> </form>
+<form action="../../messageUnder.jsp"> <input type="submit" value="跳转"> </form>
 
 <form action="../../user/findUserTypeByUserId.do">
 <input type="text" name="userId" value="${userId}" />

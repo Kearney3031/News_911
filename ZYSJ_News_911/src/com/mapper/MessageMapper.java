@@ -7,10 +7,16 @@ import com.model.Message;
 
 public interface MessageMapper {
 	List<Message> findAllMessage();
+
 	List<Message> findByUserId(int id);
+
 	void addMessage(Message message);
+
 	void delMessage(int id);
-	void updateMessage(Map<String,Object> map);
+
+	void updateMessage(Map<String, Object> map);
+
 	void addLike(int id);
+
 	void subLike(int id);
 }

@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
 		return users;
 	}
 
+	@Transactional
 	@Override
 	public void addUserCollectNews(Collect collect) {
 		userMapper.addUserCollectNews(collect);
