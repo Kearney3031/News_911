@@ -16,10 +16,12 @@
 		select *
 		from user where email=#{email} and password=#{password}
 	</select>
+
 	 <insert id="addNews" parameterType="java.util.Map">
 		insert into news
 		values(null,#{newsTitle},#{newsContent},#{newsImg},#{newsLike},#{userId},#{newsStatus},#{typeId},#{publishTime})
 	</insert> 
+
 
 
 

@@ -45,21 +45,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public void addNews(String newsTitle, String newsContent, String newsImg, int newsLike, int userId, int newsStatus,
-			int typeId, Date publishTime) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("newsTitle", newsTitle);
-		map.put("newsContent", newsContent);
-		map.put("newsImg", newsImg);
-		map.put("newsLike", newsLike);
-		map.put("userId", userId);
-		map.put("newsStatus", newsStatus);
-		map.put("typeId", typeId);
-		map.put("publishTime", publishTime);
-		userMapper.addNews(map);
-
-	}
+	
 	
 	@Override
 	public User findUserById(int userId) {
