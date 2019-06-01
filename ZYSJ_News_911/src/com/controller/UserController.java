@@ -85,42 +85,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/NewsUpload")
-	public String addNews(@RequestParam(value = "newsimg") MultipartFile file, String newstitle, String newstype,
-			String newscontent, HttpServletRequest request) {
-
-		byte[] b, c;
-		String newstitle1 = "";
-		String newscontent1 = "";
-		try {
-			b = newstitle.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			newstitle1 = new String(b, "utf-8");// 采用utf-8去接string
-			c = newscontent.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			newscontent1 = new String(b, "utf-8");// 采用utf-8去接string
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		String path = request.getServletContext().getRealPath("/img");
-		String uploadFileName1 = System.currentTimeMillis() + file.getName();
-		File file11 = new File(path, uploadFileName1 + ".png");
-		try {
-			file.transferTo(file11);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		userService.addNews(newstitle1, newscontent1, path + "/" + uploadFileName1 + ".png", 0, 1, 0,
-				Integer.parseInt(newstype), new Date(System.currentTimeMillis()));
-
-		return "redirect:/file/show.html";
-
-	}
+	
 
 	@RequestMapping(value = "/sendmail", method = RequestMethod.POST)
 	@ResponseBody

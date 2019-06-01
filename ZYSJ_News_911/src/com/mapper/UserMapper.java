@@ -16,7 +16,7 @@ public interface UserMapper {
 
 	User testLogin1(User user);// 邮箱登录
 
-	void addNews(Map<String, Object> map);
+	
 	
 	User findUserById(int userId);
 
