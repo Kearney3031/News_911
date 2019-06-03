@@ -12,6 +12,7 @@
 
 
 　<input type="button" id="shareToQQ" value="分享到QQ空间"/>
+
 　<input type="button" id="shareToXl" value="分享到新浪微博"/>
 </body>
 </html>
