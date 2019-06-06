@@ -7,5 +7,11 @@
 		insert into news(newsId,newsTitle,newsContent,newsImg,newsLike,userId,newsStatus,typeId,publishTime) values(null,#{newsTitle},#{newsContent},#{newsImg},0,#{userId},0,#{typeId},#{publishTime})
 	</insert>
 
-	<update id=""></update>
+	<!-- <update id=""></update> -->
+	<!-- <select id="findAllNews" resultType="News" >
+	select * from news
+	</select> -->
+	 <select id="findAllNews" resultType="News" parameterType="map">
+		select * from news  limit #{pageStart},#{pageSize}
+</select> 
 </mapper>

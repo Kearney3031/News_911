@@ -279,4 +279,5 @@ public class UserController {
 		userService.deleteUserCollectNews(collect);
 		System.out.println("取消收藏成功");
 	}
+	
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.model.News;
@@ -70,6 +72,14 @@ public class NewsController {
 
 		return "redirect:/file/show.html";
 
+	}
+	@RequestMapping(value = "/findAllNews")
+	@ResponseBody
+	public List<News> findAllNews() {
+
+		List<News> news = newsService.findAllNews();
+	
+		return news;
 	}
 	
 }
