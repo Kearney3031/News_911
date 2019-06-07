@@ -1,6 +1,8 @@
 package com.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,29 @@ import com.service.NewsService;
 @Service
 @Transactional
 public class NewsServiceImpl  implements NewsService{
+	@Override
+	public int findTotalPage(int pageSize) {
+		
+		int rows= newsmapper.getCount();
+		if(rows%pageSize==0) {
+			return rows/pageSize;
+		}
+		else {
+			return rows/pageSize+1;
+		}
+		
+		
+	}
+
+	@Override
+	public List<News> findByPage(int page, int pageSize) {
+		Map<String,Integer> map=new HashMap();
+		map.put("page", (page-1)*pageSize);
+		map.put("pageSize", pageSize);
+		
+		return newsmapper.findByPage(map);
+	}
+
 	@Autowired
 	NewsMapper newsmapper;
 	@Override
@@ -33,10 +58,5 @@ public class NewsServiceImpl  implements NewsService{
 		
 	}
 
-	@Override
-	public List<News> findAllNews() {
-		
-		return newsmapper.findAllNews();
-	}
 	
 }

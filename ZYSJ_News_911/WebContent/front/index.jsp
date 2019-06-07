@@ -6,36 +6,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../../js/jquery-1.6.2.js"></script>
- <script type="text/javascript" src="../../js/indexs.js"></script>
+
 </head>
 <body>
-<c:forEach items="" >
+<table border="1">
+        <tbody>
+          
+            
+                <c:forEach items="${list}" var="news">
+                    <tr>
+                        <td>${news.newsTitle}</td>
+                       
+                       
+                    </tr>                
+                </c:forEach>
+           
+        </tbody>
+    </table>
 
-</c:forEach>
+
+
 
  <div id="pages">
- 
-                <c:if test="page==1">
+ 				<c:choose>
+                <c:when test="${page==1}">
         	        <a href="#">上一页</a>
-        	        </c:if>
-        	        <c:else>
-        	         <a href="findCost?page=<s:property value='page-1'/>" >上一页</a>
-        	        </c:else>
-        	        <s:iterator begin="1" end="totalPage" var="k">
-                  	<s:if test="#k==page">
-                    <a href="findCost?page=<s:property value='#k'/>" class="current_page">1</a>
-                  </s:if>
-                  <s:else>
-                  <a href="findCost?page=<s:property value='#k'/>"></a>
-                  </s:else>
-                    </s:iterator>
-                   <s:if test="page==totalPage">
-        	        <a href="#">上一页</a>
-        	        </s:if>
-        	        <s:else>
-        	         <a href="findCost?page=<s:property value='page+1'/>" >下一页</a>
-        	        </s:else>
+        	        </c:when>
+        	        <c:otherwise>
+        	         <a href="../news/findByPage.do?page=${page-1}" >上一页</a>
+        	        </c:otherwise>
+        	        </c:choose>
+        	       <c:forEach  begin="1" end="${totalPage}" var="k" >
+        	  
+                  	<c:choose>
+                  	<c:when test="${k==1}">
+                 
+                    <a href="../news/findByPage.do?page=${k}" class="current_page">1</a>
+                  </c:when>
+                  <c:otherwise>
+                 
+                  <a href="../news/findByPage.do?page=${k}">${k}</a>
+                  </c:otherwise>
+                  </c:choose>
+                    </c:forEach>
+                    <c:choose>
+                   <c:when test="${page==totalPage}">
+        	        <a href="#">下一页</a>
+        	        </c:when>
+        	        <c:otherwise>     
+        	         <a href="../news/findByPage.do?page=${page+1}" >下一页</a>
+        	        </c:otherwise>
+        	        </c:choose>
                 </div>
 </body>
 </html>

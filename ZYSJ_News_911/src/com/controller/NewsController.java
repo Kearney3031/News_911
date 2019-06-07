@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.model.News;
 import com.model.User;
@@ -73,13 +74,25 @@ public class NewsController {
 		return "redirect:/file/show.html";
 
 	}
-	@RequestMapping(value = "/findAllNews")
-	@ResponseBody
-	public List<News> findAllNews() {
-
-		List<News> news = newsService.findAllNews();
 	
-		return news;
+	
+	 
+	@RequestMapping(value = "/findByPage")
+	public ModelAndView findByPage(int  page) {
+		System.out.println(page);
+		
+	
+		
+		List<News> news = newsService.findByPage(page, 1);
+		System.out.println(news.size());
+		int totalPage=newsService.findTotalPage(1);
+	ModelAndView mo=new ModelAndView("/front/index");
+	mo.addObject("list", news);
+//	mo.addObject("page", page);
+//	mo.addObject("totalPage", totalPage);
+	mo.getModel().put("page", page);
+	mo.getModel().put("totalPage", totalPage);
+		return mo;
 	}
 	
 }

@@ -1,4 +1,4 @@
 $(document).ready(function(){  
-	windows.location.href="../news/findAllNews";
+	location.href="../news/findByPage.do?page=1";
 
 })
