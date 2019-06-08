@@ -10,7 +10,9 @@
 <body>
 
 
-<table border="1">
+<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="js/jqMes.js" ></script>
+<%-- <table id="message" border="1">
         <tbody>
             <tr>
                 <th>ID</th>
@@ -40,7 +42,34 @@
                 </c:forEach>
             </c:if>
         </tbody>
-    </table>
+    </table> --%>
+
+
+
+
+<div align="center">
+
+<table id="order" border="1" cellspacing="0" cellpadding="0">
+	<tr class="title">
+	<td>id</td>
+		<td>内容</td>
+		<td>点赞数</td>
+		<td>时间</td>
+		<td>用户Id</td>
+		<td>新闻Id</td>
+		<td>视频Id</td>
+		<td>主题Id</td>
+		<td>操作</td>
+		<td>全选<input type="checkbox" id="checkAll"/></td>
+	</tr>
+</table>
+
+<input type="button" value="批量删除" id="deletebtn"/>
+
+</div>
+
+
+
 
 
 </body>

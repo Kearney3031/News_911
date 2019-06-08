@@ -76,7 +76,7 @@
 
 	<insert id="addUserType" parameterType="Subscribe">
 		insert into subscribe
-		values(null,#{type.typeId},#{user.userId})
+		values(#{type.typeId},#{user.userId})
 	</insert>
 
 	<!-- <delete id="" parameterType="Subscribe"> delete from subscribe where 
@@ -99,7 +99,7 @@
 	
 	<insert id="addUserCollectNews" >
 		insert into collect
-		values(null,#{news.newsId},#{user.userId})
+		values(#{news.newsId},#{user.userId})
 	</insert>
 
 	 <delete id="deleteUserCollectNews" > 

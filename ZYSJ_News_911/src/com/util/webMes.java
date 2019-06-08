@@ -27,13 +27,6 @@ import com.maxmind.geoip2.record.Postal;
 import com.maxmind.geoip2.record.Subdivision;
 
 public class webMes    {
-
-   
-    
-
-	
-   
-    
    public List<String> getAdd(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {  
 	   	List<String> list=new ArrayList<>();
 	   	
@@ -47,8 +40,12 @@ public class webMes    {
 	
 	      // 创建 GeoLite2 数据库     /usr/local/kobe/apache-tomcat-8.0.53/webapps/MesTest
 	   	///Users/mac126/db/GeoLite2-City.mmdb
+
 		
 	      File database = new File(req.getServletContext().getRealPath("/front/user/GeoLite2-City.mmdb")); 
+
+	      //File database = new File("/Users/mac126/Desktop/repository4/ZYSJ_News_911/WebContent/front/user/GeoLite2-City.mmdb"); 
+	      
 	      System.out.println(database.getName());
 	      // 读取数据库内容 
 	      DatabaseReader reader=null;      
