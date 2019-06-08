@@ -14,7 +14,15 @@
 <select id="getCount" resultType="int">
 select count(*) from news
 </select>
-<select id="display" resultType="News" parameterType="int">
-select * from news where newsId=#{id}
+
+
+
+
+<select id="findNewsByNewsId" resultType="News" parameterType="int">
+select * from news where newsId=#{newsId}
 </select>
+
+
+
+
 </mapper>

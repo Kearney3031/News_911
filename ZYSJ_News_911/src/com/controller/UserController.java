@@ -235,7 +235,7 @@ public class UserController {
 //		u1.setUserId(userId);
 //		Type t1 = new Type();
 		//HttpSession session = request.getSession();
-		String[] typeIds = request.getParameterValues("Fruit");
+		String[] typeIds = request.getParameterValues("Type");
 		int[] newTypeIds = new int[typeIds.length];
 		for(int i=0;i<typeIds.length;i++) {
 			newTypeIds[i]=Integer.valueOf(typeIds[i]); 

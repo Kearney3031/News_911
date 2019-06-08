@@ -10,5 +10,8 @@ public interface NewsService {
 	 void addLike(int id);//点赞
 	 List<News> findByPage(int page,int pageSize);//返回所有新闻
 	 int findTotalPage(int pageSize);
-	 News display(int id);
+
+	 
+	 News findNewsByNewsId(int id);
+
 }

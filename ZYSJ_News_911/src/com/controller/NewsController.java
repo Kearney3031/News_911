@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -118,7 +122,7 @@ public class NewsController {
 	}
 	@RequestMapping(value = "/display")
 	public ModelAndView display(int  id) {
-		News news1=newsService.display(id);
+		News news1=newsService.findNewsByNewsId(id);
 		ModelAndView mo=new ModelAndView("/front/news/display");
 		mo.addObject("news", news1);
 		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
@@ -132,5 +136,73 @@ public class NewsController {
 		mo.addObject("list", list);
 		return mo;
 	}
+	
+	@RequestMapping(value = "/addCookieNews")
+	public String addCookieNews(HttpServletRequest request,HttpServletResponse response) {
+		String newsId = request.getParameter("");
+		 Cookie[] cookies=  request.getCookies();
+			 String cookieValue = buildCookie(newsId,request);
+			  Cookie cookie = new Cookie("newsId",cookieValue);
+			  cookie.setMaxAge(30*24*60*60);
+			  cookie.setPath("/");
+		      response.addCookie(cookie);
+		      System.out.println(cookieValue);
+			return "redirect:/history.jsp";
+	} 
+	
+	
+	@RequestMapping(value = "/findTypeByCookies")
+	public String findNewsByCookies(HttpServletRequest request,HttpServletResponse response) {
+		Cookie[] cookies = request.getCookies();
+		List<News> historyNewsList = new ArrayList<>();
+for (int i = 0; cookies != null && i < cookies.length; i++){
+			
+			//找到我们想要的cookie
+			if (cookies[i].getName().equals("newsId")){
+				String[] pids = cookies[i].getValue().split("\\-");
+				int[] newNewsIds = new int[pids.length];
+				News news = new News();
+				System.out.println(pids.toString());
+				for (int j=0;j<pids.length-1;j++){
+					newNewsIds[j]=Integer.valueOf(pids[j]); 
+					news = newsService.findNewsByNewsId(newNewsIds[j]);
+					historyNewsList.add(news);
+					System.out.println(newNewsIds[j]+":"+news);
+				}
+			}
+		}
+		System.out.println(historyNewsList);
+		request.setAttribute("historyNewsList", historyNewsList);
+		return null;
+		
+	}
+	
+	
+	private String buildCookie(String id, HttpServletRequest request) {
+		 String productId = null;
+	        Cookie [] cookies = request.getCookies();
+	        for(int i = 0; cookies!=null && i < cookies.length; i++){
+	        	productId = cookies[i].getValue();
+	        }
+	          
+	        if(productId==null)
+	            return id;
+	          
+	        LinkedList<String> list = new LinkedList<String>(Arrays.asList(productId.split("\\-")));
+	        if(list.contains(id)){
+	            list.remove(id);
+	        }else{
+	            if(list.size()>=5){
+	                list.removeLast();
+	            }
+	        }
+	        list.addFirst(id);
+	          
+	        StringBuffer sb = new StringBuffer();
+	        for(String bid: list){
+	            sb.append(bid + "-");
+	        }
+	        return sb.deleteCharAt(sb.length()-1).toString();//删除最后多余 的一个逗号
+	    }
 	
 }

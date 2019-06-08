@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.NewsMapper;
+import com.mapper.UserMapper;
 import com.model.News;
 import com.service.NewsService;
 
@@ -16,11 +17,7 @@ import com.service.NewsService;
 @Transactional
 public class NewsServiceImpl  implements NewsService{
 	
-	@Override
-	public News display(int id) {
-		
-		return newsmapper.display(id);
-	}
+	
 
 	@Override
 	public int findTotalPage(int pageSize) {
@@ -63,6 +60,12 @@ public class NewsServiceImpl  implements NewsService{
 	public void addLike(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public News findNewsByNewsId(int id) {
+		News news = newsmapper.findNewsByNewsId(id);
+		return news;
 	}
 
 	
