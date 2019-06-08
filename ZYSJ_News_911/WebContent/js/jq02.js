@@ -69,6 +69,23 @@ var param={"name":$(this).parent().siblings().eq(1).html(),
 	
 		
 
-	
+	$("#login").click(function(){
+		location.href="../front/user/login.jsp";
+		
+		
+		
+		
+		
+		
+	})
+	$("#reg").click(function(){
+		location.href="../front/user/register.jsp";
+		
+		
+		
+		
+		
+		
+	})
 
 })

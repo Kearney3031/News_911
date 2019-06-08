@@ -115,11 +115,9 @@ public class UserController {
 		user.setEmail(email);
 		userService.addUser(user);
 		request.getSession().setAttribute("user", user);
-		request.getSession().setAttribute("name", user.getUserRealName());
-		ModelAndView mav = new ModelAndView("/index.jsp");
-		mav.getModel().put("name", realname);
-//	return mav;
-		return "redirect:/front/user/index.jsp";
+		
+	
+		return "redirect:/front/index.jsp";
 
 	}
 
@@ -128,7 +126,7 @@ public class UserController {
 	public List<String> testLogin(@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "password") String psw, HttpServletRequest request,HttpServletResponse response) {
-		System.out.println("1111");
+		
 		List<String> status = new ArrayList<>();
 		if (email == null) {
 			User u = new User();
@@ -156,8 +154,13 @@ public class UserController {
 			request.getSession().setAttribute("today", String.valueOf(list.get(4)));
 			request.getSession().setAttribute("now", String.valueOf(list.get(5)));
 			request.getSession().setAttribute("user", u1);
-			request.getSession().setAttribute("name", u1.getUserRealName());
-			status.add("success");
+			
+			if(u1.getUserType()==1) {
+				status.add("success");
+				}
+				else if(u1.getUserType()==2) {
+					status.add("suc1");
+				}
 			return status;
 
 		} else {
@@ -172,8 +175,13 @@ public class UserController {
 			}
 
 			request.getSession().setAttribute("user", u1);
-			request.getSession().setAttribute("name", u1.getUserRealName());
+			
+			if(u1.getUserType()==1) {
 			status.add("success");
+			}
+			else if(u1.getUserType()==2) {
+				status.add("suc1");
+			}
 			System.out.println();
 			return status;
 		}

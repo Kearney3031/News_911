@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>新闻上传</h1>
-新闻标题：
-新闻内容：
-图片：
+<h1>${news.newsTitle}</h1><br>
+<img  src="${pageContext.request.contextPath.concat(news.newsImg)}" /><br>
+${news.newsContent}<br>
+点赞数：${news.newsLike}<br>
+发布时间：${news.publishTime}<br>
+新闻作者:${name} 
+
+ 
 
 </body>
 </html>

@@ -15,6 +15,13 @@ import com.service.NewsService;
 @Service
 @Transactional
 public class NewsServiceImpl  implements NewsService{
+	
+	@Override
+	public News display(int id) {
+		
+		return newsmapper.display(id);
+	}
+
 	@Override
 	public int findTotalPage(int pageSize) {
 		

@@ -22,11 +22,14 @@ $(document).ready(function(){
 					
 					if(data[0]=="error"){
 						alert("账号或密码错误");
-						location.href="../../front/user/login.jsp";
+						location.href="login.jsp";
 						
 					}
+					else if(data[0]=="suc1"){
+						location.href="editor.jsp";
+					}
 					else{
-						location.href="../../front/user/index.jsp";
+						location.href="../zhuye.jsp";
 					}
 					
 					
@@ -51,11 +54,14 @@ $(document).ready(function(){
 				success:function(data){
 					if(data[0]=="error"){
 						alert("账号或密码错误");
-						location.href="../../front/user/login.jsp";
+						location.href="login.jsp";
 						
 					}
+					else if(data[0]=="suc1"){
+						location.href="editor.jsp";
+					}
 					else{
-						location.href="../../front/user/index.jsp";
+						location.href="../zhuye.jsp";
 					}
 					
 					
@@ -118,5 +124,53 @@ $(document).ready(function(){
 		
 		
 	})
+//	还要加一个判断是否为邮箱
+	$("#submit").bind("click",function(){
+		var var1=$("#username").val();
+		var var2=$("#pwd").val();
+		var var3=$("#rname").val();
+		var var4=$("#phone").val();
+		var var5=$("#email").val();
+		var var6=$("#code").val();
+		var var7=$("#type").val();
+		alert("sadasdasd");
+		if(var1==null||var2==null||var3==null||var4==null||var5==null||var6==null||var7==null){
+			alert("不能为空");
+			
+			alert(var1);;
+			$("#username").val(var1);
+			$("#pwd").val(var2);
+			$("#rname").val(var3);
+			$("#phone").val(var4);
+			$("#email").val(var5);
+			$("#code").val(var6);
+			$("#type").val(var7);
+		}
+		else{
+		var param={"username":var1,"password":var2,"realname":var3,"phone":var4,"email":var5,"userType":var7}
+		
+		
+		$.ajax({
+			timeout:20000,
+			type:"post",
+			dataType:"JSON",
+			url:"../../user/reg.do",
+			data:param,
+			success:function(data){
+				
+				
+				
+				
+			}
+		});
+		}
+		
+		
+		
+		
+	
+		
+	})
+	
 
 })
