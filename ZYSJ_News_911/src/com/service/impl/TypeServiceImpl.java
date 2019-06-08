@@ -25,4 +25,9 @@ public class TypeServiceImpl implements TypeService {
 		List<Type> types = typeMapper.findByTypeId(typeId);
 		return types;
 	}
+	@Override
+	public Type findByTypeId2(int typeId) {
+		Type type = typeMapper.findByTypeId2(typeId);
+		return type;
+	}
 }

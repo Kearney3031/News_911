@@ -9,4 +9,7 @@
 	<select id="findByTypeId" resultType="Type">
 		select userId from subscribe where typeId={typeId}
 	</select>
+	<select id="findByTypeId2" resultType="Type">
+		select * from type where typeId=#{typeId}
+	</select>
 </mapper>

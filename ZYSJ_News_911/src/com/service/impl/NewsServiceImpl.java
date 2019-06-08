@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.NewsMapper;
+import com.mapper.UserMapper;
 import com.model.News;
 import com.service.NewsService;
 
@@ -56,6 +57,12 @@ public class NewsServiceImpl  implements NewsService{
 	public void addLike(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public News findNewsByNewsId(int id) {
+		News news = newsmapper.findNewsByNewsId(id);
+		return news;
 	}
 
 	

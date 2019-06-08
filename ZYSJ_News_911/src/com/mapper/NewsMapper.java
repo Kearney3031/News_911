@@ -11,4 +11,6 @@ public interface NewsMapper {
 	 void addLike(int id);//点赞
 	 List<News> findByPage(Map<String, Integer> map);//返回一页新闻
 	 int getCount();
+	 
+	 News findNewsByNewsId(int id);
 }
