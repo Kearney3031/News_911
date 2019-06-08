@@ -43,10 +43,12 @@ public class webMes    {
 		 int aa=body.indexOf('"');
 		 System.out.println(aa);
 		 String ip=body.substring(0, aa);
-		
+		 System.out.println("ip:"+ip);
+	
 	      // 创建 GeoLite2 数据库     /usr/local/kobe/apache-tomcat-8.0.53/webapps/MesTest
 	   	///Users/mac126/db/GeoLite2-City.mmdb
-	      File database = new File("/Users/mac126/Desktop/repository4/ZYSJ_News_911/WebContent/front/user/GeoLite2-City.mmdb"); 
+		
+	      File database = new File(req.getServletContext().getRealPath("/front/user/GeoLite2-City.mmdb")); 
 	      System.out.println(database.getName());
 	      // 读取数据库内容 
 	      DatabaseReader reader=null;      
@@ -54,8 +56,11 @@ public class webMes    {
 	      CityResponse response=null;
 	     
 	      try {
-	       reader = new DatabaseReader.Builder(database).build();       
+	    	  System.out.println("1111112222");
+	       reader = new DatabaseReader.Builder(database).build(); 
+	       System.out.println("ip:"+ip);
 	       ipAddress = InetAddress.getByName(ip);  
+	       System.out.println("ipAddress:"+ipAddress);
 	        response = reader.city(ipAddress);
 	       
 	      }
