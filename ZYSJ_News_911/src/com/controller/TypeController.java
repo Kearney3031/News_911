@@ -2,6 +2,9 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +21,13 @@ public class TypeController {
 	private TypeService typeService;
 	
 	@RequestMapping(value = "/find")
-	@ResponseBody
-	public List<Type> findAllType() {
+	//@ResponseBody
+	public String findAllType(HttpServletRequest request) {//List<Type> 
 		List<Type> types= typeService.findAllType();
+		HttpSession session = request.getSession();
 		System.out.println(types);
-		return types;
+		//return types;
+		session.setAttribute("listType", types);
+		return "redirect:/TypeChoose.jsp";
 	}
 }

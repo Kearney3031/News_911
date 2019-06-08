@@ -40,7 +40,7 @@ public class MessageController {
 	public List<Message> findAllUser2() {
 		List<Message> messages = messageService.findAllMessage();
 		// System.out.println(messages);
-		//System.out.println(messages);
+		System.out.println(messages);
 		return messages;
 	}
 

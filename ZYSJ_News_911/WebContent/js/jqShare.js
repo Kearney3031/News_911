@@ -32,4 +32,36 @@ $("#shareToXl").click(function(){
 	//alert(title);
 	shareToXl(title,url,picurl);
 });
+
+var v = false;
+$( "#collect").click( function() {
+    if( v ) {    
+        $( this ).html( "收藏该文章" );
+    	$.ajax({
+		timeout:20000,
+		type:"post",
+		dataType:"JSON",
+		url:"user/deleteUserCollectNews.do",
+		//data:param,
+		success:function(data){
+			
+		}
+	});
+    	alert("取消收藏成功！");
+        v = false; //由于文字已更改，所以我们要改变变量的值
+    } else {
+        $( this ).html( "取消收藏" );
+        $.ajax({
+    		timeout:20000,
+    		type:"post",
+    		dataType:"JSON",
+    		url:"user/addUserCollectNews.do",
+    		//data:param,
+    		success:function(data){
+    		}
+    	});
+        alert("收藏成功！");
+        v = true;
+    }
+} );
 });

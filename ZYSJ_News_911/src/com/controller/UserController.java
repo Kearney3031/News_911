@@ -218,15 +218,24 @@ public class UserController {
 	@RequestMapping(value = "/addUserType")
 	@ResponseBody
 	// @RequestParam(value = "Integer") List<Integer> typeIds
-	public void addUserType(Integer userId) {
-		userId = 3;
-		List<Integer> typeIds = new ArrayList<>();
-		typeIds.add(6);
-		typeIds.add(7);
+	public void addUserType(HttpServletRequest request) {
+//		userId = 3;
+//		List<Integer> typeIds = new ArrayList<>();
+//		typeIds.add(6);
+//		typeIds.add(7);
+//		User u1 = new User();
+//		u1.setUserId(userId);
+//		Type t1 = new Type();
+		//HttpSession session = request.getSession();
+		String[] typeIds = request.getParameterValues("Fruit");
+		int[] newTypeIds = new int[typeIds.length];
+		for(int i=0;i<typeIds.length;i++) {
+			newTypeIds[i]=Integer.valueOf(typeIds[i]); 
+		}
 		User u1 = new User();
-		u1.setUserId(userId);
+		u1.setUserId(Integer.valueOf(request.getParameter("userId")));
 		Type t1 = new Type();
-		for (Integer typeId : typeIds) {
+		for (Integer typeId : newTypeIds) {
 			Subscribe subscribe = new Subscribe();
 			subscribe.setUser(u1);
 			t1.setTypeId(typeId);
