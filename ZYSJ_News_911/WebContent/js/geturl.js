@@ -7,11 +7,11 @@
   }
  })(jQuery);
 var name = $.getUrlParam('fname');
-alert(name+"111");
+
 window.onload = function(){
-	alert(name+"111");
+	
 	$("#vi").append("<source  src='"+name+"' type='video/mp4' />");
-	//$("source").prop("src", "file/"+name);
+//	$("#src").prop("src", name);
 	
 }
 

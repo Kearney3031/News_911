@@ -84,5 +84,25 @@
                 <form action="findNewsByCookies.do" method="post">
 				<input type="submit" value="查看浏览历史"/>
 				</form>
+				<div class="topic" >
+				<c:forEach items="${list1}" var="topic">
+                      <a href="../topic/display.do?id=${topic.topicId}"> ${topic.topicName}</a>
+                  
+                       
+                    
+                    <hr/>            
+                </c:forEach>
+				
+				</div>
+								<div class="video" >
+				<c:forEach items="${list2}" var="video">
+                      <a href="../video/display.do?id=${video.videoId}"> ${video.videoRealName}</a>
+                  
+                       
+                    
+                    <hr/>            
+                </c:forEach>
+				
+				</div>
 </body>
 </html>

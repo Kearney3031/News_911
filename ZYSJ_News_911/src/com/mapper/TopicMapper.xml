@@ -7,4 +7,11 @@
 		topic(topicId,topicName,topicContent,userId)
 		values(null,#{topicName},#{topicContent},#{userId})
 	</insert>
+	<select id="findAllTopic" resultType="Topic">
+	select * from topic
+	</select>
+	<select id="findTopicById" resultType="Topic" parameterType="int">
+	select * from topic where  topicId=#{id}
+	</select>
+	
 </mapper>

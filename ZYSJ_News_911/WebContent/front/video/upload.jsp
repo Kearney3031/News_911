@@ -7,13 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="user/upload.do" method="post" enctype="multipart/form-data">
+<form action="../../video/upload.do" method="post" enctype="multipart/form-data">
   			<!-- 创建上传的组件 -->
   			上传视频	<input type="file" name="upload"  id="file" />
   			<%-- <s:file label="上传文件" name="upload"></s:file> --%>
   			<!-- 使用一样的upload,表示将文件上传到Action的一个文件集合中 -->
   			<!-- <s:submit value="上传"></s:submit> -->
   			<input type="submit" value="上传" />
+  			
       </form>
 </body>
 </html>

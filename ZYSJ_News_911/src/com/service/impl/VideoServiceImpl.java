@@ -8,33 +8,39 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.TopicMapper;
 import com.mapper.TypeMapper;
+import com.mapper.VideoMapper;
 import com.model.Topic;
 import com.model.Type;
+import com.model.Video;
 import com.service.TopicService;
 import com.service.TypeService;
+import com.service.VideoService;
 @Service
 @Transactional
-public class TopicServiceImpl implements TopicService {
+public class VideoServiceImpl implements VideoService {
 	
 
+
 	@Override
-	public void addTopic(Topic t) {
-		topicMapper.addTopic(t);
+	public List<Video> findAllVideo() {
+		return videoMapper.findAllVideo();
+	}
+
+	@Override
+	public void addVideo(Video v) {
+		videoMapper.addVideo(v);
 		
 	}
 
 	@Autowired
-	public TopicMapper topicMapper;
+	public VideoMapper videoMapper;
 
 	@Override
-	public List<Topic> findAllTopic() {
-		return topicMapper.findAllTopic();
+	public Video findVideoById(int id) {
+		return videoMapper.findVideoById(id);
 	}
 
-	@Override
-	public Topic findTopicById(int id) {
-		return  topicMapper.findTopicById(id);
-	}
+	
 	
 	
 	

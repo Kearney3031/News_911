@@ -7,4 +7,7 @@ import com.model.Type;
 
 public interface TopicService {
 	void addTopic(Topic t);
+	List<Topic> findAllTopic();
+	Topic findTopicById(int id);
+	
 }

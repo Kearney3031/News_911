@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.VideoMapper">
+	<insert id="addVideo" parameterType="Video">
+	insert into
+		video(videoId,videoName,videoPath,videoLike,videoRealName)
+		values(null,#{videoName},#{videoPath},#{videoLike},#{videoRealName})
+	</insert>
+	<select id="findAllVideo" resultType="Video">
+	select * from video
+	</select>
+	<select id="findVideoById" resultType="Video" parameterType="int">
+	select * from video where videoId=#{id}
+	</select>
+</mapper>

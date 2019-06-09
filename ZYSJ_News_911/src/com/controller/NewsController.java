@@ -26,13 +26,17 @@ import com.model.News;
 import com.model.Type;
 import com.model.User;
 import com.service.NewsService;
+import com.service.TopicService;
 import com.service.TypeService;
 import com.service.UserService;
+import com.service.VideoService;
 import com.util.webMes;
 
 @Controller
 @RequestMapping("/news")
 public class NewsController {
+	@Autowired
+	private TopicService topicService;
 	
 	@Autowired
 	private UserService userService;
@@ -40,6 +44,8 @@ public class NewsController {
 	private TypeService typeService;
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private VideoService videoService;
 	
 	@RequestMapping(value = "/NewsUpload")
 	public String addNews(@RequestParam(value = "newsimg") MultipartFile file, String newstitle, String newstype,
@@ -113,6 +119,8 @@ public class NewsController {
 		System.out.println(news.size());
 		int totalPage=newsService.findTotalPage(2);
 	ModelAndView mo=new ModelAndView("/front/index");
+	mo.addObject("list1", topicService.findAllTopic());
+	mo.addObject("list2", videoService.findAllVideo());
 	mo.addObject("list", news);
 //	mo.addObject("page", page);
 //	mo.addObject("totalPage", totalPage);

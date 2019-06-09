@@ -50,40 +50,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String uploadVideo(@RequestParam(value = "upload", required = false) MultipartFile file,
-			HttpServletRequest request) {
-
-		System.out.println("111");
-		User user = new User();
-
-		request.getSession().setAttribute("user", user);
-
-		String path = request.getServletContext().getRealPath("/file");
-		System.out.println(path);
-		System.out.println(file.getName());
-		String uploadFileName1 = System.currentTimeMillis() + file.getName();
-		File file11 = new File(path, uploadFileName1 + ".mp4");
-
-		System.out.println(uploadFileName1);
-		try {
-			file.transferTo(file11);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// ModelAndView mav=new
-		// ModelAndView("/show.html?fname="+uploadFileName1+".mp4");
-//				mav.addObject("fname", uploadFileName1+".mp4");
-		// mav.getModel().put("fname", uploadFileName1+".mp4");
-
-		return "redirect:/file/show.html?fname=" + uploadFileName1 + ".mp4";
-
-	}
 
 	
 

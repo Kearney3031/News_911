@@ -21,16 +21,19 @@ import com.model.Type;
 import com.model.User;
 import com.service.TopicService;
 import com.service.TypeService;
+import com.service.UserService;
 
 @Controller
 
 @RequestMapping("/topic")
 public class TopicController {
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private TopicService topicService;
 	
 	@RequestMapping(value = "/addTopic")
-	public ModelAndView findAllType(String tname,String tcontent,HttpServletRequest req) {//List<Type> 
+	public ModelAndView findAllType(String tname,String tcontent,HttpServletRequest req) {
 		ModelAndView mo=new ModelAndView("redirect:/front/user/editor.jsp");
 		Topic t=new Topic();
 		t.setTopicName(tname);
@@ -40,6 +43,15 @@ public class TopicController {
 		System.out.println(u.getUserId());
 		t.setUserId(u.getUserId());
 		topicService.addTopic(t);
+		return mo;
+	}
+	@RequestMapping(value = "/display")
+	public ModelAndView display(int id) {
+		ModelAndView mo=new ModelAndView("/front/topic/display");
+		 Topic topic=topicService.findTopicById(id);
+		mo.addObject("user", userService.findUserById(topic.getUserId()));
+		
+		mo.addObject("topic", topic);
 		return mo;
 	}
 	
