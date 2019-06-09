@@ -18,11 +18,5 @@
 <input type="hidden" value="${user.userId}" name="userId" />
 <input type="submit" value="订阅">
 </form>
-
-
-<form action="type/addCookieType.do" method="post">
-<input type="text" name="Type" />
-<input type="submit"/>
-</form>
 </body>
 </html>

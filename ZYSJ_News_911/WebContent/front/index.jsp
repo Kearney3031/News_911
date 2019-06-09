@@ -84,6 +84,7 @@
                 <form action="findNewsByCookies.do" method="post">
 				<input type="submit" value="查看浏览历史"/>
 				</form>
+
 				<div class="topic" >
 				<c:forEach items="${list1}" var="topic">
                       <a href="../topic/display.do?id=${topic.topicId}"> ${topic.topicName}</a>
@@ -104,5 +105,10 @@
                 </c:forEach>
 				
 				</div>
+
+				<form action="../type/find.do" method="post">
+				<input type="submit" value="类别订阅"/>
+				</form>
+
 </body>
 </html>
