@@ -121,12 +121,14 @@ public class NewsController {
 		return mo;
 	}
 	@RequestMapping(value = "/display")
-	public ModelAndView display(int  id) {
+	public ModelAndView display(int  id,HttpServletRequest req) {
 		News news1=newsService.findNewsByNewsId(id);
 		//ModelAndView mo=new ModelAndView("/front/news/display");
 		ModelAndView mo=new ModelAndView("forward:addCookieNews.do?newsId="+news1.getNewsId());
-		mo.addObject("news", news1);
-		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
+		req.getSession().setAttribute("news", news1);
+		req.getSession().setAttribute("name", userService.findUserById(news1.getUserId()).getUserRealName());
+//		mo.addObject("news", news1);
+//		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
 		return mo;
 	}
 	//提交新闻的预操作，首先先得到所有的新闻类型。
