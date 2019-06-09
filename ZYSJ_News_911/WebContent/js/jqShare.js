@@ -33,8 +33,13 @@ $("#shareToXl").click(function(){
 	shareToXl(title,url,picurl);
 });
 
+
+
+
 var v = false;
+//var param={"userId":${user.userId},"newsId":${news.newsId}};
 $( "#collect").click( function() {
+	alert("aaaaa");
     if( v ) {    
         $( this ).html( "收藏该文章" );
     	$.ajax({

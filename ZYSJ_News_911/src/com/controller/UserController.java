@@ -267,12 +267,12 @@ public class UserController {
 //	//@Transactional
 	@RequestMapping(value = "/addUserCollectNews")
 	@ResponseBody
-	public void addUserCollectNews(Integer userId) {
-		userId = 2;
+	public void addUserCollectNews(String userId,String newsId) {
+//		userId = 2;
 		News news = new News();
-		news.setNewsId(8);
+		news.setNewsId(Integer.valueOf(newsId));
 		User user = new User();
-		user.setUserId(userId);
+		user.setUserId(Integer.valueOf(userId));
 		Collect collect = new Collect();
 		collect.setNews(news);
 		collect.setUser(user);

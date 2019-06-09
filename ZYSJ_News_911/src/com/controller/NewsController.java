@@ -123,7 +123,8 @@ public class NewsController {
 	@RequestMapping(value = "/display")
 	public ModelAndView display(int  id) {
 		News news1=newsService.findNewsByNewsId(id);
-		ModelAndView mo=new ModelAndView("/front/news/display");
+		//ModelAndView mo=new ModelAndView("/front/news/display");
+		ModelAndView mo=new ModelAndView("forward:addCookieNews.do?newsId="+news1.getNewsId());
 		mo.addObject("news", news1);
 		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
 		return mo;
@@ -138,8 +139,10 @@ public class NewsController {
 	}
 	
 	@RequestMapping(value = "/addCookieNews")
-	public String addCookieNews(HttpServletRequest request,HttpServletResponse response) {
-		String newsId = request.getParameter("");
+	public ModelAndView addCookieNews(HttpServletRequest request,HttpServletResponse response,ModelAndView mo) {
+		//String newsId = request.getParameter("news");
+		String newsId = request.getParameter("newsId");
+		System.out.println("11111"+newsId);
 		 Cookie[] cookies=  request.getCookies();
 			 String cookieValue = buildCookie(newsId,request);
 			  Cookie cookie = new Cookie("newsId",cookieValue);
@@ -147,19 +150,20 @@ public class NewsController {
 			  cookie.setPath("/");
 		      response.addCookie(cookie);
 		      System.out.println(cookieValue);
-			return "redirect:/history.jsp";
+		      mo.setViewName("/front/news/display");
+		      return mo;
 	} 
 	
 	
-	@RequestMapping(value = "/findTypeByCookies")
-	public String findNewsByCookies(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(value = "/findNewsByCookies")
+	public ModelAndView findNewsByCookies(HttpServletRequest request,HttpServletResponse response) {
 		Cookie[] cookies = request.getCookies();
 		List<News> historyNewsList = new ArrayList<>();
 for (int i = 0; cookies != null && i < cookies.length; i++){
 			
 			//找到我们想要的cookie
 			if (cookies[i].getName().equals("newsId")){
-				String[] pids = cookies[i].getValue().split("\\-");
+				String[] pids = cookies[i].getValue().split("-");
 				int[] newNewsIds = new int[pids.length];
 				News news = new News();
 				System.out.println(pids.toString());
@@ -172,8 +176,10 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 			}
 		}
 		System.out.println(historyNewsList);
-		request.setAttribute("historyNewsList", historyNewsList);
-		return null;
+		ModelAndView mo = new ModelAndView("/front/news/history");
+		//request.setAttribute("list", historyNewsList);
+		mo.addObject("list",historyNewsList);
+		return mo;
 		
 	}
 	
@@ -188,7 +194,7 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 	        if(productId==null)
 	            return id;
 	          
-	        LinkedList<String> list = new LinkedList<String>(Arrays.asList(productId.split("\\-")));
+	        LinkedList<String> list = new LinkedList<String>(Arrays.asList(productId.split("-")));
 	        if(list.contains(id)){
 	            list.remove(id);
 	        }else{
