@@ -287,9 +287,9 @@ public class UserController {
 //		newsId = 8;
 //		userId = 2;
 		News news = new News();
-		news.setNewsId(8);
+		news.setNewsId(Integer.valueOf(newsId));
 		User user = new User();
-		user.setUserId(2);
+		user.setUserId(Integer.valueOf(userId));
 		Collect collect = new Collect();
 		collect.setNews(news);
 		collect.setUser(user);

@@ -84,5 +84,8 @@
                 <form action="findNewsByCookies.do" method="post">
 				<input type="submit" value="查看浏览历史"/>
 				</form>
+				<form action="../type/find.do" method="post">
+				<input type="submit" value="类别订阅"/>
+				</form>
 </body>
 </html>

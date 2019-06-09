@@ -41,7 +41,7 @@
 	</select>
 	
 	<insert id="addMessage" parameterType="com.model.Message">
-		insert into message values(null,#{megContent},0,#{time},#{userId},null,null,null)
+		insert into message values(null,#{megContent},0,#{time},#{userId},#{newsId},null,null)
 	</insert>
 	<delete id="delMessage" parameterType="int">
 		delete from message where messageId = #{messageId}
@@ -55,4 +55,13 @@
 	 <update id="subLike" parameterType="int">
 	 	update message set megLike=megLike-1 where messageId=#{id}
 	 </update>
+	 <select id="findMessageByNewsId" parameterType="int" resultType="Message" resultMap="MessageUserMap">
+	 	select
+	 	m.*,u.*
+		from
+		user u,message m
+		where m.userId=u.userId
+		and newsId=#{id}
+	 </select>
+	 
 </mapper>

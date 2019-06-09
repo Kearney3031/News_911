@@ -1,7 +1,7 @@
 $(document).ready(function(){  
 	var title=null;
 	var url=null;
-	var picurl=null;
+	//var picurl=null;
 	
 //分享到新浪微博
 function shareToXl(title,url,picurl){
@@ -23,13 +23,18 @@ shareToQq("测试标题","www.baidu.com","http://aladdin-vray.oss-cn-beijing.ali
 $("#shareToQQ").click(function(){
 	url = window.location.href;
 	title = document.title;
+	//title =$("#ti").value;
+	//picurl = "${pageContext.request.contextPath.concat(news.newsImg)}";
 	alert(title);
 	shareToQq(title,url,picurl);
 });
+
 $("#shareToXl").click(function(){
 	url = window.location.href;
 	title = document.title;
-	//alert(title);
+	//title = $("#ti").value;
+	picurl = "${pageContext.request.contextPath.concat(news.newsImg)}";
+	alert(picurl);
 	shareToXl(title,url,picurl);
 });
 
@@ -37,17 +42,18 @@ $("#shareToXl").click(function(){
 
 
 var v = false;
-//var param={"userId":${user.userId},"newsId":${news.newsId}};
+var param={"userId":$("#userId").val(),"newsId":$("#newsId").val()};
+//alert($("#newsId").val());
 $( "#collect").click( function() {
-	alert("aaaaa");
+	//alert("aaaaa");
     if( v ) {    
         $( this ).html( "收藏该文章" );
     	$.ajax({
 		timeout:20000,
 		type:"post",
 		dataType:"JSON",
-		url:"user/deleteUserCollectNews.do",
-		//data:param,
+		url:"../../user/deleteUserCollectNews.do",
+		data:param,
 		success:function(data){
 			
 		}
@@ -60,8 +66,8 @@ $( "#collect").click( function() {
     		timeout:20000,
     		type:"post",
     		dataType:"JSON",
-    		url:"user/addUserCollectNews.do",
-    		//data:param,
+    		url:"../../user/addUserCollectNews.do",
+    		data:param,
     		success:function(data){
     		}
     	});

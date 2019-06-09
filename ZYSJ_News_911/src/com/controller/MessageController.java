@@ -38,7 +38,8 @@ public class MessageController {
 	@RequestMapping(value = "/find2")
 	@ResponseBody
 	public List<Message> findAllUser2() {
-		List<Message> messages = messageService.findAllMessage();
+		//List<Message> messages = messageService.findAllMessage();
+		List<Message> messages = messageService.findMessageByNewsId(2);
 		// System.out.println(messages);
 		System.out.println(messages);
 		return messages;
@@ -81,5 +82,14 @@ public class MessageController {
 		messageService.subLike(Integer.parseInt(id));
 		System.out.println(id + "号取消赞成功!");
 	}
-
+	
+	@RequestMapping(value = "/findMessageByNewsId")
+	@ResponseBody
+	public List<Message> findMessageByNewsId(String id){
+		System.out.println(id);
+		List<Message> message = messageService.findMessageByNewsId(Integer.valueOf(id));
+		System.out.println(message);
+		return message;
+	}
+	
 }

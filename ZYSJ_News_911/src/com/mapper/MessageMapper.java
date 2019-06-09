@@ -19,4 +19,6 @@ public interface MessageMapper {
 	void addLike(int id);
 
 	void subLike(int id);
+	
+	List<Message> findMessageByNewsId(int id);
 }

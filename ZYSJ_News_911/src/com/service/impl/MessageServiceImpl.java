@@ -59,7 +59,15 @@ public class MessageServiceImpl implements MessageService {
 		messageMapper.subLike(id);
 	}
 	
+	@Override
+	public List<Message> findMessageByNewsId(int id) {
+		List<Message> messages = messageMapper.findMessageByNewsId(id);
+		return messages;
+	}
+	
 	@Autowired
 	public MessageMapper messageMapper;
+
+	
 
 }

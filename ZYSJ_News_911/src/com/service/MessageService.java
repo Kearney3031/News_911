@@ -14,4 +14,6 @@ public interface MessageService {
 	 void updateUser(int id,String name);
 	 void addLike(int id);
 	 void subLike(int id);
+	List<Message> findMessageByNewsId(int id);
+	 
 }

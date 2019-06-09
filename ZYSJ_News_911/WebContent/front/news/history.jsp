@@ -37,41 +37,6 @@
            
         </tbody>
     </table>
-
-
-
-
- <div id="pages">
- 				<c:choose>
-                <c:when test="${page==1}">
-        	        <a href="#">上一页</a>
-        	        </c:when>
-        	        <c:otherwise>
-        	         <a href="findByPage.do?page=${page-1}" >上一页</a>
-        	        </c:otherwise>
-        	        </c:choose>
-        	       <c:forEach  begin="1" end="${totalPage}" var="k" >
-        	  
-                  	<c:choose>
-                  	<c:when test="${k==1}">
-                 
-                    <a href="findByPage.do?page=${k}" class="current_page">1</a>
-                  </c:when>
-                  <c:otherwise>
-                 
-                  <a href="findByPage.do?page=${k}">${k}</a>
-                  </c:otherwise>
-                  </c:choose>
-                    </c:forEach>
-                    <c:choose>
-                   <c:when test="${page==totalPage}">
-        	        <a href="#">下一页</a>
-        	        </c:when>
-        	        <c:otherwise>     
-        	         <a href="findByPage.do?page=${page+1}" >下一页</a>
-        	        </c:otherwise>
-        	        </c:choose>
-                </div>
                 </div>
 
 </body>
