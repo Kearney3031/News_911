@@ -150,7 +150,8 @@ public class NewsController {
 			  cookie.setPath("/");
 		      response.addCookie(cookie);
 		      System.out.println(cookieValue);
-		      mo.setViewName("/front/news/display");
+		      
+		      mo.setViewName("redirect:/front/news/display.jsp");
 		      return mo;
 	} 
 	

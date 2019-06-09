@@ -11,7 +11,7 @@
 <body>
 您好，亲爱的小编${user.userName}
 <input type="button" value="写新闻" id="addNews" />
-<input type="button" value="发起话题" id="addTopic" />
+<a href="addTopic.jsp"><input type="button" value="发起话题" id="addTopic" /></a>
 <input type="button" value="上传视频" id="videoUpload" />
 </body>
 </html>
