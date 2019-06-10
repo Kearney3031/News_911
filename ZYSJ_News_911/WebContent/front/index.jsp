@@ -109,6 +109,10 @@
 				<form action="../type/find.do" method="post">
 				<input type="submit" value="类别订阅"/>
 				</form>
+				<div  class="footer">
+				关于我们<br>
+				我们是911不服来干
+				</div>
 
 </body>
 </html>

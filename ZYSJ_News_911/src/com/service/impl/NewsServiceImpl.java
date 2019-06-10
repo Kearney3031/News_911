@@ -20,6 +20,17 @@ public class NewsServiceImpl  implements NewsService{
 	
 
 	@Override
+	public void passNews(int id) {
+		newsmapper.passNews(id);
+		
+	}
+
+	@Override
+	public List<News> findAll() {
+		return newsmapper.findAll();
+	}
+
+	@Override
 	public int findTotalPage(int pageSize) {
 		
 		int rows= newsmapper.getCount();

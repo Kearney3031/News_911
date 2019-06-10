@@ -16,7 +16,7 @@ $(document).ready(function(){
 				timeout:20000,
 				type:"post",
 				dataType:"JSON",
-				url:"user/login.do",
+				url:"../../user/login.do",
 				data:param,
 				success:function(data){
 					
@@ -172,5 +172,48 @@ $(document).ready(function(){
 		
 	})
 	
+	
+	
+	
+	
+	
+	
+	$("#login1").bind("click",function(){
+		 
+	alert("123123");
+	 
+		  
+		 
+		  var param={"username":$("#username1").val(),
+				  
+					"password":$("#password").val()
+		}
+			
+		 
+			$.ajax({
+				timeout:20000,
+				type:"post",
+				dataType:"JSON",
+				url:"../user/login1.do",
+				data:param,
+				success:function(data){
+					if(data[0]=="error"){
+						alert("账号或密码错误");
+						location.href="login.jsp";
+						
+					}
+					else{
+						location.href="manage.jsp";
+					}
+					
+					
+				}
+			});
+	 
+	 
+	
+		
+		
+	})
 
 })

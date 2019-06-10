@@ -147,6 +147,21 @@ public class NewsController {
 		mo.addObject("list", list);
 		return mo;
 	}
+	@RequestMapping(value = "/findAll")
+	public ModelAndView findAll() {
+		List<News> list=newsService.findAll();
+		ModelAndView mo=new ModelAndView("/manage/news");
+		mo.addObject("list", list);
+		return mo;
+	}
+	@RequestMapping(value = "/passNews")
+	public ModelAndView passNews(int id) {
+		newsService.passNews(id);
+		List<News> list=newsService.findAll();
+		ModelAndView mo=new ModelAndView("/manage/news");
+		mo.addObject("list", list);
+		return mo;
+	}
 	
 	@RequestMapping(value = "/addCookieNews")
 	public ModelAndView addCookieNews(HttpServletRequest request,HttpServletResponse response,ModelAndView mo) {

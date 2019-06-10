@@ -1,8 +1,14 @@
 package com.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,14 +93,63 @@ Video v=new Video();
 	}
 
 	@RequestMapping(value = "/display")
-	public String  display(int id) {
+	public String  display(int id,HttpServletRequest req) {
 		
 		 Video v=videoService.findVideoById(id);
+		 req.getSession().setAttribute("video", v);
 		String path= "/ZYSJ_News_911/video/"+v.getVideoName();
 		return "redirect:/front/video/show.html?fname=" +path;
-	}
+	} 
+	@RequestMapping(value="/download",method=RequestMethod.POST)
 	
+    public void download(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String path1=request.getServletContext().getRealPath("/video");
+       Video v=(Video) request.getSession().getAttribute("video");
+       String filename=v.getVideoName();
+        System.out.println(filename);
+        String path = v.getVideoPath();  
+        System.out.println(path);
+//        //获取输入流  
+//        InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+//        //转码，免得文件名中文乱码  
+//        filename = URLEncoder.encode(filename,"UTF-8");  
+//        //设置文件下载头  
+//        response.addHeader("Content-Disposition", "attachment;filename=" + filename);    
+//        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型    
+//        response.setContentType("multipart/form-data");   
+//        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());  
+//        int len = 0;  
+//        while((len = bis.read()) != -1){  
+//            out.write(len);  
+//            out.flush();  
+//        }  
+//        out.close();  
+//    }
+        //转码，免得文件名中文乱码  
+        filename = URLEncoder.encode(filename,"UTF-8");  
+        //设置文件下载头  
+        response.addHeader("Content-Disposition", "attachment;filename=" + filename);    
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型    
+        response.setContentType("multipart/form-data"); 
+        // 读取要下载的文件，保存到文件输入流
+        FileInputStream in = new FileInputStream(path);
+        // 创建输出流
+        OutputStream out = response.getOutputStream();
+        // 创建缓冲区
+        byte buffer[] = new byte[1024]; 
+        int len = 0;
+        //循环将输入流中的内容读取到缓冲区当中
+        while((len = in.read(buffer)) > 0){
+        	out.write(buffer, 0, len);
+        }
+        //关闭文件输入流
+        in.close();
+        // 关闭输出流
+        out.close();
+       
+    }
 
 	
+
 	
 }

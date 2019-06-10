@@ -10,8 +10,11 @@ public interface NewsService {
 	 void addLike(int id);//点赞
 	 List<News> findByPage(int page,int pageSize);//返回所有新闻
 	 int findTotalPage(int pageSize);
-
+	//这是管理员用的findAll
+		 List<News> findAll();
 	 
+		//新闻审核通过
+			void passNews(int id);
 	 News findNewsByNewsId(int id);
 
 }

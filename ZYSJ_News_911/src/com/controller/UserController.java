@@ -154,6 +154,37 @@ public class UserController {
 
 	}
 
+	
+	@RequestMapping(value = "/login1", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> testLogin1(@RequestParam(value = "username", required = false) String username,
+			@RequestParam(value = "password") String psw, HttpServletRequest request,HttpServletResponse response) {
+		
+		List<String> status = new ArrayList<>();
+		
+			User u = new User();
+			u.setUserName(username);
+			u.setPassword(psw);
+			User u1 = userService.testLogin(u);
+			if (u1 == null||u.getUserType()!=3) {
+				status.add("error");
+				return status;
+
+			}
+			
+			
+			
+			else {status.add("success");}
+			
+			return status;
+
+		 
+
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/findUserById")
 	@ResponseBody
 	public User findUserById(String userId) {

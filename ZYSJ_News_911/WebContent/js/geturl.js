@@ -10,7 +10,7 @@ var name = $.getUrlParam('fname');
 
 window.onload = function(){
 	
-	$("#vi").append("<source  src='"+name+"' type='video/mp4' />");
+	$("#vi").append("<source id='v1'  src='"+name+"' type='video/mp4' />");
 //	$("#src").prop("src", name);
 	
 }

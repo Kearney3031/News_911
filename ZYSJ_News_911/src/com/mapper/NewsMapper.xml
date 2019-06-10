@@ -21,6 +21,12 @@ select count(*) from news
 <select id="findNewsByNewsId" resultType="News" parameterType="int">
 select * from news where newsId=#{newsId}
 </select>
+<select id="findAll" resultType="News" >
+select * from news where newsStatus=0
+</select>
+<update id="passNews" parameterType="int">
+	update news set newsStatus=1 where newsId=#{id}
+</update>
 
 
 

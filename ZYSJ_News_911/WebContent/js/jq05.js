@@ -1,16 +1,18 @@
 $(document).ready(function(){  
 	
-	$("#download").click(function(){
+	$("#download").live("click",function(){
 		alert("1111");
-		var param={"filename":$("#src").attr("src")}
+		alert("2222");
+		
+		var param={}
 		$.ajax({
 			timeout:20000,
 			type:"post",
 			dataType:"JSON",
-			url:"../../video/download.do",
+			url:"",
 			data:param,
 			success:function(data){
-				
+				alert("下载成功");
 				
 			}
 		});
