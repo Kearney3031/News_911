@@ -67,8 +67,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	@ResponseBody
-	public void addUser(String username, String password, String realname, String phone, String email,
+	public String addUser(String username, String password, String realname, String phone, String email,
 			String userType, HttpServletRequest request) throws UnsupportedEncodingException {
 
 		User user = new User();
@@ -84,7 +83,7 @@ public class UserController {
 		request.getSession().setAttribute("user", user);
 		
 	
-		
+		return "redirect:/front/index.jsp";
 
 	}
 
