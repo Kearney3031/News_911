@@ -33,10 +33,10 @@ public class TopicController {
 	private TopicService topicService;
 	
 	@RequestMapping(value = "/addTopic")
-	public ModelAndView findAllType(String tname,String tcontent,HttpServletRequest req) {
+	public ModelAndView addTopic(String tname,String tcontent,HttpServletRequest req) {
 		ModelAndView mo=new ModelAndView("redirect:/front/user/editor.jsp");
 		Topic t=new Topic();
-		t.setTopicName(tname);
+		t.setTopicName("#"+tname);
 		t.setTopicContent(tcontent);
 		User u=(User) req.getSession().getAttribute("user");
 		System.out.println(u.getUserName());
