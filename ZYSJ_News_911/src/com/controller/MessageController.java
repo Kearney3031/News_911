@@ -89,6 +89,7 @@ public class MessageController {
 		System.out.println(id);
 		List<Message> message = messageService.findMessageByNewsId(Integer.valueOf(id));
 		System.out.println(message);
+		//Integer q = Integer.valueOf("f");
 		return message;
 	}
 	
