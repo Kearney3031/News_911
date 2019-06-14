@@ -22,27 +22,27 @@ public class sendemail {
 
 	public static int send(String con,String sendto) {
 		MailBean mb = new MailBean();
-        mb.setHost("smtp.163.com");                        // 设置SMTP主机(163)，若用126，则设为：smtp.126.com
-        mb.setUsername("a547074604");                // 设置发件人邮箱的用户名
-        mb.setPassword("1234asdf");                        // 设置发件人邮箱的密码，需将*号改成正确的密码
-        mb.setFrom("a547074604@163.com");            // 设置发件人的邮箱
-        mb.setTo(sendto);                // 设置收件人的邮箱
-        mb.setSubject("911指尖资讯平台");                    // 设置邮件的主题
-        mb.setContent("您的验证码是:"+con);        // 设置邮件的正文
+        mb.setHost("smtp.163.com");                        // 璁剧疆SMTP涓绘満(163)锛岃嫢鐢�126锛屽垯璁句负锛歴mtp.126.com
+        mb.setUsername("a547074604");                // 璁剧疆鍙戜欢浜洪偖绠辩殑鐢ㄦ埛鍚�
+        mb.setPassword("1234asdf");                        // 璁剧疆鍙戜欢浜洪偖绠辩殑瀵嗙爜锛岄渶灏�*鍙锋敼鎴愭纭殑瀵嗙爜
+        mb.setFrom("a547074604@163.com");            // 璁剧疆鍙戜欢浜虹殑閭
+        mb.setTo(sendto);                // 璁剧疆鏀朵欢浜虹殑閭
+        mb.setSubject("911指尖资讯新闻平台");                    // 璁剧疆閭欢鐨勪富棰�
+        mb.setContent("您的验证码是:"+con);        // 璁剧疆閭欢鐨勬鏂�
 
 
         
         SendMail sm = new SendMail();
-        System.out.println("正在发送邮件...");
+        System.out.println("姝ｅ湪鍙戦�侀偖浠�...");
         
-        if(sm.sendMail(mb))  {                              // 发送邮件
-            System.out.println("发送成功!");
+        if(sm.sendMail(mb))  {                              // 鍙戦�侀偖浠�
+            System.out.println("鍙戦�佹垚鍔�!");
             return 1;
             
         }
         	
         else {
-            System.out.println("发送失败!");
+            System.out.println("鍙戦�佸け璐�!");
             return 0;
         }
     }
@@ -51,15 +51,15 @@ public class sendemail {
 
  class MailBean {
 
-    private String to;                                // 收件人
-    private String from;                            // 发件人
-    private String host;                            // SMTP主机
-    private String username;                        // 发件人的用户名
-    private String password;                        // 发件人的密码
-    private String subject;                            // 邮件主题
-    private String content;                            // 邮件正文
-    Vector<String> file;                            // 多个附件
-    private String filename;                        // 附件的文件名
+    private String to;                                // 鏀朵欢浜�
+    private String from;                            // 鍙戜欢浜�
+    private String host;                            // SMTP涓绘満
+    private String username;                        // 鍙戜欢浜虹殑鐢ㄦ埛鍚�
+    private String password;                        // 鍙戜欢浜虹殑瀵嗙爜
+    private String subject;                            // 閭欢涓婚
+    private String content;                            // 閭欢姝ｆ枃
+    Vector<String> file;                            // 澶氫釜闄勪欢
+    private String filename;                        // 闄勪欢鐨勬枃浠跺悕
     
     public String getTo() {
         return to;
@@ -161,8 +161,8 @@ public class sendemail {
 	        
 	        
 	        Properties props = System.getProperties();
-	        props.put("mail.smtp.host", host);                // 设置SMTP的主机
-	        props.put("mail.smtp.auth", "true");            // 需要经过验证
+	        props.put("mail.smtp.host", host);                // 璁剧疆SMTP鐨勪富鏈�
+	        props.put("mail.smtp.auth", "true");            // 闇�瑕佺粡杩囬獙璇�
 	        
 	        Session session = Session.getInstance(props, new Authenticator() {
 	            public PasswordAuthentication getPasswordAuthentication() {
