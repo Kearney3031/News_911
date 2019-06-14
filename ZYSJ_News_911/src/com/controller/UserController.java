@@ -203,9 +203,11 @@ public class UserController {
 		// System.out.println(users);
 		for (User u : users) {
 			System.out.println(u.getTypes());
+			
 		}
 		return users;
 
+		
 	}
 
 	@RequestMapping(value = "/findUserTypeByUserId")
