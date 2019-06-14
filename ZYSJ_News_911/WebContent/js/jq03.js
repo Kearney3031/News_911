@@ -132,18 +132,19 @@ $(document).ready(function(){
 		var var4=$("#phone").val();
 		var var5=$("#email").val();
 		var var6=$("#code").val();
-		var var7=$(".type").val();
-		
+		var var7=$("#type").val();
+		alert("sadasdasd");
 		if(var1==null||var2==null||var3==null||var4==null||var5==null||var6==null||var7==null){
 			alert("不能为空");
 			
+			alert(var1);;
 			$("#username").val(var1);
 			$("#pwd").val(var2);
 			$("#rname").val(var3);
 			$("#phone").val(var4);
 			$("#email").val(var5);
 			$("#code").val(var6);
-			$(".type").val(var7);
+			$("#type").val(var7);
 		}
 		else{
 		var param={"username":var1,"password":var2,"realname":var3,"phone":var4,"email":var5,"userType":var7}
@@ -157,7 +158,7 @@ $(document).ready(function(){
 			data:param,
 			success:function(data){
 				
-				location.href="../zhuye.jsp";
+				
 				
 				
 			}
@@ -211,38 +212,6 @@ $(document).ready(function(){
 	 
 	 
 	
-		
-		
-	})
-	$("#notice").bind("click",function(){
-		$(".content").css("visibility","visible");
-	})
-	$("#can").bind("click",function(){
-		$(".content").css("visibility","hidden");
-	})
-	$("#ok").bind("click",function(){
-		
-		 
-		  
-		 
-		  var param={"content":$("#content").val()
-				  
-					
-		}
-			
-		 
-			$.ajax({
-				timeout:20000,
-				type:"post",
-				dataType:"JSON",
-				url:"../notice/updateNotice.do",
-				data:param,
-				success:function(data){
-					$(".content").css("visibility","hidden");
-					alert("修改成功");
-					
-				}
-			});
 		
 		
 	})
