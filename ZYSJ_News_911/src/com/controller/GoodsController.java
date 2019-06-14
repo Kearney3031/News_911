@@ -17,7 +17,6 @@ public class GoodsController {
 	private GoodsService goodsService;
 	
 	
-	
 	@RequestMapping(value = "/findAll")
 	//@ResponseBody
 	public List<Goods> findAllGoods() {
