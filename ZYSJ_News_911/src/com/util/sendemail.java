@@ -51,15 +51,15 @@ public class sendemail {
 
  class MailBean {
 
-    private String to;                                // 鏀朵欢浜�
-    private String from;                            // 鍙戜欢浜�
-    private String host;                            // SMTP涓绘満
-    private String username;                        // 鍙戜欢浜虹殑鐢ㄦ埛鍚�
-    private String password;                        // 鍙戜欢浜虹殑瀵嗙爜
-    private String subject;                            // 閭欢涓婚
-    private String content;                            // 閭欢姝ｆ枃
-    Vector<String> file;                            // 澶氫釜闄勪欢
-    private String filename;                        // 闄勪欢鐨勬枃浠跺悕
+    private String to;                                // 收件人
+    private String from;                            // 发件人
+    private String host;                            // SMTP主机
+    private String username;                        // 发件人的用户名
+    private String password;                        // 发件人的密码
+    private String subject;                            // 邮件主题
+    private String content;                            // 邮件正文
+    Vector<String> file;                            // 多个附件
+    private String filename;                        // 附件的文件名
     
     public String getTo() {
         return to;
@@ -161,8 +161,8 @@ public class sendemail {
 	        
 	        
 	        Properties props = System.getProperties();
-	        props.put("mail.smtp.host", host);                // 璁剧疆SMTP鐨勪富鏈�
-	        props.put("mail.smtp.auth", "true");            // 闇�瑕佺粡杩囬獙璇�
+	        props.put("mail.smtp.host", host);                // 设置SMTP的主机
+	        props.put("mail.smtp.auth", "true");            // 需要经过验证
 	        
 	        Session session = Session.getInstance(props, new Authenticator() {
 	            public PasswordAuthentication getPasswordAuthentication() {
