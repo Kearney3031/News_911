@@ -31,4 +31,5 @@ public interface UserMapper {
 	void addUserCollectNews(Collect collect);
 
 	void deleteUserCollectNews(Collect collect);
+	void addUserScore(int id);
 }

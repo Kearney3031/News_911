@@ -29,4 +29,5 @@ public interface UserService {
 	void addUserCollectNews(Collect collect);
 	
 	void deleteUserCollectNews(Collect collect);
+	void addUserScore(int id);
 }

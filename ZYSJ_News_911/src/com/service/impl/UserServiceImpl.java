@@ -86,4 +86,10 @@ public class UserServiceImpl implements UserService {
 	public void deleteUserCollectNews(Collect collect) {
 		userMapper.deleteUserCollectNews(collect);
 	}
+
+	@Override
+	public void addUserScore(int id) {
+		userMapper.addUserScore(id);
+		
+	}
 }

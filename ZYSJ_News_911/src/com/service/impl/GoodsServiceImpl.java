@@ -26,13 +26,13 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	@Override
 	public void addGoods(Goods goods) {
-		// TODO Auto-generated method stub
+		goodsMapper.addGoods(goods);
 
 	}
 
 	@Override
 	public void delGoods(int id) {
-		// TODO Auto-generated method stub
+		goodsMapper.delGoods(id);
 
 	}
 

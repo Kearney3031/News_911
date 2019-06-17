@@ -17,6 +17,9 @@
 		from user where email=#{email} and password=#{password}
 	</select>
 
+	<update id="addUserScore" parameterType="int">
+	 update user set score=score+1 where userId=#{id}
+	</update>
 	
 
 
