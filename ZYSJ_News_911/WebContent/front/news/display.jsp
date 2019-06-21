@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${news.newsTitle}</title>
 </head>
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/comment.css">
+ <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/comment.css"> 
 <body>
 <script type="text/javascript" src="../../js/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="../../js/jsMessage.js" ></script>
@@ -364,6 +364,9 @@ $(document).ready(function() {
         
     })
 </script>
+
+
+
 
 </body>
 </html>
