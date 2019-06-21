@@ -61,7 +61,9 @@
 		where u.userId=s.userId
 		and t.typeId=s.typeId
 	</select>
-
+<insert id="addFeedback" parameterType="com.model.Feedback">
+insert into feedback(feedbackId,feedbackName,feedbackContent,userId,fbTime) values(null,#{feedbackName},#{feedbackContent},#{userId},#{fbTime})
+</insert>
 
 
 	<select id="findUserTypeByUserId" resultMap="UserTypeMap"

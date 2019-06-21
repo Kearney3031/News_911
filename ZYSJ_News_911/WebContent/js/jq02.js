@@ -1,55 +1,38 @@
-$(document).ready(function(){  
+$(document).ready(function(){ 
 	
-	$("#delete").click(function(){
-		$(this).parent().parent().remove();
-		var param={"id":$(this).parent().siblings().eq(0).html()}
-		
-		
-		$.ajax({
-			timeout:20000,
-			type:"post",
-			dataType:"JSON",
-			url:"user/delete.do",
-			data:param,
-			success:function(data){
-				
-				alert("删除成功");
-				
-			}
-		});
-		
-		
-		
+	 $("#quit").live("click",function(){
+			location.href="../user/quit.do";
+			
+			
+		})
+
+	
+	
+	$("#editMes").bind("click",function(){
+		$("body").append("<div>" +
+				"<input id='userName' />" +
+				"<input id='password' type='password' />" +
+				"<input id='userRealName' />" +
+				"<input id='phone' />" +
+				"<input id='email' />" +
+				"<input id='edit' type='button' />" +
+				"</div>");
 		
 	})
-	$("#update").live("click",function(){
-		
-		 oldvalue=$(this).parent().siblings().eq(1).html();
-		var okbtn="<input type='button' id='okbtn' name='okbtn' value='ok' />"
-		var canbtn="<input type='button' id='canbtn' name='canbtn' value='cancel' />"
-		var edit="<input type='text' id='edit'  />";
-		$(this).parent().siblings().eq(1).replaceWith(edit);
-		//$(this).parent().prev().val(oldvalue);
-		$(this).replaceWith(okbtn+canbtn);
-		//$(this).parent().siblings().eq(2).replaceWith(okbtn);
-		//$(this).parent().siblings().eq(2).append(canbtn);
-	});
-	$("#okbtn").live("click",function(){
-		
-		var newvalue=$("#edit").val();
-		
-		$(this).parent().siblings().eq(1).replaceWith("<td>"+newvalue+"</td>");;
-var param={"name":$(this).parent().siblings().eq(1).html(),
-		"id":$(this).parent().siblings().eq(0).html()}
-		
-		$(this).parent().replaceWith("<td><input  type='button' value='修改' id='update' /></td>");
+	$("#edit").live("click",function(){
+		var param={"userName":$("#userName"),
+				"password":$("#password"),
+				"userRealName":$("#userRealName"),
+				"phone":$("#phone"),
+				"email":$("#email")
+		}
 		
 		
 		$.ajax({
 			timeout:20000,
 			type:"post",
 			dataType:"JSON",
-			url:"user/update.do",
+			url:"../../user/edit.do",
 			data:param,
 			success:function(data){
 				
@@ -59,33 +42,30 @@ var param={"name":$(this).parent().siblings().eq(1).html(),
 		});
 		
 		
-	});
-	$("#canbtn").live("click",function(){
-		$(this).parent().siblings().eq(1).replaceWith("<td>"+oldvalue+"</td>");
-		$(this).parent().replaceWith("<td><input  type='button' value='修改' id='update' /></td>");
-		
-		
-	});
+	})
 	
-		
-
-	$("#login").click(function(){
-		location.href="../front/user/login.jsp";
-		
-		
-		
-		
-		
-		
-	})
-	$("#reg").click(function(){
-		location.href="../front/user/register.jsp";
-		
-		
-		
-		
-		
-		
-	})
+	
 
 })
+
+	function disp_prompt(){ var  name=prompt("请输入您对本平台不满意的地方",""); 
+	
+	var param={"feedbackContent":name}
+	
+	
+	$.ajax({
+		timeout:20000,
+		type:"post",
+		dataType:"JSON",
+		url:"../user/feedback.do",
+		data:param,
+		success:function(data){
+			
+			alert("反馈成功");
+			
+		}
+	});
+	
+	}
+
+

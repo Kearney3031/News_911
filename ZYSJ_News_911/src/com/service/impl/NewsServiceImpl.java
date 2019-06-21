@@ -61,11 +61,7 @@ public class NewsServiceImpl  implements NewsService{
 		
 	}
 
-	@Override
-	public void publish(int id) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void addLike(int id) {
@@ -77,6 +73,18 @@ public class NewsServiceImpl  implements NewsService{
 	public News findNewsByNewsId(int id) {
 		News news = newsmapper.findNewsByNewsId(id);
 		return news;
+	}
+
+	@Override
+	public List<News> findHotNews() {
+		
+		return newsmapper.findHotNews();
+	}
+
+	@Override
+	public List<News> findPointNews() {
+		
+		return newsmapper.findPointNews();
 	}
 
 	

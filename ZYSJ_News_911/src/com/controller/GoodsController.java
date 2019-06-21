@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Goods;
 import com.model.Message;
@@ -19,11 +20,12 @@ public class GoodsController {
 	private GoodsService goodsService;
 	
 	@RequestMapping(value = "/findAll")
-	//@ResponseBody
-	public List<Goods> findAllGoods() {
-		List <Goods> goodsList = goodsService.findAllGoods();
-		System.out.println(goodsList);
-		return goodsList;
+	public ModelAndView findAllGoods() {
+		List<Goods> goodsList = goodsService.findAllGoods();
+		ModelAndView mo=new ModelAndView("/front/goods/list");
+		mo.addObject("goods", goodsList);
+		return mo;
+		
 	}
 	@RequestMapping(value = "/addGoods")
 	@ResponseBody

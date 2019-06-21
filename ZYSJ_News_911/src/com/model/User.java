@@ -11,7 +11,8 @@ public class User {
 	private int userType;
 	private int userId;
 	private int score;
-
+	
+	public User() {}
 	// 用于存放用户所订阅的type(与User多对多）
 	private List<Type> types;
 	
