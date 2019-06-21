@@ -92,5 +92,22 @@ public class MessageController {
 		//Integer q = Integer.valueOf("f");
 		return message;
 	}
+	@RequestMapping(value = "/findMessageByTopicId")
+	@ResponseBody
+	public List<Message> findMessageByTopicId(String id){
+		System.out.println(id);
+		List<Message> message = messageService.findMessageByTopicId(Integer.valueOf(id));
+		System.out.println(message);
+		return message;
+	}
+	
+	@RequestMapping(value = "/findMessageByTopicId")
+	@ResponseBody
+	public List<Message> findMessageByVideoId(String id){
+		System.out.println(id);
+		List<Message> message = messageService.findMessageByVideoId(Integer.valueOf(id));
+		System.out.println(message);
+		return message;
+	}
 	
 }

@@ -14,10 +14,18 @@
 <script type="text/javascript" src="../../js/jsMessage.js" ></script>
 <script type="text/javascript" src="../../js/jqShare.js"></script>
 <div align="center">
+<script type="text/javascript">  
+	var newsId = ${news.newsId};
+	var topicId = ${topic.topicId};
+</script>  
 <h1>${topic.topicName}</h1><br><br>
 
 ${topic.topicContent}<br>
 by:${user1.userName} 
+</div>
+
+       
+
 
 
 <div class="commentAll">
@@ -52,7 +60,7 @@ by:${user1.userName}
     <!--回复区域 end-->
 </div>
 
-</div>
+
 
 <script type="text/javascript" src="../../js/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.flexText.js"></script>
@@ -89,7 +97,7 @@ by:${user1.userName}
 $(document).ready(function() {
 	//alert("aaaaa");
 	var now= "ddd";
-	$.getJSON("../../message/findMessageByNewsId.do", {id:$("#newsId").val()},function(data) {
+	$.getJSON("../../message/findMessageByTopicId.do", {id:${topic.topicId}},function(data) {
 		//alert("ddddd");
 		//var str = JSON.stringify(data)  
 		//alert(str); 
@@ -159,7 +167,8 @@ $(document).ready(function() {
 			"megContent" : oSize,
 			"time" : now,
 			"userId":${user.userId},
-    		"newsId":$("#newsId").val()
+    		//"topicId":$("#topicId").val()
+			"topicId":${topic.topicId}
 		}, function(data) {
 			alert("评论成功"); 
 		});

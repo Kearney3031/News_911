@@ -65,9 +65,24 @@ public class MessageServiceImpl implements MessageService {
 		return messages;
 	}
 	
+	@Override
+	public List<Message> findMessageByTopicId(int id) {
+		List<Message> messages = messageMapper.findMessageByTopicId(id);
+		return messages;
+	}
+
+
+	@Override
+	public List<Message> findMessageByVideoId(int id) {
+		List<Message> messages = messageMapper.findMessageByVideoId(id);
+		return messages;
+	}
+
 	@Autowired
 	public MessageMapper messageMapper;
 
+
+	
 	
 
 }

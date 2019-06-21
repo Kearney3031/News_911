@@ -15,5 +15,7 @@ public interface MessageService {
 	 void addLike(int id);
 	 void subLike(int id);
 	List<Message> findMessageByNewsId(int id);
+	List<Message> findMessageByTopicId(int id);
+	List<Message> findMessageByVideoId(int id);
 	 
 }
