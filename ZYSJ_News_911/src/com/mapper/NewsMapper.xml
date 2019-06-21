@@ -9,10 +9,10 @@
 
 	
 	 <select id="findByPage" resultType="News" parameterType="map">
-		select * from news  limit #{page},#{pageSize}
+		select * from news  where newsStatus=1 limit #{page},#{pageSize}
 </select> 
 <select id="getCount" resultType="int">
-select count(*) from news
+select count(*) from news where newsStatus=1
 </select>
 
 
@@ -27,7 +27,13 @@ select * from news where newsStatus=0
 <update id="passNews" parameterType="int">
 	update news set newsStatus=1 where newsId=#{id}
 </update>
+ <select id="findHotNews" resultType="News" >
+		select * from news where newsStatus=1  order by newsLike limit 10
+</select>
+<select id="findPointNews" resultType="News">
+select * from news where newsStatus=1 order by publishTime limit 10
 
+</select>
 
 
 

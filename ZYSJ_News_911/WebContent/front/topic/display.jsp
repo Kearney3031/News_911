@@ -17,7 +17,7 @@
 <h1>${topic.topicName}</h1><br><br>
 
 ${topic.topicContent}<br>
-by:${user.userName} 
+by:${user1.userName} 
 
 
 <div class="commentAll">

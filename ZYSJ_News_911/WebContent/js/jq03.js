@@ -61,6 +61,7 @@ $(document).ready(function(){
 						location.href="editor.jsp";
 					}
 					else{
+						
 						location.href="../zhuye.jsp";
 					}
 					
@@ -146,8 +147,8 @@ $(document).ready(function(){
 			$(".type").val(var7);
 		}
 		else{
-		var param={"username":var1,"password":var2,"realname":var3,"phone":var4,"email":var5,"userType":var7}
-		
+		var param={"userName":var1,"password":var2,"userRealName":var3,"phone":var4,"email":var5,"userType":var7}
+		alert(var1);
 		
 		$.ajax({
 			timeout:20000,
@@ -156,8 +157,8 @@ $(document).ready(function(){
 			url:"../../user/reg.do",
 			data:param,
 			success:function(data){
-				
-				location.href="../zhuye.jsp";
+				alert("注册完成");
+				location.href="login.jsp";
 				
 				
 			}

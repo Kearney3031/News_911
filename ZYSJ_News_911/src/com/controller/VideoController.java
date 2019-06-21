@@ -69,7 +69,16 @@ Video v=new Video();
 		File file11 = new File(path, uploadFileName1 + ".mp4");
 		v.setVideoPath( path +"/"+ uploadFileName1 + ".mp4");
 		v.setVideoLike(0);
-		v.setVideoRealName(file.getOriginalFilename());
+		byte[] b;
+		String realName="";
+		try {
+			b = file.getOriginalFilename().getBytes("ISO-8859-1");
+			 realName = new String(b, "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		v.setVideoRealName(realName);
 		v.setVideoName(uploadFileName1 + ".mp4");
 		videoService.addVideo(v);
 		try {

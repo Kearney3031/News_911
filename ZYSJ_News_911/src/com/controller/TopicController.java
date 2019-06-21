@@ -46,12 +46,13 @@ public class TopicController {
 		return mo;
 	}
 	@RequestMapping(value = "/display")
-	public ModelAndView display(int id) {
-		ModelAndView mo=new ModelAndView("/front/topic/display");
+	public ModelAndView display(int id,HttpServletRequest req) {
+		ModelAndView mo=new ModelAndView("redirect:/front/topic/display.jsp");
 		 Topic topic=topicService.findTopicById(id);
-		mo.addObject("user", userService.findUserById(topic.getUserId()));
 		
-		mo.addObject("topic", topic);
+		req.getSession().setAttribute("user1", userService.findUserById(topic.getUserId()));
+		req.getSession().setAttribute("topic", topic);
+		
 		return mo;
 	}
 	

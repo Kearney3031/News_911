@@ -77,13 +77,13 @@ public class NewsController {
 			e.printStackTrace();
 		}
 	User user= (User)request.getSession().getAttribute("user");
-	int newstype1=Integer.valueOf(newstype);
+	
 		News new1=new News();
 	new1.setNewsImg( "/images/" + uploadFileName1 + ".png");
 	new1.setNewsContent(newscontent1);
 	new1.setNewsLike(0);
 	new1.setNewsTitle(newstitle1);
-	
+	new1.setTypeId(Integer.valueOf(newstype));
 	new1.setNewStatus(0);
 	new1.setPublishTime(new Date(System.currentTimeMillis()));
 	new1.setUserId(user.getUserId());
@@ -126,7 +126,11 @@ public class NewsController {
 //	mo.addObject("totalPage", totalPage);
 	mo.getModel().put("page", page);
 	mo.getModel().put("totalPage", totalPage);
+	mo.addObject("hot", newsService.findHotNews());
+	mo.addObject("point", newsService.findPointNews());
+	
 		return mo;
+		
 	}
 	@RequestMapping(value = "/display")
 	public ModelAndView display(int  id,HttpServletRequest req) {
@@ -137,6 +141,7 @@ public class NewsController {
 		req.getSession().setAttribute("name", userService.findUserById(news1.getUserId()).getUserRealName());
 //		mo.addObject("news", news1);
 //		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
+		
 		return mo;
 	}
 	//提交新闻的预操作，首先先得到所有的新闻类型。

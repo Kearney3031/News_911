@@ -20,11 +20,11 @@
 <div  class="newscon">
 <c:choose>
 <c:when test="${user==null}">
-<input type="button" id="login" value="登录"/>
-<input type="button" id="reg" value="注册"/>
+<a href="../front/user/login.jsp"><input type="button" id="login" value="登录"/></a>
+<a href="../front/user/register.jsp"><input type="button" id="reg" value="注册"/></a>
 </c:when>
 <c:otherwise>
-欢迎您,${user.userName} 
+欢迎您,<a href="../front/user/myInformation.jsp">${user.userName}</a><input type='button' value='退出' id='quit' />
 </c:otherwise>
 </c:choose>
 <h1>指尖资讯平台</h1>
@@ -109,6 +109,32 @@
 				<form action="../type/find.do" method="post">
 				<input type="submit" value="类别订阅"/>
 				</form>
+				热点新闻
+				<div class="hot">
+				<c:forEach items="${hot}" var="news">
+                     <a href="../news/display.do?id=${news.newsId}"> ${news.newsTitle}</a><br>
+                  
+                       
+                    
+                             
+                </c:forEach>
+				
+				
+				
+				</div>
+				要闻推送
+				<div class="point">
+				<c:forEach items="${point}" var="news">
+                      <a href="../news/display.do?id=${news.newsId}"> ${news.newsTitle}</a>
+                  <br>
+                       
+                    
+                              
+                </c:forEach>
+				
+				
+				</div>
+				<input type="button" value="用户反馈" id="feedback" onclick="disp_prompt()" />
 				<div  class="footer">
 				关于我们<br>
 				我们是911不服来干

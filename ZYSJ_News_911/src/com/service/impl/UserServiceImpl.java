@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.UserMapper;
 import com.model.Collect;
+import com.model.Feedback;
 import com.model.News;
 import com.model.Subscribe;
 import com.model.User;
@@ -90,6 +91,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUserScore(int id) {
 		userMapper.addUserScore(id);
+		
+	}
+
+	@Override
+	public void addFeedback(Feedback fb) {
+		userMapper.addFeedback(fb);
 		
 	}
 }

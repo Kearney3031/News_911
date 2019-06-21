@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>新闻上传</h1>
+<h1>添加商品</h1>
 <form action="../news/NewsUpload.do" method="post" enctype="multipart/form-data">
             <table  border="0" id="table">
                 <tr>
@@ -19,7 +18,7 @@
                                 <td >新闻题目</td> <td><input type="text" name="newstitle"></td>
                                 <td>新闻类别</td> <td>
                                 <c:forEach items="${list}" var="type">
-    <label>${type.typeId}<input type="radio" name="newstype" value="${type.typeId}"  />
+    <label><input type="radio" name="newstype" value="${type.typeId}"  />
 ${type.typeName} 
   </label>
   </c:forEach>
@@ -54,6 +53,5 @@ ${type.typeName}
                 </tr>
             </table>   
         </form>
-
 </body>
 </html>

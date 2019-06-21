@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.model.Collect;
+import com.model.Feedback;
 import com.model.News;
 
 import com.util.getIPAddr;
@@ -65,25 +66,53 @@ public class UserController {
 		return list;
 
 	}
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@ResponseBody
+	public void edit(String email) {
+		
+		
+
+	}
+	@RequestMapping(value = "/feedback", method = RequestMethod.POST)
+	@ResponseBody
+	public void send(Feedback fb,HttpServletRequest req) {
+		try {
+			fb.setFeedbackContent(new String(fb.getFeedbackContent().getBytes("ISO-8859-1"), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		fb.setFeedbackName(fb.getFeedbackContent().substring(0,fb.getFeedbackContent().length()>4?3:fb.getFeedbackContent().length())+"...");
+		User user=(User) req.getSession().getAttribute("user");
+		
+		fb.setUserId(user.getUserId());
+		fb.setFbTime(new Date(System.currentTimeMillis()));
+		userService.addFeedback(fb);
+		
+
+	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public String addUser(String username, String password, String realname, String phone, String email,
-			String userType, HttpServletRequest request) throws UnsupportedEncodingException {
-
-		User user = new User();
-		user.setUserName(username);
-		user.setPassword(password);
-		realname = new String(realname.getBytes("ISO-8859-1"), "utf-8");
-		user.setUserRealName(realname);
-
-		user.setPhone(phone);
-		user.setUserType(Integer.parseInt(userType));
-		user.setEmail(email);
+	@ResponseBody
+	public void addUser(User user, HttpServletRequest request) throws UnsupportedEncodingException {
+		System.out.println(user.getUserName());
+		user.setUserRealName(new String(user.getUserRealName().getBytes("ISO-8859-1"), "utf-8"));
 		userService.addUser(user);
-		request.getSession().setAttribute("user", user);
+		
 		
 	
-		return "redirect:/front/index.jsp";
+		
+
+	}
+	@RequestMapping(value = "/quit", method = RequestMethod.GET)
+	public String quit(HttpServletRequest request) throws UnsupportedEncodingException {
+		request.getSession().removeAttribute("user");
+		
+		
+		return "redirect:/front/zhuye.jsp";
+		
+	
+		
 
 	}
 
@@ -166,7 +195,8 @@ public class UserController {
 			u.setUserName(username);
 			u.setPassword(psw);
 			User u1 = userService.testLogin(u);
-			if (u1 == null||u.getUserType()!=3) {
+			
+			if (u1 == null||u1.getUserType()!=3) {
 				status.add("error");
 				return status;
 

@@ -7,7 +7,7 @@ import com.model.News;
 
 public interface NewsMapper {
 	 void addNews(News news);//新闻提交
-	 void publish(int id);//审核通过
+	
 	 void addLike(int id);//点赞
 	 List<News> findByPage(Map<String, Integer> map);//返回一页新闻
 
@@ -18,7 +18,8 @@ public interface NewsMapper {
 	void passNews(int id);
 
 	 
-	 
+	List<News> findHotNews();
+	List<News> findPointNews();
 	 News findNewsByNewsId(int id);
 
 }
