@@ -1,7 +1,9 @@
 $(document).ready(function(){ 
 	
+	
 	 $("#quit").live("click",function(){
 			location.href="../user/quit.do";
+			
 			
 			
 		})

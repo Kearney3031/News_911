@@ -80,6 +80,7 @@ Video v=new Video();
 		
 		v.setVideoRealName(realName);
 		v.setVideoName(uploadFileName1 + ".mp4");
+		v.setdTimes(0);
 		videoService.addVideo(v);
 		try {
 			file.transferTo(file11);
@@ -107,13 +108,16 @@ Video v=new Video();
 		 Video v=videoService.findVideoById(id);
 		 req.getSession().setAttribute("video", v);
 		String path= "/ZYSJ_News_911/video/"+v.getVideoName();
-		return "redirect:/front/video/show.html?fname=" +path;
+		req.getSession().setAttribute("path", path);
+		return "redirect:/front/video/display.jsp";
+		
 	} 
 	@RequestMapping(value="/download",method=RequestMethod.POST)
 	
     public void download(HttpServletRequest request,HttpServletResponse response) throws IOException {
         String path1=request.getServletContext().getRealPath("/video");
        Video v=(Video) request.getSession().getAttribute("video");
+       videoService.addDTimes(v.getVideoId());
        String filename=v.getVideoName();
         System.out.println(filename);
         String path = v.getVideoPath();  

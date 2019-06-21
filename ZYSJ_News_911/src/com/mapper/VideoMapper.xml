@@ -4,8 +4,8 @@
 <mapper namespace="com.mapper.VideoMapper">
 	<insert id="addVideo" parameterType="Video">
 	insert into
-		video(videoId,videoName,videoPath,videoLike,videoRealName)
-		values(null,#{videoName},#{videoPath},#{videoLike},#{videoRealName})
+		video(videoId,videoName,videoPath,videoLike,videoRealName,dTimes)
+		values(null,#{videoName},#{videoPath},#{videoLike},#{videoRealName},#{dTimes})
 	</insert>
 	<select id="findAllVideo" resultType="Video">
 	select * from video
@@ -13,4 +13,10 @@
 	<select id="findVideoById" resultType="Video" parameterType="int">
 	select * from video where videoId=#{id}
 	</select>
+	<update id="addLike" parameterType="int">
+	 update video set videoLike=videoLike+1 where videoId=#{id}
+	</update>
+	<update id="addDTimes" parameterType="int">
+	 update video set dTimes=dTimes+1 where videoId=#{id}
+	</update>
 </mapper>
