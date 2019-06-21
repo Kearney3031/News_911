@@ -40,6 +40,18 @@ public class VideoServiceImpl implements VideoService {
 		return videoMapper.findVideoById(id);
 	}
 
+	@Override
+	public void addLike(int id) {
+		// TODO Auto-generated method stub
+		videoMapper.addLike(id);
+	}
+
+	@Override
+	public void addDTimes(int id) {
+		// TODO Auto-generated method stub
+		videoMapper.addDTimes(id);
+	}
+
 	
 	
 	

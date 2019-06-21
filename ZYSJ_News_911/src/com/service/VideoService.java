@@ -10,6 +10,7 @@ public interface VideoService {
 	void addVideo(Video v);
 	List<Video> findAllVideo();
 	Video findVideoById(int id);
-	
+	void addLike(int id);//点赞数
+	void addDTimes(int id);//下载次数
 	
 }

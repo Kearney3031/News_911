@@ -1,6 +1,12 @@
 package com.model;
 
 public class Video {
+public int getdTimes() {
+		return dTimes;
+	}
+	public void setdTimes(int dTimes) {
+		this.dTimes = dTimes;
+	}
 public int getVideoId() {
 		return videoId;
 	}
@@ -31,7 +37,9 @@ public int getVideoId() {
 	public void setVideoRealName(String videoRealName) {
 		this.videoRealName = videoRealName;
 	}
+	
 private int videoId;
+private int dTimes;
 private String videoName;
 private String videoPath;
 private int videoLike;
