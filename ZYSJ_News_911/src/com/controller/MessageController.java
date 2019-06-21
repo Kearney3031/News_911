@@ -101,7 +101,7 @@ public class MessageController {
 		return message;
 	}
 	
-	@RequestMapping(value = "/findMessageByTopicId")
+	@RequestMapping(value = "/findMessageByVideoId")
 	@ResponseBody
 	public List<Message> findMessageByVideoId(String id){
 		System.out.println(id);
