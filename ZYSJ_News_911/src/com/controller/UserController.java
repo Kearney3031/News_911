@@ -286,13 +286,16 @@ public class UserController {
 
 	@RequestMapping(value = "/findUserNewsByUserId")
 	@ResponseBody
-	public List<User> findUserNewsByUserId(String userId) {
+	public ModelAndView findUserNewsByUserId(String userId) {
 
 		List<User> users = userService.findUserNewsByUserId(3);
+		System.out.println(users);
 		for (User u : users) {
 			System.out.println(u.getNewsList());
 		}
-		return users;
+		ModelAndView mo = new ModelAndView("/front/news/collect");
+		mo.addObject("user", users.get(0));
+		return mo;
 	}
 
 //	//@Transactional
