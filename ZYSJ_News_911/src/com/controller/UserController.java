@@ -253,9 +253,9 @@ public class UserController {
 
 	// @Transactional
 	@RequestMapping(value = "/addUserType")
-	@ResponseBody
+	//@ResponseBody
 	// @RequestParam(value = "Integer") List<Integer> typeIds
-	public void addUserType(HttpServletRequest request) {
+	public String addUserType(HttpServletRequest request) {
 //		userId = 3;
 //		List<Integer> typeIds = new ArrayList<>();
 //		typeIds.add(6);
@@ -271,6 +271,7 @@ public class UserController {
 		}
 		User u1 = new User();
 		u1.setUserId(Integer.valueOf(request.getParameter("userId")));
+		userService.deleteUserType(u1.getUserId());//Integer.valueOf(userId)
 		Type t1 = new Type();
 		for (Integer typeId : newTypeIds) {
 			Subscribe subscribe = new Subscribe();
@@ -280,6 +281,7 @@ public class UserController {
 			userService.addUserType(subscribe);
 		}
 		System.out.println("订阅成功");
+		return "redirect:/front/zhuye.jsp";
 	}
 
 	@RequestMapping(value = "/findUserNewsByUserId")

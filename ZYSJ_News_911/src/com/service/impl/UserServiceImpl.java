@@ -70,6 +70,12 @@ public class UserServiceImpl implements UserService {
 	public void addUserType(Subscribe subscribe) {
 		userMapper.addUserType(subscribe);
 	}
+	
+	@Transactional
+	@Override
+	public void deleteUserType(int userId) {
+		userMapper.deleteUserType(userId);
+	}
 
 	@Override
 	public List<User> findUserNewsByUserId(int userId){
@@ -99,4 +105,6 @@ public class UserServiceImpl implements UserService {
 		userMapper.addFeedback(fb);
 		
 	}
+
+
 }

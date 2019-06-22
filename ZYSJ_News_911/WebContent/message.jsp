@@ -15,7 +15,7 @@
 <script type="text/javascript" src="js/jsMessage.js" ></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<form action="type/find.do">
+<form action="user/findUserTypeByUserId.do">
 <input type="submit"/> 
 </form>
 

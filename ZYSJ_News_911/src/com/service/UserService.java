@@ -25,6 +25,8 @@ public interface UserService {
 
 	void addUserType(Subscribe subscribe);
 	
+	void deleteUserType(int userId);
+	
 	List<User> findUserNewsByUserId(int userId);
 	
 	void addUserCollectNews(Collect collect);
