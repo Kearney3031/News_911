@@ -1,48 +1,33 @@
 package com.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.apache.commons.io.FileUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.transaction.Transaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.model.Collect;
 import com.model.Feedback;
 import com.model.News;
-
-import com.util.getIPAddr;
-import com.util.webMes;
-
 import com.model.Subscribe;
 import com.model.Type;
 import com.model.User;
-
 import com.service.UserService;
-import com.util.CustomSystemUtil;
 import com.util.RandomNum;
 import com.util.sendemail;
+import com.util.webMes;
 
 @Controller
 @RequestMapping("/user")
@@ -326,6 +311,40 @@ public class UserController {
 		collect.setUser(user);
 		userService.deleteUserCollectNews(collect);
 		System.out.println("取消收藏成功");
+	}
+	
+
+	//分页展示所有user
+    @RequestMapping("/showAllUser")
+	public ModelAndView showAllUser(@RequestParam(value="pageNumber",required=false)Integer pageNumber) {
+		int pageNumberTemp=1;//第一次访问页面没有传递参数，默认为1，且pageNumber默认为0
+		int pageSize=4;
+		if(pageNumber!=null) {
+			pageNumberTemp=pageNumber;
+		}
+		ModelAndView mv=new ModelAndView("/manage/showUser");
+		mv.addObject("pageBean", userService.selUserByPage(pageNumberTemp, pageSize));
+		return mv;
+	}
+		
+	//删除user
+	@RequestMapping("/deleteUser")
+	@ResponseBody
+	public String deleteUser(@RequestParam("userId")Integer userId,OutputStream os) {
+		try {
+			userService.delUser(userId);
+			os.write("1".getBytes("UTF-8"));//返回1代表删除成功
+		} catch (Exception e) {
+				  e.printStackTrace();
+			try {
+				os.write("0".getBytes("UTF-8"));//返回0代表删除失败
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+	    }
+		return null;
 	}
 	
 }

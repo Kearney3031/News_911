@@ -1,18 +1,19 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.model.Type;
@@ -106,5 +107,80 @@ public class TypeController {
 //	        }
 //	        return sb.deleteCharAt(sb.length()-1).toString();//删除最后多余 的一个逗号
 //	    }
+	
+	//把types集合转换成成json字符串，便于前台显示
+		@RequestMapping("/showAllTypeToFront")
+		@ResponseBody
+		public List<Type> showAllTypeToFront(){
+			List<Type> types=typeService.findAllTypeToFront();
+			return types;
+		}
+		
+		//查询出所有type
+		@RequestMapping("/showAllType")
+		public String showAllType(@RequestParam(value="pageNumber",required=false)Integer pageNumber,Map<String, Object> map) {
+			int pageNumberTemp=1;//第一次访问页面没有传递参数，默认为1，且pageNumber默认为0
+			int pageSize=4;
+			if(pageNumber!=null) {
+				pageNumberTemp=pageNumber;
+			}
+			map.put("pageBean", typeService.selTypeByPage(pageNumberTemp, pageSize));
+			return "manage/showType";
+		}
+		
+		//新增时，页面使用了springMVC标签，必须在请求域中放入一个modelAttribute对象，不然页面报错
+		@RequestMapping(value = "/inputInsert",method = RequestMethod.GET)
+		public String inputInsert(Map<String, Object> map) {
+			System.out.println("请求域中必须要有一个modelAttribute，即使是空的");
+			map.put("type", new Type());
+			return "manage/inputType";
+		}
+		
+		//修改时，用于表单信息回显
+		@RequestMapping(value = "/inputUpdate",method = RequestMethod.GET)
+		public String inputUpdate(@RequestParam("typeId")Integer typeId,Map<String, Object> map) {
+			System.out.println("表单回显");
+			map.put("type",typeService.findByTypeId2(typeId));
+			return "manage/inputType";
+		}
+		
+		//增加类型
+		@RequestMapping(value ="/saveType",method = RequestMethod.POST)
+		public String save(Type type){
+			int flag=typeService.addType(type);
+			if(flag>0) {
+				return "redirect:/type/showAllType.do";
+			}else {
+				return "redirect:/manage/inputType.jsp";
+			}
+		}
+		
+		//修改类型
+		@RequestMapping(value = "/updateType",method = RequestMethod.POST)
+		public String update(Type type){
+			typeService.updType(type);
+			return "redirect:/type/showAllType.do";
+		}
+
+		
+		//删除类型
+		@RequestMapping("/deleteType")
+		@ResponseBody
+		public String deleteType(@RequestParam("typeId") int typeId,OutputStream os) {
+			try {
+				typeService.delType(typeId);
+				os.write("1".getBytes("UTF-8"));//返回1代表删除成功
+			} catch (Exception e) {
+				   e.printStackTrace();
+				try {
+					os.write("0".getBytes("UTF-8"));//返回0代表删除失败
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return null;
+		}
 	
 }
