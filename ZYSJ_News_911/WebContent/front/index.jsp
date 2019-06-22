@@ -84,6 +84,9 @@
                 <form action="findNewsByCookies.do" method="post">
 				<input type="submit" value="查看浏览历史"/>
 				</form>
+                <form action="../user/findUserNewsByUserId.do" method="post">
+				<input type="submit" value="查看收藏文章"/>
+				</form>
 
 				<div class="topic" >
 				<c:forEach items="${list1}" var="topic">
