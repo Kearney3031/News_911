@@ -15,7 +15,6 @@
 <%-- <table id="message" border="1">
         <tbody>
             <tr>
-            
                 <th>ID</th>
                 <th>内容</th>
                 <th>点赞数</th>
