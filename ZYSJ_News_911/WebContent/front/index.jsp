@@ -36,7 +36,7 @@
                    <c:forEach items="${requestScope.types}" var="type">
                         <th><a href="${pageContext.request.contextPath}/news/showNewsByType.do?typeId=${type.typeId}" 
                                style="text-decoration: none;" class="typeBrowse">${type.typeName }
-                            </a>
+                                </a>  
                         </th>                   
                    </c:forEach>
             </tr>
