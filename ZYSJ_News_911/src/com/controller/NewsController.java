@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,7 +97,7 @@ public class NewsController {
 	
 	 
 	@RequestMapping(value = "/findByPage")
-	public ModelAndView findByPage(int  page,HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView findByPage(int page,HttpServletRequest request,HttpServletResponse response) {
 		webMes webmes=new webMes();
 		List list=null;
 		try {
@@ -128,8 +128,14 @@ public class NewsController {
 	mo.getModel().put("totalPage", totalPage);
 	mo.addObject("hot", newsService.findHotNews());
 	mo.addObject("point", newsService.findPointNews());
-	
-		return mo;
+	mo.getModel().put("types",typeService.findAllTypeToFront());
+	if (request.getSession().getAttribute("mynews")==null) { 
+		System.out.println("什么也不做---");
+	} else {
+	    mo.getModel().put("typeNews",request.getSession().getAttribute("mynews")); 
+	}
+		 
+	return mo;
 		
 	}
 	@RequestMapping(value = "/display")
@@ -241,5 +247,23 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 	        }
 	        return sb.deleteCharAt(sb.length()-1).toString();//删除最后多余 的一个逗号
 	    }
+	
+	
+	  //分类浏览
+	  @RequestMapping("/showNewsByType") 
+	  public String showNewsByType(int typeId,HttpSession session) {
+	       session.setAttribute("mynews",newsService.showNewsByTypeId(typeId)); 
+	       return "redirect:/news/findByPage"; 
+	 }
+	 
+	 
+		
+		//关键字查询
+		@RequestMapping("/showNewsByKey")
+		public ModelAndView showNewsByKey(@RequestParam("keyValue")String keyValue) {
+			ModelAndView mv=new ModelAndView("");//跳转到一个页面显示
+			mv.addObject("OneNews", newsService.showNewsByKeyValue(keyValue));
+			return mv;
+		}
 	
 }

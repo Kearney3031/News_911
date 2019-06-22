@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="../js/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="../js/jq02.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/typeBrowse.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/typeBrowse.js"></script> --%>
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
@@ -35,7 +35,7 @@
             <tr align="center">
                    <c:forEach items="${requestScope.types}" var="type">
                         <th><a href="${pageContext.request.contextPath}/news/showNewsByType.do?typeId=${type.typeId}" 
-                               style="text-decoration: none;" class="typeBrowse">${type.typeName }
+                               style="text-decoration: none;">${type.typeName }
                             </a>
                         </th>                   
                    </c:forEach>
@@ -53,23 +53,17 @@
 
 
 <table border="0" width="100px">
-        <thead id="pfjthead"></thead>
         <tbody>
-        
-            <%-- <c:forEach items="${requestScope.typeNews }" var="mynews">
+            <!-- 分类浏览 -->
+            <c:forEach items="${requestScope.typeNews }" var="mynews">
                     <tr>
                         <td><a href="../news/display.do?id=${mynews.newsId}" style="text-decoration: none;"> ${mynews.newsTitle}</a></td>
                     </tr>  
             
-            </c:forEach> --%>
+            </c:forEach>
           
             
-                <c:forEach items="${list}" var="news">
-                    <tr>
-                     <td>  <a href="../news/display.do?id=${news.newsId}"> ${news.newsTitle}</a></td>
-                    </tr>   
-                    <tr><td><hr/></td></tr>             
-                </c:forEach>
+         
            
         </tbody>
     </table>

@@ -6,7 +6,7 @@ $(document).ready(function(){
 		if(flag){
 			$tr=$(this).parent().parent();
 			var url=this.href;//参数id就传递当前链接中携带的id
-		    var args={"time":new Date()};//加入时间戳
+		    var args={"time":new Date()};
 			$.post(url,args,function(data){//data为执行控制器中的deleteType方法后的结果
 				if(data==1){
 					alert("删除成功！");

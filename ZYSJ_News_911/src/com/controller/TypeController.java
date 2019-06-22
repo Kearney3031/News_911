@@ -108,13 +108,13 @@ public class TypeController {
 //	        return sb.deleteCharAt(sb.length()-1).toString();//删除最后多余 的一个逗号
 //	    }
 	
-	//把types集合转换成成json字符串，便于前台显示
-		@RequestMapping("/showAllTypeToFront")
-		@ResponseBody
-		public List<Type> showAllTypeToFront(){
-			List<Type> types=typeService.findAllTypeToFront();
-			return types;
-		}
+	/*
+	 * //分类浏览
+	 * 
+	 * @RequestMapping("/showAllTypeToFront") public List<Type>
+	 * showAllTypeToFront(){ List<Type> types=typeService.findAllTypeToFront();
+	 * System.out.println("分类浏览了----------"); return types; }
+	 */
 		
 		//查询出所有type
 		@RequestMapping("/showAllType")

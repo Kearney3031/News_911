@@ -86,6 +86,17 @@ public class NewsServiceImpl  implements NewsService{
 		
 		return newsmapper.findPointNews();
 	}
+	
+	@Override
+	public List<News> showNewsByTypeId(int typeId) {
+		return newsmapper.findNewsByTypeId(typeId);
+	}
+
+	@Override
+	public News showNewsByKeyValue(String keyValue) {
+		return newsmapper.findNewsByKeyValue(keyValue);
+	}
+
 
 	
 }
