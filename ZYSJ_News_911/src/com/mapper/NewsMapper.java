@@ -16,6 +16,7 @@ public interface NewsMapper {
 	 int getCount();//返回一共有多少个新闻
 	 //新闻审核通过
 	void passNews(int id);
+	void dispassNews(int id);
 
 	 
 	List<News> findHotNews();

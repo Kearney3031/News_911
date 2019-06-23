@@ -21,6 +21,16 @@
 	 update user set score=score+1 where userId=#{id}
 	</update>
 	
+	<update id="buy" parameterType="map">
+	 update user set score=score-#{price} where userId=#{id}
+	</update>
+	<update id="updateRealName" parameterType="map">
+	 update user set userRealName=#{userRealName} where userId=#{id}
+	</update>
+	<update id="updatePhone" parameterType="map">
+	 update user set phone=#{phone} where userId=#{id}
+	</update>
+	
 
 
 

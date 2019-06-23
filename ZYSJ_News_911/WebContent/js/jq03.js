@@ -216,10 +216,10 @@ $(document).ready(function(){
 		
 	})
 	$("#notice").bind("click",function(){
-		$(".content").css("visibility","visible");
+		$(".content1").css("visibility","visible");
 	})
 	$("#can").bind("click",function(){
-		$(".content").css("visibility","hidden");
+		$(".content1").css("visibility","hidden");
 	})
 	$("#ok").bind("click",function(){
 		
@@ -239,7 +239,7 @@ $(document).ready(function(){
 				url:"../notice/updateNotice.do",
 				data:param,
 				success:function(data){
-					$(".content").css("visibility","hidden");
+					$(".content1").css("visibility","hidden");
 					alert("修改成功");
 					
 				}

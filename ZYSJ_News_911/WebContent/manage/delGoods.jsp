@@ -6,28 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-window.onload = function(){
-var trObj = document.getElementById('buy');
-trObj.addEventListener('click',function(){
-    alert("兑换成功");
-},false);
-}
-</script>
 </head>
 <body>
+<a href="../manage/addGoods.jsp">添加商品</a>
 <table>
 <c:forEach items="${goods}" var="g">
+
 <tr>
 <td>名称${g.goodsName}</td>
 <td><img  src="${pageContext.request.contextPath.concat(g.goodsImg)}" width="10px" height="10px"/></td>
 <td>价格：${g.goodsPrice}</td>
 <td>介绍：${g.goodsInfo}</td>
-<td><a href="../user/buy.do?price=${g.goodsPrice}"><input type="button" value="兑换商品" id="buy"></a></td>
+<td><a href="../goods/delete.do?id=${g.goodsId}"><input type="button" value="删除商品"></a></td>
 </tr>
 
 </c:forEach>
 </table>
-
 </body>
 </html>

@@ -99,4 +99,32 @@ public class UserServiceImpl implements UserService {
 		userMapper.addFeedback(fb);
 		
 	}
+
+	@Override
+	public void updateRealName(int id, String userRealName) {
+		Map<String,Object> map=new HashMap();
+		map.put("id", id);
+		map.put("userRealName", userRealName);
+		userMapper.updateRealName(map);
+		
+	}
+
+	@Override
+	public void updatePhone(int id, String phone) {
+		Map<String,Object> map=new HashMap();
+		map.put("id", id);
+		map.put("phone", phone);
+		userMapper.updatePhone(map);
+	}
+
+	@Override
+	public void buy(int id, int price) {
+		Map<String,Integer> map=new HashMap();
+		map.put("id", id);
+		map.put("price", price);
+		userMapper.buy(map);
+		
+	}
+
+	
 }

@@ -4,14 +4,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>#form_top{display:block; bottom:3px; right:3px; position:fixed;font-size: 24px;}.top_img{ width: 40px; height:40px; cursor: pointer; } </style><a id="_top"></a>
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
  <script type="text/javascript" src="../js/jq02.js"></script>
+<script type="text/javascript" src="../js/test.js"></script>
+ 
 <link rel="stylesheet" href="../css/style.css" type="text/css">
+<script type="text/javascript">
+
+ $(function(){
+
+	 $(".coupletbox").clonefn({
+
+		    cloneto:true,//是否允许克隆
+
+			initial:"top",//初始位置top或down
+
+			closeBtn:".closeBtn",//关闭按钮
+
+			speed:2000,//动画速度
+
+			easing:"easeInOutBack",//扩展动画，是基于jQuery Easing v1.3官方下载地址http://gsgd.co.uk/sandbox/jquery/easing/
+
+			zIndex:10000000000000 //层
+
+		 });
+
+	 });
+
+</script>
 </head>
-<body>
-<div class="bdzx">
+<body >
+<div class="bdzx" >
 这里是<%=request.getSession().getAttribute("country") %><%=request.getSession().getAttribute("pro") %><%=request.getSession().getAttribute("city") %><br>
 <%=request.getSession().getAttribute("time") %><br>
 <%=request.getSession().getAttribute("today") %><br>
@@ -139,6 +166,23 @@
 				关于我们<br>
 				我们是911不服来干
 				</div>
+<div id="form_top"><a href="#_top" title="回到顶部">置顶<div class="top_img"></div></a></div>
+
+
+
+
+
+
+
+
+
+ <div class="coupletbox" style="width:150px; height:300px; background:#f00;">
+
+  <a href="#" class="closeBtn" title="关闭">&times;关闭</a>
+<img src="images/1.jpg">
+ </div>
+
+
 
 </body>
 </html>

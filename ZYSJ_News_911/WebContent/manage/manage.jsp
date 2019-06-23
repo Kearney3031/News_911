@@ -11,10 +11,12 @@
 </head>
 <body>
 <a href="../news/findAll.do">审查新闻</a>
+<a href="../goods/findAll1.do">商品管理</a>
+<a href="../advert/findAll.do">广告管理</a> 
 <input type="button" value="修改公告" id="notice" />
-<textarea id="content" class="content"></textarea>
-<input type="button" id="can" class="content" value="取消" />
-<input type="button" id="ok" class="content" value="确定" />
+<textarea id="content" class="content1"></textarea>
+<input type="button" id="can" class="content1" value="取消" />
+<input type="button" id="ok" class="content1" value="确定" />
 
 </body>
 </html>

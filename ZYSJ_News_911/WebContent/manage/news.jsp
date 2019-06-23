@@ -12,9 +12,7 @@
                    
                        <a href="../news/display.do?id=${news.newsId}"> ${news.newsTitle}</a>
                       <a href="../news/passNews.do?id=${news.newsId}"> <input  type="button" value="通过" ></a>
-                  
-                       
-                      
+                   <a href="../news/dispassNews.do?id=${news.newsId}"> <input  type="button" value="不通过" ></a>
                     <hr/>             
                 </c:forEach>
 </body>

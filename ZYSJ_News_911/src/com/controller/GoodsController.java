@@ -1,15 +1,25 @@
 package com.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Goods;
 import com.model.Message;
+import com.model.News;
+import com.model.User;
 import com.service.GoodsService;
 
 @Controller
@@ -27,24 +37,59 @@ public class GoodsController {
 		return mo;
 		
 	}
-	@RequestMapping(value = "/addGoods")
-	@ResponseBody
-	public String addGoods(Goods goods) {
-		System.out.println(goods.getGoodsId());
-		System.out.println(goods.getGoodsName());
-		System.out.println(goods.getGoodsPrice());
-		System.out.println(goods.getGoodsImg());
-		System.out.println(goods.getGoodsInfo());
-		goodsService.addGoods(goods);
-		System.out.println("添加成功！！");
-		return "redirect:/user/find.do";
+	@RequestMapping(value = "/findAll1")
+	public ModelAndView findAllGoods1() {
+		List<Goods> goodsList = goodsService.findAllGoods();
 
+		ModelAndView mo=new ModelAndView("/manage/delGoods");
+		mo.addObject("goods", goodsList);
+		return mo;
+	}
+	@RequestMapping(value = "/addGoods")
+	public String addGoods(@RequestParam(value = "goodsimg") MultipartFile file, String name, String price,
+			String goodinfo, HttpServletRequest request) {
+		byte[] b, c;
+		String name1 = "";
+		String goodinfo1 = "";
+		try {
+			b = name.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
+			name1 = new String(b, "utf-8");// 采用utf-8去接string
+			c = goodinfo.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
+			goodinfo1 = new String(c, "utf-8");// 采用utf-8去接string
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String path = request.getServletContext().getRealPath("/images");
+		String uploadFileName1 = System.currentTimeMillis() + file.getName();
+		File file11 = new File(path, uploadFileName1 + ".png");
+		try {
+			file.transferTo(file11);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	
+	
+		Goods g=new Goods();
+		g.setGoodsImg("/images/" + uploadFileName1 + ".png");
+		g.setGoodsInfo(goodinfo1);
+		g.setGoodsName(name1);
+		g.setGoodsPrice(Integer.parseInt(price));
+		goodsService.addGoods(g);
+
+		return "redirect:/manage/manage.jsp";
+
+	}
+	
 	@RequestMapping(value = "/delete") 
-	@ResponseBody
-	public void delGoods(String id) {
-		goodsService.delGoods(Integer.parseInt(id));
+	public String delGoods(int  id) {
+		goodsService.delGoods(id);
 		System.out.println(id + "号商品删除成功");
+		return "forward:findAll1.do";
 	}
 }

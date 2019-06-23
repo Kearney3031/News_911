@@ -66,9 +66,39 @@ public class UserController {
 		return list;
 
 	}
+	@RequestMapping(value = "/buy")
+	
+	public String buyGoods(int price,HttpServletRequest req) {
+		User u=(User) req.getSession().getAttribute("user");
+		userService.buy(u.getUserId(), price);
+		return "redirect:/goods/findAll.do";
+
+	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	@ResponseBody
-	public void edit(String email) {
+	public void edit(@RequestParam(value = "userRealName", required = false) String rname,
+			@RequestParam(value = "phone", required = false) String phone,String temp,HttpServletRequest req) {
+		System.out.println(temp);
+		System.out.println("223123123");
+		User user=(User) req.getSession().getAttribute("user");
+		if(temp.equals("0")) {
+			try {
+				rname=new String(rname.getBytes("ISO-8859-1"), "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			userService.updateRealName(user.getUserId(), rname);
+			user.setUserRealName(rname);
+			req.setAttribute("user", user);
+		}
+		else {
+			userService.updatePhone(user.getUserId(), phone);
+			user.setPhone(phone);
+			req.setAttribute("user", user);
+			
+		}
+		
 		
 		
 

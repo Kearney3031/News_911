@@ -8,7 +8,7 @@
 	</select>
 	
 	<insert id="addGoods" parameterType="com.model.Goods">
-		insert into goods value=(null,#{goodsName},#{goodsPrice},#{goodsImg},#{goodsInfo})
+		insert into goods(goodsId,goodsName,goodsPrice,goodsImg,goodsInfo) values(null,#{goodsName},#{goodsPrice},#{goodsImg},#{goodsInfo})
 	</insert>
 	
 	<delete id="delGoods" parameterType="int">

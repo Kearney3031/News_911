@@ -8,25 +8,22 @@
 </head>
 <body>
 <h1>添加商品</h1>
-<form action="../news/NewsUpload.do" method="post" enctype="multipart/form-data">
+<form action="../goods/addGoods.do" method="post" enctype="multipart/form-data">
             <table  border="0" id="table">
                 <tr>
                     <td width="5%"></td>
                     <td width="90%">    
                         <table  border="1" id="table">
-                            <tr >
-                                <td >新闻题目</td> <td><input type="text" name="newstitle"></td>
-                                <td>新闻类别</td> <td>
-                                <c:forEach items="${list}" var="type">
-    <label><input type="radio" name="newstype" value="${type.typeId}"  />
-${type.typeName} 
-  </label>
-  </c:forEach>
-  </td>
-                            </tr>
-                            
                             <tr>
-                                <td>新闻插图</td> <td><input type="file" name="newsimg" /></td>
+                                <td>商品名称</td> <td><input type="text" name="name"></td>
+                                
+                            </tr>
+                             <tr>
+                                <td>商品价格</td> <td><input type="text" name="price"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>商品图片</td> <td><input type="file" name="goodsimg" /></td>
                                 
                             </tr>
                            
@@ -42,9 +39,9 @@ ${type.typeName}
                     <td> </td>
                     <td>
                         <div align="center" style="width:80%">  
-                            新闻内容: <textarea id="newsEditor" name="newscontent" style=" height: 100px;width: 300px" ></textarea>  
+                            商品描述: <textarea id="goodinfo" name="goodinfo" style=" height: 100px;width: 300px" ></textarea>  
                             <br/>  
-                            <input type="submit" value="发 布">  
+                            <input type="submit" value="添加">  
                             
                         </div>
  

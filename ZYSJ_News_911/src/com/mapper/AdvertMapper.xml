@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="addAdvert" parameterType="com.model.Advert">
-		insert into advert 
-			value=(null,#{advertName},#{advertImg},#{advertLink})
+		insert into advert(advertId,advertName,advertImg,advertLink) 
+			values(null,#{advertName},#{advertImg},#{advertLink})
 	</insert>
 	
 	<delete id="delAdvert" parameterType="int">

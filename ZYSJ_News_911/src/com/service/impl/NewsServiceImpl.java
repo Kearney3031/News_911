@@ -24,6 +24,13 @@ public class NewsServiceImpl  implements NewsService{
 		newsmapper.passNews(id);
 		
 	}
+	
+	@Override
+	public void dispassNews(int id) {
+		newsmapper.dispassNews(id);
+		
+	}
+
 
 	@Override
 	public List<News> findAll() {

@@ -12,6 +12,7 @@ import com.model.User;
 public interface UserMapper {
 
 	void addUser(User user);
+	void buy(Map<String,Integer> map);
 
 	User testLogin(User user);// 用户名登录
 
@@ -33,4 +34,6 @@ public interface UserMapper {
 
 	void deleteUserCollectNews(Collect collect);
 	void addUserScore(int id);
+	void updateRealName(Map<String, Object> map);
+	void updatePhone(Map<String, Object> map);
 }

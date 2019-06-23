@@ -27,6 +27,9 @@ select * from news where newsStatus=0
 <update id="passNews" parameterType="int">
 	update news set newsStatus=1 where newsId=#{id}
 </update>
+<update id="dispassNews" parameterType="int">
+	update news set newsStatus=2 where newsId=#{id}
+</update>
  <select id="findHotNews" resultType="News" >
 		select * from news where newsStatus=1  order by newsLike limit 10
 </select>

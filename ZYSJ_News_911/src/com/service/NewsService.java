@@ -17,6 +17,8 @@ public interface NewsService {
 	 
 		//新闻审核通过
 			void passNews(int id);
+			//新闻审核不通过
+			void dispassNews(int id);
 	 News findNewsByNewsId(int id);
 
 }
