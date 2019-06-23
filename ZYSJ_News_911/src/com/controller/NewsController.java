@@ -135,6 +135,10 @@ public class NewsController {
             mo.addObject("mynews",mynews);
             mo.getModel().put("page", page);
             
+            
+            
+            
+            
            
            
 		}
