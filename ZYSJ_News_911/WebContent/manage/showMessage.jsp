@@ -1,34 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>评论</title>
+<title>Insert title here</title>
 </head>
 <body>
 
 
-
-<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
-<script type="text/javascript" src="js/jsMessage.js" ></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-<form action="user/findUserNewsByUserId.do">
-<input type="submit"/> 
-</form>
-
-<form action="message/find.do" method="post">
-<input type="textarea" name="megContent" id="Megcontent">
-<input type="submit" value="提交">
-<input type="button" id="addMeg" value="json提交"/>
-</form>
-
-
-
-
-<table border="1">
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jqMes.js" ></script>
+<%-- <table id="message" border="1">
         <tbody>
             <tr>
                 <th>ID</th>
@@ -41,10 +25,10 @@
                 <th>主题Id</th>
                 <th>操作</th>
             </tr>
-            <c:if test="${!empty messages }">
-                <c:forEach items="${messages}" var="list">
+            <c:if test="${!empty listMessage }">
+                <c:forEach items="${listMessage}" var="list">
                     <tr>
-                        <td>${list.id }</td>
+                        <td>${list.messageId }</td>
                         <td>${list.megContent }</td>
                         <td>${list.megLike }</td>
                         <td>${list.time }</td>
@@ -58,17 +42,35 @@
                 </c:forEach>
             </c:if>
         </tbody>
-    </table>
+    </table> --%>
 
 
-<form action="message/addLike.do?id=27">
-<input type="submit"/> 
- <input type="button" id="addLike" value="jsonLike"/>
-</form>
+
+
+<div align="center">
+
+<table id="order" border="1" cellspacing="0" cellpadding="0">
+	<tr class="title">
+	<td>id</td>
+		<td>内容</td>
+		<td>点赞数</td>
+		<td>时间</td>
+		<td>用户Id</td>
+		<td>新闻Id</td>
+		<td>视频Id</td>
+		<td>主题Id</td>
+		<td>操作</td>
+		<td>全选<input type="checkbox" id="checkAll"/></td>
+	</tr>
+</table>
+
+<input type="button" value="批量删除" id="deletebtn"/>
+
+</div>
+
+
+
 
 
 </body>
 </html>
-
-
-

@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="user/addUserType.do" method="post">
+<form action="../../user/addUserType.do" method="post">
 您喜欢的类别？<br /><br />
 <c:if test="${!empty listType }">
                 <c:forEach items="${listType}" var="list">    
-                <label><input name="Type" type="checkbox" value="${list.typeId}"/>${list.typeName}</label>
+                <label><input name="Type" type="checkbox" value="${list.typeId}"/>${list.typeName} : ${list.typeIntroduce}</label><br>
                 </c:forEach>
             </c:if>
 <input type="hidden" value="${user.userId}" name="userId" />
