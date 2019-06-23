@@ -134,7 +134,7 @@ public class NewsController {
             mo.addObject("KeyNews",KeyNews);
             mo.addObject("mynews",mynews);
             mo.getModel().put("page", page);
-            
+          
 		}
 		
 		mo.getModel().put("totalPage", totalPage);
