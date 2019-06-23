@@ -57,7 +57,7 @@ public class AdvertController {
 		a.setAdvertName(name);
 		advertService.addAdvert(a);
 		System.out.println("广告添加成功！！");
-		return "redirect:/user/find.do";
+		return "forward:findAll.do";
 
 		}
 	

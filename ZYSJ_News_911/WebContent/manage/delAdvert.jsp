@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<a href="../manage/addAdvert.jsp">添加广告</a>
+
 <table>
 <c:forEach items="${adverts}" var="a">
 

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mapper.TopicMapper;
 import com.mapper.TypeMapper;
+import com.model.PageBean;
 import com.model.Topic;
 import com.model.Type;
 import com.service.TopicService;
@@ -34,6 +35,25 @@ public class TopicServiceImpl implements TopicService {
 	@Override
 	public Topic findTopicById(int id) {
 		return  topicMapper.findTopicById(id);
+	}
+
+	@Override
+	public void deleteTop(int topicId) {
+		topicMapper.delTopic(topicId);
+	}
+
+	@Override
+	public PageBean selTopicByPage(int pageNumber, int pageSize) {
+		PageBean pb=new PageBean();
+		pb.setPageNumber(pageNumber);
+		pb.setPageSize(pageSize);
+		
+		long count=topicMapper.count();
+		pb.setTotalPage(count%pageSize==0? count/pageSize:(count/pageSize)+1);
+		
+		List<Topic> topiclist=topicMapper.findAllTopicByPage((pageNumber-1)*pageSize, pageSize);
+		pb.setList(topiclist);
+		return pb;
 	}
 	
 	

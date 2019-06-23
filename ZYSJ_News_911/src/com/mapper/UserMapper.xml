@@ -93,6 +93,10 @@ insert into feedback(feedbackId,feedbackName,feedbackContent,userId,fbTime) valu
 		insert into subscribe
 		values(#{type.typeId},#{user.userId})
 	</insert>
+	
+	<delete id="deleteUserType" parameterType="int">
+		delete from subscribe where userId=#{userId}
+	</delete>
 
 	<!-- <delete id="" parameterType="Subscribe"> delete from subscribe where 
 		userId=#{userId} and typeId=#{typeId} </delete> -->

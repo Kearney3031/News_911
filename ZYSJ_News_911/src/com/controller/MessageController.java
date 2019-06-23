@@ -39,7 +39,7 @@ public class MessageController {
 	@ResponseBody
 	public List<Message> findAllUser2() {
 		//List<Message> messages = messageService.findAllMessage();
-		List<Message> messages = messageService.findMessageByNewsId(2);
+		List<Message> messages = messageService.findAllMessage();
 		// System.out.println(messages);
 		System.out.println(messages);
 		return messages;

@@ -12,7 +12,7 @@
 您喜欢的类别？<br /><br />
 <c:if test="${!empty listType }">
                 <c:forEach items="${listType}" var="list">    
-                <label><input name="Type" type="checkbox" value="${list.typeId}" />${list.typeName}</label>
+                <label><input name="Type" type="checkbox" value="${list.typeId}"/>${list.typeName}</label>
                 </c:forEach>
             </c:if>
 <input type="hidden" value="${user.userId}" name="userId" />

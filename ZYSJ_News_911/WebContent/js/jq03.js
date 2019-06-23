@@ -1,5 +1,5 @@
 $(document).ready(function(){  
-	alert("1111111");
+	
 	var code="";
 	$("#login").bind("click",function(){
 		 
@@ -125,7 +125,7 @@ $(document).ready(function(){
 		
 		
 	})
-//	还要加一个判断是否为邮箱
+
 	$("#submit").bind("click",function(){
 		var var1=$("#username").val();
 		var var2=$("#pwd").val();
@@ -215,12 +215,8 @@ $(document).ready(function(){
 		
 		
 	})
-	$("#notice").bind("click",function(){
-		$(".content1").css("visibility","visible");
-	})
-	$("#can").bind("click",function(){
-		$(".content1").css("visibility","hidden");
-	})
+	
+	
 	$("#ok").bind("click",function(){
 		
 		 
@@ -239,7 +235,7 @@ $(document).ready(function(){
 				url:"../notice/updateNotice.do",
 				data:param,
 				success:function(data){
-					$(".content1").css("visibility","hidden");
+					$("#content").val("");
 					alert("修改成功");
 					
 				}

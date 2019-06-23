@@ -1,11 +1,8 @@
 package com.service.impl;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mapper.UserMapper;
 import com.model.Collect;
 import com.model.Feedback;
-import com.model.News;
+import com.model.PageBean;
 import com.model.Subscribe;
 import com.model.User;
-
 import com.service.UserService;
 
 @Service
@@ -70,6 +66,12 @@ public class UserServiceImpl implements UserService {
 	public void addUserType(Subscribe subscribe) {
 		userMapper.addUserType(subscribe);
 	}
+	
+	@Transactional
+	@Override
+	public void deleteUserType(int userId) {
+		userMapper.deleteUserType(userId);
+	}
 
 	@Override
 	public List<User> findUserNewsByUserId(int userId){
@@ -100,6 +102,7 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+
 	@Override
 	public void updateRealName(int id, String userRealName) {
 		Map<String,Object> map=new HashMap();
@@ -127,4 +130,28 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
+
+	
+	@Override
+	public void delUser(Integer userId) {
+		userMapper.deleteUser(userId);
+		
+	}
+
+	@Override
+	public PageBean selUserByPage(int pageNumber, int pageSize) {
+		PageBean pb=new PageBean();
+		pb.setPageNumber(pageNumber);
+		pb.setPageSize(pageSize);
+		
+		long count=userMapper.count();
+		pb.setTotalPage(count%pageSize==0? count/pageSize:(count/pageSize)+1);
+		
+		List<User> userlist=userMapper.findAllUserByPage((pageNumber-1)*pageSize, pageSize);
+		pb.setList(userlist);
+		return pb;
+	}
+
+
+
 }

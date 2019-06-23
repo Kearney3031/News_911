@@ -48,18 +48,8 @@ public class GoodsController {
 	@RequestMapping(value = "/addGoods")
 	public String addGoods(@RequestParam(value = "goodsimg") MultipartFile file, String name, String price,
 			String goodinfo, HttpServletRequest request) {
-		byte[] b, c;
-		String name1 = "";
-		String goodinfo1 = "";
-		try {
-			b = name.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			name1 = new String(b, "utf-8");// 采用utf-8去接string
-			c = goodinfo.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			goodinfo1 = new String(c, "utf-8");// 采用utf-8去接string
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		
 		
 		String path = request.getServletContext().getRealPath("/images");
 		String uploadFileName1 = System.currentTimeMillis() + file.getName();
@@ -77,12 +67,12 @@ public class GoodsController {
 	
 		Goods g=new Goods();
 		g.setGoodsImg("/images/" + uploadFileName1 + ".png");
-		g.setGoodsInfo(goodinfo1);
-		g.setGoodsName(name1);
+		g.setGoodsInfo(goodinfo);
+		g.setGoodsName(name);
 		g.setGoodsPrice(Integer.parseInt(price));
 		goodsService.addGoods(g);
 
-		return "redirect:/manage/manage.jsp";
+		return "forward:findAll1.do";
 
 	}
 	

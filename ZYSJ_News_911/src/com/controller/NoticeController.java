@@ -36,14 +36,6 @@ public class NoticeController {
 	@RequestMapping(value = "/updateNotice")
 	@ResponseBody
 	public void updateNotice(String content) {
-		byte[] temp;
-		try {
-			temp = content.getBytes("ISO-8859-1");
-			content=new String(temp,"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			
-			e.printStackTrace();
-		}
 		
 		noticeService.update(content);
 	}

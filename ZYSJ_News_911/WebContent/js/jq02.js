@@ -74,16 +74,17 @@ $(document).ready(function(){
 //		
 //		
 //	})
-	
-	
+	$("#advert1").click(function(){window.open('http://www.baidu.com');})
+	$("#advert2").click(function(){window.open('http://www.qq.com');})
+		
 
 })
 
-	function disp_prompt(){ var  name=prompt("请输入您对本平台不满意的地方",""); 
+	function disp_prompt(){ var  name=prompt("请输入您对本平台不满意的地方"); 
 	
 	var param={"feedbackContent":name}
 	
-	
+	if(name!=null){
 	$.ajax({
 		timeout:20000,
 		type:"post",
@@ -96,6 +97,7 @@ $(document).ready(function(){
 			
 		}
 	});
+	}
 	
 	}
 

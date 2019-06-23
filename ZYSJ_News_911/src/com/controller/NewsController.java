@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,18 +52,7 @@ public class NewsController {
 	public String addNews(@RequestParam(value = "newsimg") MultipartFile file, String newstitle, String newstype,
 			String newscontent, HttpServletRequest request) {
 
-		byte[] b, c;
-		String newstitle1 = "";
-		String newscontent1 = "";
-		try {
-			b = newstitle.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			newstitle1 = new String(b, "utf-8");// 采用utf-8去接string
-			c = newscontent.getBytes("ISO-8859-1");// 用tomcat的格式（iso-8859-1）方式去读。
-			newscontent1 = new String(b, "utf-8");// 采用utf-8去接string
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 
 		String path = request.getServletContext().getRealPath("/images");
 		String uploadFileName1 = System.currentTimeMillis() + file.getName();
@@ -80,9 +70,9 @@ public class NewsController {
 	
 		News new1=new News();
 	new1.setNewsImg( "/images/" + uploadFileName1 + ".png");
-	new1.setNewsContent(newscontent1);
+	new1.setNewsContent(newscontent);
 	new1.setNewsLike(0);
-	new1.setNewsTitle(newstitle1);
+	new1.setNewsTitle(newstitle);
 	new1.setTypeId(Integer.valueOf(newstype));
 	new1.setNewStatus(0);
 	new1.setPublishTime(new Date(System.currentTimeMillis()));
@@ -94,10 +84,8 @@ public class NewsController {
 
 	}
 	
-	
-	 
 	@RequestMapping(value = "/findByPage")
-	public ModelAndView findByPage(int  page,HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView findByPage(@RequestParam(value="page",required=false)Integer page,HttpServletRequest request,HttpServletResponse response) {
 		webMes webmes=new webMes();
 		List list=null;
 		try {
@@ -113,22 +101,37 @@ public class NewsController {
 		request.getSession().setAttribute("today", String.valueOf(list.get(4)));
 		request.getSession().setAttribute("now", String.valueOf(list.get(5)));
 		
-	
 		
-		List<News> news = newsService.findByPage(page, 2);
-		System.out.println(news.size());
+//		 List<News> news = newsService.findByPage(page, 2);
+//		System.out.println(news.size());
 		int totalPage=newsService.findTotalPage(2);
-	ModelAndView mo=new ModelAndView("/front/index");
-	mo.addObject("list1", topicService.findAllTopic());
-	mo.addObject("list2", videoService.findAllVideo());
-	mo.addObject("list", news);
-//	mo.addObject("page", page);
-//	mo.addObject("totalPage", totalPage);
-	mo.getModel().put("page", page);
-	mo.getModel().put("totalPage", totalPage);
-	mo.addObject("hot", newsService.findHotNews());
-	mo.addObject("point", newsService.findPointNews());
-	
+		ModelAndView mo=new ModelAndView("/front/index");
+		mo.addObject("list1", topicService.findAllTopic());
+		mo.addObject("list2", videoService.findAllVideo());
+		
+	//	mo.addObject("page", page);
+	//	mo.addObject("totalPage", totalPage);
+		
+		if (page!=null) {//说明是第一次展示,page是页面传来的
+		   List<News> news = newsService.findByPage(page, 2);
+		   mo.getModel().put("page", page);
+           mo.addObject("list", news);
+		} else {         //为空就说明已经是关键字查询或者分类浏览了，page从session中获取
+            page=(Integer) request.getSession().getAttribute("page");
+            List<News> KeyNews=(List<News>) request.getSession().getAttribute("KeyNews");
+            List<News> mynews=(List<News>) request.getSession().getAttribute("mynews");
+            mo.addObject("KeyNews",KeyNews);
+            mo.addObject("mynews",mynews);
+            mo.getModel().put("page", page);
+          
+		}
+		
+		mo.getModel().put("totalPage", totalPage);
+		mo.addObject("hot", newsService.findHotNews());
+		mo.addObject("point", newsService.findPointNews());
+		mo.getModel().put("types",typeService.findAllTypeToFront());
+		
+			 
 		return mo;
 		
 	}
@@ -249,5 +252,29 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 	        }
 	        return sb.deleteCharAt(sb.length()-1).toString();//删除最后多余 的一个逗号
 	    }
+	
+	
+	  //分类浏览
+	  @RequestMapping("/showNewsByType") 
+	  public String showNewsByType(@RequestParam("typeId")int typeId,
+			                       @RequestParam("page")int page,
+			                       HttpSession session) {
+	       session.setAttribute("mynews",newsService.showNewsByTypeId(typeId)); 
+	       session.setAttribute("page", page);
+	       return "redirect:/news/findByPage.do"; 
+	 }
+	 
+	 
+		
+	//关键字查询
+	@RequestMapping("/showNewsByKey")
+	public String showNewsByKey(@RequestParam("newsTitle")String newsTitle,
+			                    @RequestParam("page")int page,
+			                    HttpSession session) {
+		session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
+		session.setAttribute("page", page);
+		return "redirect:/news/findByPage.do";
+			
+	}
 	
 }

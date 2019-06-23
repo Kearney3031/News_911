@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="../manage/addGoods.jsp">添加商品</a>
+
 <table>
 <c:forEach items="${goods}" var="g">
 
