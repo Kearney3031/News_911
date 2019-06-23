@@ -23,6 +23,6 @@ public interface NewsService {
 	 List<News> showNewsByTypeId(int typeId);
 	 
 	 //关键字查询
-	 News showNewsByKeyValue(String keyValue);
+	 List<News> showNewsByKeyValue(String newsTitle);
 
 }

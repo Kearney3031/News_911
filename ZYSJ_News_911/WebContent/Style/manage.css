@@ -35,7 +35,7 @@ body{
 .siderbar div{ }
 .siderbar a{  width:139px; height:25px; line-height:25px; color:#333; line-height:25px; text-indent:25px; text-decoration:none; margin-left:15px; display:inline-block;}
 .siderbar a:hover{background:#368D81; color:#fff;}
-.content{ width:1738px; height:580px;padding:5px 0; background:url(../pictures/bg2.jpg) no-repeat;background-size:cover; float:left; border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;}
+.content{ width:800px; height:580px;padding:5px 0; background:url(../pictures/bg2.jpg) no-repeat;background-size:cover; float:left; border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;}
 .nav{ background:url(../pictures/nav_bg.jpg) repeat-x; height:45px;}
 .footer{ height:25px; line-height:25px; clear:both;background:url(../pictures/bg1.jpg) no-repeat;background-size:cover; text-align:center; color:#fff;}
 .footer p{ font-size:16px; line-height:25px; text-align:center; color:#fff;}

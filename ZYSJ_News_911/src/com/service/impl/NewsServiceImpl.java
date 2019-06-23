@@ -93,8 +93,8 @@ public class NewsServiceImpl  implements NewsService{
 	}
 
 	@Override
-	public News showNewsByKeyValue(String keyValue) {
-		return newsmapper.findNewsByKeyValue(keyValue);
+	public List<News> showNewsByKeyValue(String newsTitle) {
+		return newsmapper.findNewsByKeyValue(newsTitle);
 	}
 
 

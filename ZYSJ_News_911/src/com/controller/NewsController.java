@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,10 +95,8 @@ public class NewsController {
 
 	}
 	
-	
-	 
 	@RequestMapping(value = "/findByPage")
-	public ModelAndView findByPage(int page,HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView findByPage(@RequestParam(value="page",required=false)Integer page,HttpServletRequest request,HttpServletResponse response) {
 		webMes webmes=new webMes();
 		List list=null;
 		try {
@@ -113,29 +112,40 @@ public class NewsController {
 		request.getSession().setAttribute("today", String.valueOf(list.get(4)));
 		request.getSession().setAttribute("now", String.valueOf(list.get(5)));
 		
-	
 		
-		List<News> news = newsService.findByPage(page, 2);
-		System.out.println(news.size());
+//		 List<News> news = newsService.findByPage(page, 2);
+//		System.out.println(news.size());
 		int totalPage=newsService.findTotalPage(2);
-	ModelAndView mo=new ModelAndView("/front/index");
-	mo.addObject("list1", topicService.findAllTopic());
-	mo.addObject("list2", videoService.findAllVideo());
-	mo.addObject("list", news);
-//	mo.addObject("page", page);
-//	mo.addObject("totalPage", totalPage);
-	mo.getModel().put("page", page);
-	mo.getModel().put("totalPage", totalPage);
-	mo.addObject("hot", newsService.findHotNews());
-	mo.addObject("point", newsService.findPointNews());
-	mo.getModel().put("types",typeService.findAllTypeToFront());
-	if (request.getSession().getAttribute("mynews")==null) { 
-		System.out.println("什么也不做---");
-	} else {
-	    mo.getModel().put("typeNews",request.getSession().getAttribute("mynews")); 
-	}
-		 
-	return mo;
+		ModelAndView mo=new ModelAndView("/front/index");
+		mo.addObject("list1", topicService.findAllTopic());
+		mo.addObject("list2", videoService.findAllVideo());
+		
+	//	mo.addObject("page", page);
+	//	mo.addObject("totalPage", totalPage);
+		
+		if (page!=null) {//说明是第一次展示,page是页面传来的
+		   List<News> news = newsService.findByPage(page, 2);
+		   mo.getModel().put("page", page);
+           mo.addObject("list", news);
+		} else {         //为空就说明已经是关键字查询或者分类浏览了，page从session中获取
+            page=(Integer) request.getSession().getAttribute("page");
+            List<News> KeyNews=(List<News>) request.getSession().getAttribute("KeyNews");
+            List<News> mynews=(List<News>) request.getSession().getAttribute("mynews");
+            mo.addObject("KeyNews",KeyNews);
+            mo.addObject("mynews",mynews);
+            mo.getModel().put("page", page);
+            
+           
+           
+		}
+		
+		mo.getModel().put("totalPage", totalPage);
+		mo.addObject("hot", newsService.findHotNews());
+		mo.addObject("point", newsService.findPointNews());
+		mo.getModel().put("types",typeService.findAllTypeToFront());
+		
+			 
+		return mo;
 		
 	}
 	@RequestMapping(value = "/display")
@@ -251,19 +261,25 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 	
 	  //分类浏览
 	  @RequestMapping("/showNewsByType") 
-	  public String showNewsByType(int typeId,HttpSession session) {
+	  public String showNewsByType(@RequestParam("typeId")int typeId,
+			                       @RequestParam("page")int page,
+			                       HttpSession session) {
 	       session.setAttribute("mynews",newsService.showNewsByTypeId(typeId)); 
-	       return "redirect:/news/findByPage"; 
+	       session.setAttribute("page", page);
+	       return "redirect:/news/findByPage.do"; 
 	 }
 	 
 	 
 		
-		//关键字查询
-		@RequestMapping("/showNewsByKey")
-		public ModelAndView showNewsByKey(@RequestParam("keyValue")String keyValue) {
-			ModelAndView mv=new ModelAndView("");//跳转到一个页面显示
-			mv.addObject("OneNews", newsService.showNewsByKeyValue(keyValue));
-			return mv;
-		}
+	//关键字查询
+	@RequestMapping("/showNewsByKey")
+	public String showNewsByKey(@RequestParam("newsTitle")String newsTitle,
+			                    @RequestParam("page")int page,
+			                    HttpSession session) {
+		session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
+		session.setAttribute("page", page);
+		return "redirect:/news/findByPage.do";
+			
+	}
 	
 }

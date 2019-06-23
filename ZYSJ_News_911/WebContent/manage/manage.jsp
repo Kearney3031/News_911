@@ -29,7 +29,7 @@
 	        </li>
 	        <li><span>话题管理</span>
 	            <ul>
-	                <li><a href="${pageContext.request.contextPath }/topic/showAllTopic.do" target="mainFrame">管理主题信息</a></li>
+	                <li><a href="${pageContext.request.contextPath }/topic/showAllTopic.do" target="mainFrame">管理话题信息</a></li>
 	            </ul>
 	        </li>
 	        <li><span>用户管理</span>

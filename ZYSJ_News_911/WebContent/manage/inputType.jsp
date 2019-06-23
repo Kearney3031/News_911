@@ -13,7 +13,7 @@
 
 <body>
 <center>
-<h1>编辑频道信息</h1>
+<h1>编辑主题信息</h1>
 <c:if test="${type.typeId!=0}">
    <form:form action="${pageContext.request.contextPath }/type/updateType.do" method="post" modelAttribute="type">
         <form:hidden path="typeId"/>

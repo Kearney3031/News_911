@@ -9,6 +9,7 @@
 <script type="text/javascript" src="../js/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="../js/jq02.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/typeBrowse.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/findNewsByKeyValue.js"></script>
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
@@ -32,51 +33,55 @@
 <br><br>
 <table border="0" cellpadding="10" cellspacing="0">
        <thead>
-            <tr align="center">
+            <tr align="center"><!-- 展示所有主题类型 -->
                    <c:forEach items="${requestScope.types}" var="type">
-                        <th><a href="${pageContext.request.contextPath}/news/showNewsByType.do?typeId=${type.typeId}" 
+                        <th>
+                            <a href="${pageContext.request.contextPath}/news/showNewsByType.do?typeId=${type.typeId}&&page=1" 
                                style="text-decoration: none;" class="typeBrowse">${type.typeName }
-                                </a>  
+                            </a>  
                         </th>                   
                    </c:forEach>
             </tr>
        </thead>
 </table>
 
-<form action="${pageContext.request.contextPath}/news/showNewsByKey">
-               关键字查询：<input type="text" name="keyValue"/>
+<form action="${pageContext.request.contextPath}/news/showNewsByKey.do" method="post"> 
+               关键字查询： <input type="text" name="newsTitle"/>
+                    <input type="hidden" name="page" value="1">
+                    <input type="submit" value="查询"/>
 </form>
-
 <table border="0" width="100px">
-      <tbody id="pfjtbody"></tbody>
-</table>
-
-
-<table border="0" width="100px">
-        <thead id="pfjthead"></thead>
-        <tbody>
-        
-            <%-- <c:forEach items="${requestScope.typeNews }" var="mynews">
+      <tbody>
+           <!-- 展示关键字查询到的新闻 -->
+            <c:forEach items="${requestScope.KeyNews }" var="mynews">
                     <tr>
-                        <td><a href="../news/display.do?id=${mynews.newsId}" style="text-decoration: none;"> ${mynews.newsTitle}</a></td>
+                        <td>${mynews.newsTitle}</td>
                     </tr>  
             
-            </c:forEach> --%>
-          
-            
+            </c:forEach>
+      </tbody>
+</table>
+<table border="0" width="100px">
+      <tbody>
+           <!-- 展示分类查询到的新闻 -->
+            <c:forEach items="${requestScope.mynews }" var="typenews">
+                    <tr>
+                        <td>${typenews.newsTitle}</td>
+                    </tr>  
+            </c:forEach>
+      </tbody>
+</table>
+<table border="0" width="100px">
+        <tbody>
+                <!-- 首次查询的所有新闻 -->
                 <c:forEach items="${list}" var="news">
                     <tr>
                      <td>  <a href="../news/display.do?id=${news.newsId}"> ${news.newsTitle}</a></td>
                     </tr>   
                     <tr><td><hr/></td></tr>             
                 </c:forEach>
-           
         </tbody>
-    </table>
-
-
-
-
+</table>
  <div id="pages">
  				<c:choose>
                 <c:when test="${page==1}">
