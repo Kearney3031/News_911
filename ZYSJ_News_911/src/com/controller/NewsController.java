@@ -291,13 +291,17 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 		
 	//关键字查询
 	@RequestMapping("/showNewsByKey")
-	public String showNewsByKey(@RequestParam("newsTitle")String newsTitle,
+	public String showNewsByKey(@RequestParam(value="newsTitle",required=false)String newsTitle,
 			                    @RequestParam("page")int page,
 			                    HttpSession session) {
-		session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
-		session.setAttribute("page", page);
-		return "redirect:/news/findByPage.do";
-			
+		if (newsTitle==null) {//用户没输入
+			session.setAttribute("page", page);
+			return "redirect:/news/findByPage.do";
+		} else {//用户输入了
+			session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
+			session.setAttribute("page", page);
+			return "redirect:/news/findByPage.do";
+		}
 	}
 	
 }
