@@ -100,7 +100,7 @@ public class UserController {
 	@ResponseBody
 	public void addUser(User user, HttpServletRequest request) throws UnsupportedEncodingException {
 		System.out.println(user.getUserName());
-		user.setUserRealName(new String(user.getUserRealName().getBytes("ISO-8859-1"), "utf-8"));
+		
 		userService.addUser(user);
 		
 		

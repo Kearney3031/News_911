@@ -18,15 +18,11 @@
 <tr><td>电话号码：</td><td><input name="phone" id="phone"/></td></tr>
 <tr><td>邮箱：</td><td><input name="email" id="email"/></td></tr>
 <tr><td>验证码：</td><td><input name="code"  id="code" /></td><td><input type="button" value="发送验证码"  id="sendmail" /></td></tr>
-<tr><td>用户类型：</td><td><label>
-    <input type="radio" name="userType" value="1" id="RadioGroup1_0" class="type"/>
-     会员
-  </label>
-  
-  <label>
-    <input type="radio" name="userType" value="2" id="RadioGroup1_1" class="type" />
-   小编
-  </label>
+<tr><td>用户类型：</td><td>
+  <select id="type">
+      <option value="1">会员</option>
+      <option value="2">小编</option>
+    </select>
 </td></tr>
 
 </table>
