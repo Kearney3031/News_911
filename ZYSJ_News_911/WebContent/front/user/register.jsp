@@ -9,14 +9,16 @@
  <script type="text/javascript" src="../../js/jq03.js"></script>
 </head>
 <body>
-
-用户名：<input name="username" id="username"/><br>
-密码：<input type="password" name="password" id="pwd"/><br>
-用户昵称：<input name="realname" id="rname"/><br>
-电话号码：<input name="phone" id="phone"/><br>
-邮箱：<input name="email" id="email"/><br>
-验证码：<input name="code"  id="code" /><input type="button" value="发送验证码"  id="sendmail" /><br>
-用户类型：<label>
+<center>
+<table border='1',width='1' align="center">
+<tr>
+<td>用户名：</td><td><input name="username" id="username"/></td></tr>
+<tr><td>密码：</td><td><input type="password" name="password" id="pwd"/></td></tr>
+<tr><td>用户昵称：</td><td><input name="realname" id="rname"/></td></tr>
+<tr><td>电话号码：</td><td><input name="phone" id="phone"/></td></tr>
+<tr><td>邮箱：</td><td><input name="email" id="email"/></td></tr>
+<tr><td>验证码：</td><td><input name="code"  id="code" /></td><td><input type="button" value="发送验证码"  id="sendmail" /></td></tr>
+<tr><td>用户类型：</td><td><label>
     <input type="radio" name="userType" value="1" id="RadioGroup1_0" class="type"/>
      会员
   </label>
@@ -25,8 +27,10 @@
     <input type="radio" name="userType" value="2" id="RadioGroup1_1" class="type" />
    小编
   </label>
-<br>
-<input type="button" value="完成" id="submit"/>
+</td></tr>
 
+</table>
+<input type="button" value="完成" id="submit"/>
+</center>
 </body>
 </html>
