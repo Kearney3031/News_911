@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="../advert/addAdvert.do"  method="post">
+<form action="../advert/addAdvert.do"  method="post" enctype="multipart/form-data">
 广告名称:<input name="name" />
 广告图片：<input type="file" name="advertImg" />
 广告链接：<input name="advertLink">

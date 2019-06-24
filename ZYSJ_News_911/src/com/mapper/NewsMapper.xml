@@ -6,6 +6,10 @@
 	<insert id="addNews" parameterType="News">
 		insert into news(newsId,newsTitle,newsContent,newsImg,newsLike,userId,newsStatus,typeId,publishTime) values(null,#{newsTitle},#{newsContent},#{newsImg},0,#{userId},0,#{typeId},#{publishTime})
 	</insert>
+	
+	<update id="addLike" parameterType="int">
+	update news set newsLike=newsLike+1 where newsId=#{id}
+</update>
 
 	
 	 <select id="findByPage" resultType="News" parameterType="map">
@@ -20,6 +24,10 @@ select count(*) from news where newsStatus=1
 
 <select id="findNewsByNewsId" resultType="News" parameterType="int">
 select * from news where newsId=#{newsId}
+</select>
+
+<select id="All" resultType="News"  parameterType="int">
+select * from news where userId=#{id}
 </select>
 <select id="findAll" resultType="News" >
 select * from news where newsStatus=0

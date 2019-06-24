@@ -37,9 +37,14 @@
                         <td>${user.email }</td>
                         <td>${user.userType }</td>
                         <td>${user.score }</td>
-                        <td><a href="${pageContext.request.contextPath }/user/deleteUser.do?userId=${user.userId}" class="deleteUser">冻结？删除</a>
-                            <input type="hidden" value="${user.userName }"/>
-                        </td>
+                        <c:if test="${user.userType==1 }"><!-- 只允许删除会员 -->
+                             <td><a href="${pageContext.request.contextPath }/user/deleteUser.do?userId=${user.userId}" class="deleteUser">冻结？删除</a>
+                                  <input type="hidden" value="${user.userName }"/>
+                             </td>
+                        </c:if>
+                        <c:if test="${user.userType!=1}">
+                              <td></td>
+                        </c:if>
                     </tr>                
                 </c:forEach>
             </tbody>

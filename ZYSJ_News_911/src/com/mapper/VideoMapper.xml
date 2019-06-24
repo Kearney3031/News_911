@@ -4,9 +4,12 @@
 <mapper namespace="com.mapper.VideoMapper">
 	<insert id="addVideo" parameterType="Video">
 	insert into
-		video(videoId,videoName,videoPath,videoLike,videoRealName,dTimes)
-		values(null,#{videoName},#{videoPath},#{videoLike},#{videoRealName},#{dTimes})
+		video(videoId,videoName,videoPath,videoLike,videoRealName,dTimes,userId)
+		values(null,#{videoName},#{videoPath},#{videoLike},#{videoRealName},#{dTimes},#{userId})
 	</insert>
+	<select id="All" resultType="com.model.Video"  parameterType="int">
+select * from video where userId=#{id}
+</select>
 	<select id="findAllVideo" resultType="Video">
 	select * from video
 	</select>

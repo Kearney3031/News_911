@@ -6,6 +6,14 @@ import java.util.List;
 
 
 public class News {
+	public int getNewsStatus() {
+		return newsStatus;
+	}
+
+	public void setNewsStatus(int newsStatus) {
+		this.newsStatus = newsStatus;
+	}
+
 	public int getNewsLike() {
 		return newsLike;
 	}
@@ -22,13 +30,7 @@ public class News {
 		this.userId = userId;
 	}
 
-	public int getNewStatus() {
-		return newStatus;
-	}
 
-	public void setNewStatus(int newStatus) {
-		this.newStatus = newStatus;
-	}
 
 	public int getTypeId() {
 		return typeId;
@@ -55,7 +57,7 @@ public class News {
 	private List<User> users;
 	private int newsLike;
 	private int userId;
-	private int newStatus;
+	private int newsStatus;
 	private int typeId;
 	private Date publishTime;
 	

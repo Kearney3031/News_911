@@ -72,7 +72,7 @@ public class NewsServiceImpl  implements NewsService{
 
 	@Override
 	public void addLike(int id) {
-		// TODO Auto-generated method stub
+		newsmapper.addLike(id);
 		
 	}
 
@@ -102,6 +102,11 @@ public class NewsServiceImpl  implements NewsService{
 	@Override
 	public List<News> showNewsByKeyValue(String newsTitle) {
 		return newsmapper.findNewsByKeyValue(newsTitle);
+	}
+
+	@Override
+	public List<News> All(int id) {
+		return newsmapper.All(id);
 	}
 
 

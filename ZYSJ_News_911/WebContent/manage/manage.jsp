@@ -45,6 +45,7 @@
 	        <li><span>用户管理</span>
 	            <ul>
 	                <li><a href="${pageContext.request.contextPath }/user/showAllUser.do" target="mainFrame">用户信息管理</a></li>
+	                 <li><a href="${pageContext.request.contextPath }/feedback/findAll.do"  target="mainFrame">查看反馈</a></li>
 	        	</ul>
 	        </li>
 	        <li><span>广告管理</span>
@@ -68,9 +69,11 @@
 	        
 	        <li><span>系统功能操作</span>
 	        	<ul>
+	               
 	                <li><a href="${pageContext.request.contextPath }/manage/logout.jsp">安全退出</a></li>
 	        	</ul>
 	        </li>
+	        
         </ul>
        	<div class="content">
               	<iframe width="99%" height="100%" name="mainFrame" frameborder="0" ></iframe>

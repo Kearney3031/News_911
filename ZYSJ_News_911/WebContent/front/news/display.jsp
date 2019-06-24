@@ -23,10 +23,11 @@
 
 <img  src="${pageContext.request.contextPath.concat(news.newsImg)}" /><br>
 ${news.newsContent}<br>
-点赞数：${news.newsLike}<br>
+<div id="likeaddone">点赞数：${news.newsLike}<br></div>
 发布时间：${news.publishTime}<br>
 新闻作者:${name} 
 <br>
+<input type="button" id="like" value="我觉得好看" />
  <input type="button" id="shareToQQ" value="分享到QQ空间"/>
 　<input type="button" id="shareToXl" value="分享到新浪微博"/>
 <input type="hidden" id="userId" value="${user.userId}"/>
@@ -124,6 +125,13 @@ $(document).ready(function() {
 	 	         } 
 		});
 	});
+	$("#like").click(function(){
+		 alert("点赞成功");
+		 $("#likeaddone").html("点赞数：${news.newsLike+1}<br>");
+	$.getJSON("../../news/addLike.do", {"id":$("#newsId").val()},function(data) {
+      
+	});
+	})
 	
 });
  

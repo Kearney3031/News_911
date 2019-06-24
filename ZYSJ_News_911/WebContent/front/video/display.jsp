@@ -17,12 +17,15 @@
 <script type="text/javascript" src="../../js/jqShare.js"></script>
 <div align="center">
 视频名称：${video.videoRealName}
-点赞数：${video.videoLike}
-下载次数：${video.dTimes}
+<div id="likeaddone">点赞数：${video.videoLike}</div>
+<div id="dtimes">下载次数：${video.dTimes}</div>
 <a href="show.html?fname=${path}" title="观看视频" target="_blank">播放视频</a>
+
 <form action="../../video/download.do" method="post">
-<input type="submit"  value="下载" />
+<input type="submit"  value="下载" id="dbtn" />
+<input type="button" value="我觉得不错" id="like" />
 </form>
+
 </div>
 
 <div class="commentAll">
@@ -114,6 +117,17 @@ $(document).ready(function() {
 	 	         } 
 		});
 	});
+	$("#like").click(function(){
+		 alert("点赞成功");
+		 $("#likeaddone").html("点赞数：${video.videoLike+1}");
+		$.getJSON("../../video/addLike.do", {id:${video.videoId}},function(data) {
+		      
+			});
+	})
+	$("#dbtn").click(function(){
+		$("#dtimes").html("下载次数：${video.dTimes+1}");
+	})
+	
 	
 });
  

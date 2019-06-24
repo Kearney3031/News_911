@@ -43,6 +43,10 @@ public class TopicController {
 	}
 	@RequestMapping(value = "/display")
 	public ModelAndView display(int id,HttpServletRequest req) {
+		User u=(User) req.getSession().getAttribute("user");
+		userService.addUserScore(u.getUserId());
+		u.setScore(u.getScore()+1);
+		req.getSession().setAttribute("user", u);
 		ModelAndView mo=new ModelAndView("redirect:/front/topic/display.jsp");
 		 Topic topic=topicService.findTopicById(id);
 		
@@ -51,6 +55,14 @@ public class TopicController {
 		
 		return mo;
 	}
+	@RequestMapping(value = "/All")
+	public String  all(HttpServletRequest req) {
+		
+		User u=(User) req.getSession().getAttribute("user");
+		req.getSession().setAttribute("topicList",  topicService.All(u.getUserId()));
+		req.getSession().setAttribute("temp", 1);
+		return "redirect:/front/user/editor.jsp";
+	} 
 	
 	//分页展示所有话题
 		@RequestMapping("/showAllTopic")
