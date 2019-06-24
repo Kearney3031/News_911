@@ -101,6 +101,8 @@ Video v=new Video();
 	public String  display(int id,HttpServletRequest req) {
 		User u=(User) req.getSession().getAttribute("user");
 		userService.addUserScore(u.getUserId());
+		u.setScore(u.getScore()+1);
+		req.getSession().setAttribute("user", u);
 		 Video v=videoService.findVideoById(id);
 		 req.getSession().setAttribute("video", v);
 		String path= "/ZYSJ_News_911/video/"+v.getVideoName();

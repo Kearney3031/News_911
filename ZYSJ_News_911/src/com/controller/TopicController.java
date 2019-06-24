@@ -45,6 +45,8 @@ public class TopicController {
 	public ModelAndView display(int id,HttpServletRequest req) {
 		User u=(User) req.getSession().getAttribute("user");
 		userService.addUserScore(u.getUserId());
+		u.setScore(u.getScore()+1);
+		req.getSession().setAttribute("user", u);
 		ModelAndView mo=new ModelAndView("redirect:/front/topic/display.jsp");
 		 Topic topic=topicService.findTopicById(id);
 		

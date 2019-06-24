@@ -144,6 +144,8 @@ public class NewsController {
 	public ModelAndView display(int  id,HttpServletRequest req) {
 		User u=(User) req.getSession().getAttribute("user");
 		userService.addUserScore(u.getUserId());
+		u.setScore(u.getScore()+1);
+		req.getSession().setAttribute("user", u);
 		News news1=newsService.findNewsByNewsId(id);
 		//ModelAndView mo=new ModelAndView("/front/news/display");
 		ModelAndView mo=new ModelAndView("forward:addCookieNews.do?newsId="+news1.getNewsId());
