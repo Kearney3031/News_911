@@ -36,7 +36,7 @@ public class NoticeController {
 	@RequestMapping(value = "/updateNotice")
 	@ResponseBody
 	public void updateNotice(String content) {
-		
+
 		noticeService.update(content);
 	}
 	

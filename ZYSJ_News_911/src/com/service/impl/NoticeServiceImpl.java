@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mapper.NoticeMapper;
 import com.mapper.TopicMapper;
 import com.mapper.TypeMapper;
+import com.model.Notice;
 import com.model.Topic;
 import com.model.Type;
 import com.service.NoticeService;
@@ -28,6 +29,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public void update(String content) {
 		noticeMapper.update(content);
 		
+	}
+
+	@Override
+	public List<Notice> find() {
+		return noticeMapper.find();
 	}
 
 	

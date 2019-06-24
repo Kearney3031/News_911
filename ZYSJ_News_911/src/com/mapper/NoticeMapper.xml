@@ -5,6 +5,9 @@
 	<update id="update" parameterType="string">
 	update notice set noticeContent=#{content} where noticeId=1
 	</update>
+	<select id="find" resultType="com.model.Notice">
+	select * from notice
+	</select>
 	
 	
 </mapper>

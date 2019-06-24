@@ -40,7 +40,14 @@
 </head>
 <body style="min-height: 1080px;width: 70%;margin: auto;">
 	<div style="margin-bottom: 15px;height: 70px;">
-		<h1 style="float: left;">指尖资讯平台</h1>
+		<h1 style="float: left;">指尖资讯平台
+		<br>公告<br><c:forEach items="${notice}" var="n">
+			          ${n.noticeContent}
+			      
+			                   
+			    </c:forEach></h1>
+		
+		
 		<div style="float: right;margin-top: 30px;" class="bdzx">
 		这里是<%=request.getSession().getAttribute("country") %><%=request.getSession().getAttribute("pro") %><%=request.getSession().getAttribute("city") %><br>
 		<%=request.getSession().getAttribute("time") %><br>

@@ -29,6 +29,7 @@ import com.model.Type;
 import com.model.User;
 import com.service.AdvertService;
 import com.service.NewsService;
+import com.service.NoticeService;
 import com.service.TopicService;
 import com.service.TypeService;
 import com.service.UserService;
@@ -40,6 +41,8 @@ import com.util.webMes;
 public class NewsController {
 	@Autowired
 	private TopicService topicService;
+	@Autowired
+	private NoticeService noticeService;
 	
 	@Autowired
 	private AdvertService advertService;
@@ -129,6 +132,7 @@ public class NewsController {
             mo.getModel().put("page", page);
           
 		}
+		mo.addObject("notice", noticeService.find());
 		mo.addObject("advert1",advertService.findAdvert().get(0) );
 		mo.addObject("advert2", advertService.findAdvert().get(1));
 		mo.getModel().put("totalPage", totalPage);
