@@ -5,12 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
+import com.model.News;
 import com.model.Topic;
 
 public interface TopicMapper {
 void addTopic(Topic t);
 List<Topic> findAllTopic();
-
+List<Topic> All(int id);
 Topic findTopicById(int id);
 
 //分页查询所有话题

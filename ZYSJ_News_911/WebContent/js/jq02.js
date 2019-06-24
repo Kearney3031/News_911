@@ -74,8 +74,10 @@ $(document).ready(function(){
 //		
 //		
 //	})
-	$("#advert1").click(function(){window.open('http://www.baidu.com');})
-	$("#advert2").click(function(){window.open('http://www.qq.com');})
+	$("#advert1").click(function(){
+		alert($("#link1").text());
+		window.open($("#link1").text());})
+	$("#advert2").click(function(){window.open($("#link2").text());})
 		
 
 })

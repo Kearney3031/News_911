@@ -52,6 +52,11 @@ public class VideoServiceImpl implements VideoService {
 		videoMapper.addDTimes(id);
 	}
 
+	@Override
+	public List<Video> All(int id) {
+		return videoMapper.All(id);
+	}
+
 	
 	
 	

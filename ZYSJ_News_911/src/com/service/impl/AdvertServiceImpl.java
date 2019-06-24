@@ -40,5 +40,11 @@ public class AdvertServiceImpl implements AdvertService {
 
 	}
 
+
+	@Override
+	public List<Advert> findAdvert() {
+		return advertMapper.findAdvert();
+	}
+
 }
 

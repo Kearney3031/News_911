@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.model.News;
 import com.model.Type;
 import com.model.User;
+import com.service.AdvertService;
 import com.service.NewsService;
 import com.service.TopicService;
 import com.service.TypeService;
@@ -39,6 +41,8 @@ public class NewsController {
 	@Autowired
 	private TopicService topicService;
 	
+	@Autowired
+	private AdvertService advertService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -74,7 +78,7 @@ public class NewsController {
 	new1.setNewsLike(0);
 	new1.setNewsTitle(newstitle);
 	new1.setTypeId(Integer.valueOf(newstype));
-	new1.setNewStatus(0);
+	new1.setNewsStatus(0);
 	new1.setPublishTime(new Date(System.currentTimeMillis()));
 	new1.setUserId(user.getUserId());
 	
@@ -125,7 +129,8 @@ public class NewsController {
             mo.getModel().put("page", page);
           
 		}
-		
+		mo.addObject("advert1",advertService.findAdvert().get(0) );
+		mo.addObject("advert2", advertService.findAdvert().get(1));
 		mo.getModel().put("totalPage", totalPage);
 		mo.addObject("hot", newsService.findHotNews());
 		mo.addObject("point", newsService.findPointNews());
@@ -137,6 +142,8 @@ public class NewsController {
 	}
 	@RequestMapping(value = "/display")
 	public ModelAndView display(int  id,HttpServletRequest req) {
+		User u=(User) req.getSession().getAttribute("user");
+		userService.addUserScore(u.getUserId());
 		News news1=newsService.findNewsByNewsId(id);
 		//ModelAndView mo=new ModelAndView("/front/news/display");
 		ModelAndView mo=new ModelAndView("forward:addCookieNews.do?newsId="+news1.getNewsId());
@@ -147,6 +154,21 @@ public class NewsController {
 		
 		return mo;
 	}
+	@RequestMapping(value = "/addLike")
+	@ResponseBody
+	public void  addLike(int id,HttpServletRequest req) {
+		newsService.addLike(id);
+		
+	} 
+	@RequestMapping(value = "/All")
+	public String  all(HttpServletRequest req) {
+		User u=(User) req.getSession().getAttribute("user");
+		req.getSession().setAttribute("newsList",  newsService.All(u.getUserId()));
+		req.getSession().setAttribute("temp", 0);
+		return "redirect:/front/user/editor.jsp";
+		
+	} 
+	
 	//提交新闻的预操作，首先先得到所有的新闻类型。
 	@RequestMapping(value = "/preAddNews")
 	public ModelAndView pAddNews() {

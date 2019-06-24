@@ -39,7 +39,6 @@ public class AdvertController {
 		return mo;
 	}
 	@RequestMapping(value = "/addAdvert")
-	@ResponseBody
 	public String addAdvert(@RequestParam(value = "advertImg") MultipartFile file, String advertLink,String name,HttpServletRequest req) {
 		Advert a=new Advert();
 

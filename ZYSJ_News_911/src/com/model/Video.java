@@ -1,6 +1,12 @@
 package com.model;
 
 public class Video {
+public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 public int getdTimes() {
 		return dTimes;
 	}
@@ -38,12 +44,14 @@ public int getVideoId() {
 		this.videoRealName = videoRealName;
 	}
 	
+	
 private int videoId;
 private int dTimes;
 private String videoName;
 private String videoPath;
 private int videoLike;
 private  String videoRealName;
+private int userId;
 public Video() {}
 
 }

@@ -216,11 +216,13 @@
 
 
 
-<div class="coupletbox" id="advert1"  style="width:150px; height:300px; background:url('../images/7.jpeg');">
+<div class="coupletbox" id="advert1"  style="width:150px; height:300px; background:url('${pageContext.request.contextPath.concat(advert1.advertImg)}');">
   <a href="#" class="closeBtn" id="btnxx" title="关闭">&times;关闭</a>
+	<h1 id="link1" style="display:none;">${advert1.advertLink}</h1>
 </div>
-<div class="coupletbox" id="advert2" style="width:150px; height:300px; background:url('../images/8.jpg');">
+<div class="coupletbox" id="advert2" style="width:150px; height:300px; background:url('${pageContext.request.contextPath.concat(advert2.advertImg)}');">
   <a href="#" class="closeBtn" id="btnxx" title="关闭">&times;关闭</a>
+<h1 id="link2" style="display:none;">${advert2.advertLink}</h1>
 </div>
 
 

@@ -55,6 +55,11 @@ public class TopicServiceImpl implements TopicService {
 		pb.setList(topiclist);
 		return pb;
 	}
+
+	@Override
+	public List<Topic> All(int id) {
+		return topicMapper.All(id);
+	}
 	
 	
 	

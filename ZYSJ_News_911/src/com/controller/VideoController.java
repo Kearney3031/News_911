@@ -57,19 +57,21 @@ public class VideoController {
 
 	@Autowired
 	private  VideoService videoService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadVideo(@RequestParam(value = "upload", required = false) MultipartFile file,
 			HttpServletRequest request) {
 Video v=new Video();
-
+	User u=(User) request.getSession().getAttribute("user");
 		String path = request.getServletContext().getRealPath("/video");
 	System.out.println(path);
 		String uploadFileName1 = System.currentTimeMillis() + file.getName();
 		File file11 = new File(path, uploadFileName1 + ".mp4");
 		v.setVideoPath( path +"/"+ uploadFileName1 + ".mp4");
 		v.setVideoLike(0);
-		
+		v.setUserId(u.getUserId());
 		
 		v.setVideoRealName(file.getOriginalFilename());
 		v.setVideoName(uploadFileName1 + ".mp4");
@@ -97,12 +99,19 @@ Video v=new Video();
 
 	@RequestMapping(value = "/display")
 	public String  display(int id,HttpServletRequest req) {
-		
+		User u=(User) req.getSession().getAttribute("user");
+		userService.addUserScore(u.getUserId());
 		 Video v=videoService.findVideoById(id);
 		 req.getSession().setAttribute("video", v);
 		String path= "/ZYSJ_News_911/video/"+v.getVideoName();
 		req.getSession().setAttribute("path", path);
 		return "redirect:/front/video/display.jsp";
+		
+	} 
+	@RequestMapping(value = "/addLike")
+	@ResponseBody
+	public void  addLike(int id,HttpServletRequest req) {
+		videoService.addLike(id);
 		
 	} 
 	@RequestMapping(value="/download",method=RequestMethod.POST)
@@ -155,7 +164,18 @@ Video v=new Video();
        
     }
 
-	
+	@RequestMapping(value = "/All")
+	public String  all(HttpServletRequest req) {
+		
+		User u=(User) req.getSession().getAttribute("user");
+		
+		
+		req.getSession().setAttribute("videoList",videoService.All(u.getUserId()));
+		req.getSession().setAttribute("temp", 2);
+		return "redirect:/front/user/editor.jsp";
+		
+		
+	} 
 
 	
 }

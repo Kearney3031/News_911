@@ -7,6 +7,9 @@
 		topic(topicId,topicName,topicContent,userId)
 		values(null,#{topicName},#{topicContent},#{userId})
 	</insert>
+	<select id="All" resultType="com.model.Topic"  parameterType="int">
+select * from topic where userId=#{id}
+</select>
 	<select id="findAllTopic" resultType="Topic">
 	select * from topic
 	</select>

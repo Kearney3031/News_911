@@ -4,7 +4,11 @@
 <mapper namespace="com.mapper.AdvertMapper">
 	
 	<select id="findAllAdvert" resultType="com.model.Advert">
-		select * from advert
+		select * from advert 
+	</select>
+	
+	<select id="findAdvert" resultType="com.model.Advert">
+		select * from advert order by advertId desc limit 2
 	</select>
 	
 	<insert id="addAdvert" parameterType="com.model.Advert">

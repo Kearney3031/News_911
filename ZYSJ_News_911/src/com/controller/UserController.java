@@ -86,7 +86,7 @@ public class UserController {
 	@ResponseBody
 	public void send(Feedback fb,HttpServletRequest req) {
 				fb.setFeedbackContent(fb.getFeedbackContent()); 
-		fb.setFeedbackName(fb.getFeedbackContent().substring(0,fb.getFeedbackContent().length()>4?3:fb.getFeedbackContent().length())+"...");
+		
 		User user=(User) req.getSession().getAttribute("user");
 		
 		fb.setUserId(user.getUserId());

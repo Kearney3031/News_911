@@ -29,7 +29,8 @@ import com.maxmind.geoip2.record.Subdivision;
 public class webMes    {
    public List<String> getAdd(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {  
 	   	List<String> list=new ArrayList<>();
-	   	
+//	   	String ip=getIPAddr.getIpAddr(req);
+//	   	System.out.println(ip);
 	   	Document doc1 = Jsoup.connect("http://ip.taobao.com/service/getIpInfo2.php?ip=myip").get(); 
 		 String body=doc1.body().text().substring(24);
 		 System.out.println(body);
