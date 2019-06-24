@@ -296,6 +296,7 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 			                    HttpSession session) {
 		if (newsTitle==null) {//用户没输入
 			session.setAttribute("page", page);
+			session.setAttribute("KeyNews",null);
 			return "redirect:/news/findByPage.do";
 		} else {//用户输入了
 			session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
