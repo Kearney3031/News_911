@@ -60,6 +60,12 @@
 	               <li><a href="${pageContext.request.contextPath }/goods/findAll1.do" target="mainFrame">管理商品信息</a></li>
 	            </ul>
 	        </li>
+	        <li><span>留言管理</span>
+	            <ul>
+	              <!--  <li><a href="../manage/showMessage.jsp" target="mainFrame">留言删除</a></li> -->
+	               <li><a href="showMessage.jsp" target="mainFrame">留言删除</a></li>
+	            </ul>
+	        </li>
 	        
 	        <li><span>系统功能操作</span>
 	        	<ul>

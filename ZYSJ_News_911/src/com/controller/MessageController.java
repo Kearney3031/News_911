@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.model.Message;
 import com.service.MessageService;
+import com.service.UserService;
 
 @Controller
 
@@ -24,7 +25,9 @@ import com.service.MessageService;
 public class MessageController {
 	@Autowired
 	private MessageService messageService;
-
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "/find")
 //@ResponseBody
 	public String findAllUser(HttpServletRequest request) {
@@ -54,12 +57,14 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/insert")
-	public String addMessage(Message message) {
+	public void addMessage(Message message) {
 		System.out.println(message.getTime());
 		System.out.println(message.getUserId());
 		messageService.addMessage(message);
 		System.out.println("评论成功");
-		return "redirect:/user/find.do";
+		userService.addUserScore(message.getUserId());
+		System.out.println(message.getUserId()+"号用户积分加1");
+		//return "redirect:/user/find.do";
 
 	}
 

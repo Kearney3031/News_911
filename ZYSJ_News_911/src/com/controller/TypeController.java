@@ -34,7 +34,7 @@ public class TypeController {
 		System.out.println(types);
 		//return types;
 		session.setAttribute("listType", types);
-		return "redirect:/TypeChoose.jsp";
+		return "redirect:/front/type/TypeChoose.jsp";
 	}
 	
 //	@RequestMapping(value = "/addCookieType")

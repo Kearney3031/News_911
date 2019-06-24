@@ -25,7 +25,7 @@ $("#order input[name='delete']").live("click",function(){
 	if(confirm("确定删除吗？")){
 		$(this).closest("tr").remove();
 		var tr=$(this).closest("tr");
-		$.getJSON("message/delete.do", {
+		$.getJSON("../message/delete.do", {
 			"id" : tr.find("td").eq(0).html()
 		},
 		function(data) {}
@@ -126,7 +126,7 @@ $("#deletebtn").click(function () {
 		$(this).closest("tr").remove();
 		
 		var tr=$(this).closest("tr");
-		$.getJSON("message/delete.do", {
+		$.getJSON("../message/delete.do", {
 			"id" : tr.find("td").eq(0).html()
 		},
 		function(data) {}
@@ -154,10 +154,11 @@ $("#deletebtn").click(function () {
 
 
 	//$("#order").remove1();
-	alert("aaaa");
+	//alert("aaaa");
 //	$("#order tr:gt(0)").empty();
 //	$("#order tr").not(':eq(0)').empty();
-	$.getJSON("message/find2.do",
+	//alert("bbbbb");
+	$.getJSON("../message/find2.do",
 		function(data) {
 		 //var stringData =  JSON.stringify(data);
 		//alert(data.message);
