@@ -291,8 +291,8 @@ public class UserController {
 	@RequestMapping(value = "/findUserNewsByUserId")
 	@ResponseBody
 	public ModelAndView findUserNewsByUserId(String userId) {
-
-		List<User> users = userService.findUserNewsByUserId(3);
+		
+		List<User> users = userService.findUserNewsByUserId(Integer.valueOf(userId));
 		System.out.println(users);
 		for (User u : users) {
 			System.out.println(u.getNewsList());
@@ -302,11 +302,9 @@ public class UserController {
 		return mo;
 	}
 
-//	//@Transactional
 	@RequestMapping(value = "/addUserCollectNews")
 	@ResponseBody
 	public void addUserCollectNews(String userId,String newsId) {
-//		userId = 2;
 		News news = new News();
 		news.setNewsId(Integer.valueOf(newsId));
 		User user = new User();
@@ -317,13 +315,9 @@ public class UserController {
 		userService.addUserCollectNews(collect);
 		System.out.println("收藏成功！");
 	}
-
-//	//@Transactional
 	@RequestMapping(value = "/deleteUserCollectNews")
 	@ResponseBody
 	public void deleteUserCollectNews(String newsId, String userId) {
-//		newsId = 8;
-//		userId = 2;
 		News news = new News();
 		news.setNewsId(Integer.valueOf(newsId));
 		User user = new User();

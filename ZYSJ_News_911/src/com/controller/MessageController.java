@@ -64,11 +64,8 @@ public class MessageController {
 		System.out.println("评论成功");
 		userService.addUserScore(message.getUserId());
 		System.out.println(message.getUserId()+"号用户积分加1");
-		//return "redirect:/user/find.do";
-
 	}
-
-	@RequestMapping(value = "/delete") // , method = RequestMethod.POST
+	@RequestMapping(value = "/delete") 
 	@ResponseBody
 	public void delMessage(String id) {
 		messageService.delMessage(Integer.parseInt(id));
@@ -94,15 +91,6 @@ public class MessageController {
 		System.out.println(id);
 		List<Message> message = messageService.findMessageByNewsId(Integer.valueOf(id));
 		System.out.println(message);
-		//Integer q = Integer.valueOf("f");
-		return message;
-	}
-	@RequestMapping(value = "/findMessageByTopicId")
-	@ResponseBody
-	public List<Message> findMessageByTopicId(String id){
-		System.out.println(id);
-		List<Message> message = messageService.findMessageByTopicId(Integer.valueOf(id));
-		System.out.println(message);
 		return message;
 	}
 	
@@ -111,6 +99,15 @@ public class MessageController {
 	public List<Message> findMessageByVideoId(String id){
 		System.out.println(id);
 		List<Message> message = messageService.findMessageByVideoId(Integer.valueOf(id));
+		System.out.println(message);
+		return message;
+	}
+	
+	@RequestMapping(value = "/findMessageByTopicId")
+	@ResponseBody
+	public List<Message> findMessageByTopicId(String id){
+		System.out.println(id);
+		List<Message> message = messageService.findMessageByTopicId(Integer.valueOf(id));
 		System.out.println(message);
 		return message;
 	}
