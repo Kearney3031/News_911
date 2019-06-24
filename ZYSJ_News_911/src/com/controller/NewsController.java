@@ -151,7 +151,6 @@ public class NewsController {
 		req.getSession().setAttribute("name", userService.findUserById(news1.getUserId()).getUserRealName());
 //		mo.addObject("news", news1);
 //		mo.addObject("name", userService.findUserById(news1.getUserId()).getUserRealName());
-		
 		return mo;
 	}
 	@RequestMapping(value = "/addLike")
