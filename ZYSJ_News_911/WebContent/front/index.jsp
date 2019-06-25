@@ -67,6 +67,7 @@
 				<input type="submit" value="查看浏览历史"/>
 			</form>
 			 <form action="../user/findUserNewsByUserId.do" method="post">
+			 	<input type="text" value="${user.userId}" name="userId" hidden/>
 				<input type="submit" value="查看收藏文章"/>
 				</form>
 

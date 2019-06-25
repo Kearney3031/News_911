@@ -291,7 +291,7 @@ public class UserController {
 	@RequestMapping(value = "/findUserNewsByUserId")
 	@ResponseBody
 	public ModelAndView findUserNewsByUserId(String userId) {
-		
+		System.out.println(userId);
 		List<User> users = userService.findUserNewsByUserId(Integer.valueOf(userId));
 		System.out.println(users);
 		for (User u : users) {
