@@ -40,7 +40,14 @@
 </head>
 <body style="min-height: 1080px;width: 70%;margin: auto;">
 	<div style="margin-bottom: 15px;height: 70px;">
-		<h1 style="float: left;">指尖资讯平台</h1>
+		<h1 style="float: left;">指尖资讯平台
+		<br><center>公告</center><br><c:forEach items="${notice}" var="n">
+			          ${n.noticeContent}
+			      
+			                   
+			    </c:forEach></h1>
+		
+		
 		<div style="float: right;margin-top: 30px;" class="bdzx">
 		这里是<%=request.getSession().getAttribute("country") %><%=request.getSession().getAttribute("pro") %><%=request.getSession().getAttribute("city") %><br>
 		<%=request.getSession().getAttribute("time") %><br>
@@ -218,7 +225,7 @@
 </div>		
 	<div style="width: 100%;text-align: center;margin-top: 30px;" class="footer">
 		关于我们<br>
-		我们是911不服来干
+		911股份有限公司
 	</div>
 	<div id="form_top"><a href="#_top" title="回到顶部">置顶<div class="top_img"></div></a></div>
 	

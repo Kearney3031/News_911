@@ -114,7 +114,7 @@ $(document).ready(function(){
 		
 	})
 	$("#code").change(function(){
-		alert("11111")
+		
 		if($(this).val()==code){
 			
 		}
@@ -127,15 +127,16 @@ $(document).ready(function(){
 	})
 
 	$("#submit").bind("click",function(){
+		
 		var var1=$("#username").val();
 		var var2=$("#pwd").val();
 		var var3=$("#rname").val();
 		var var4=$("#phone").val();
 		var var5=$("#email").val();
 		var var6=$("#code").val();
-		var var7=$(".type").val();
 		
-		if(var1==null||var2==null||var3==null||var4==null||var5==null||var6==null||var7==null){
+		
+		if(var1==""||var2==""||var3==""||var4==""||var5==""||var6==""){
 			alert("不能为空");
 			
 			$("#username").val(var1);
@@ -144,11 +145,11 @@ $(document).ready(function(){
 			$("#phone").val(var4);
 			$("#email").val(var5);
 			$("#code").val(var6);
-			$(".type").val(var7);
+			$("#type").val(var7);
 		}
 		else{
-		var param={"userName":var1,"password":var2,"userRealName":var3,"phone":var4,"email":var5,"userType":var7}
-		alert(var1);
+		var param={"userName":var1,"password":var2,"userRealName":var3,"phone":var4,"email":var5,"userType":$("#type").val()}
+		
 		
 		$.ajax({
 			timeout:20000,

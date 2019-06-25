@@ -29,6 +29,7 @@ import com.model.Type;
 import com.model.User;
 import com.service.AdvertService;
 import com.service.NewsService;
+import com.service.NoticeService;
 import com.service.TopicService;
 import com.service.TypeService;
 import com.service.UserService;
@@ -40,6 +41,8 @@ import com.util.webMes;
 public class NewsController {
 	@Autowired
 	private TopicService topicService;
+	@Autowired
+	private NoticeService noticeService;
 	
 	@Autowired
 	private AdvertService advertService;
@@ -129,6 +132,7 @@ public class NewsController {
             mo.getModel().put("page", page);
           
 		}
+		mo.addObject("notice", noticeService.find());
 		mo.addObject("advert1",advertService.findAdvert().get(0) );
 		mo.addObject("advert2", advertService.findAdvert().get(1));
 		mo.getModel().put("totalPage", totalPage);
@@ -291,13 +295,18 @@ for (int i = 0; cookies != null && i < cookies.length; i++){
 		
 	//关键字查询
 	@RequestMapping("/showNewsByKey")
-	public String showNewsByKey(@RequestParam("newsTitle")String newsTitle,
+	public String showNewsByKey(@RequestParam(value="newsTitle",required=false)String newsTitle,
 			                    @RequestParam("page")int page,
 			                    HttpSession session) {
-		session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
-		session.setAttribute("page", page);
-		return "redirect:/news/findByPage.do";
-			
+		if (newsTitle==null) {//用户没输入
+			session.setAttribute("page", page);
+			session.setAttribute("KeyNews",null);
+			return "redirect:/news/findByPage.do";
+		} else {//用户输入了
+			session.setAttribute("KeyNews", newsService.showNewsByKeyValue(newsTitle));
+			session.setAttribute("page", page);
+			return "redirect:/news/findByPage.do";
+		}
 	}
 	
 }
